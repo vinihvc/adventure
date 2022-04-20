@@ -1,12 +1,16 @@
+import clsx from 'clsx'
 import { useState } from 'react'
+import { useCountdown } from '../hooks/use-countdown'
 
 import { Countdown } from './countdown'
+import { Progress } from './progress'
 
 type ItemProps = {
   title: string
   image: string
   value: number
   total: number
+  cost: number
   duration: number
   onFinish?: (balance: number) => void
 }
@@ -16,21 +20,16 @@ export const Item = ({
   image,
   value,
   total: totalState,
+  cost,
   duration,
   onFinish,
 }: ItemProps) => {
-  const [isCounting, setIsCounting] = useState(false)
   const [total, setTotal] = useState(totalState)
 
-  const handleFinish = () => {
-    setIsCounting(false)
-
-    !!onFinish && onFinish(total * value)
-  }
-
-  const handleStart = () => {
-    setIsCounting(true)
-  }
+  const { seconds, formatted, isRunning, onStart } = useCountdown({
+    seconds: duration,
+    onComplete: () => !!onFinish && onFinish(total * value),
+  })
 
   const handleBuy = () => {
     setTotal(total + 1)
@@ -39,39 +38,49 @@ export const Item = ({
   return (
     <div className="flex items-center space-x-5">
       <button
-        className="rounded-full relative w-12 h-12 overflow-auto text-black font-bold"
+        className={clsx(
+          'rounded-full relative w-12 h-12 overflow-auto text-white font-bold border-[4px] transition-all',
+          isRunning ? 'border-green-600' : 'border-gray-700',
+        )}
         title="Start"
-        onClick={handleStart}
-        disabled={isCounting}
+        onClick={onStart}
+        disabled={isRunning}
       >
         <img
           src={image}
           alt={title}
-          className="w-12 h-12 object-cover bg-cover"
+          className="w-12 h-12 object-cover bg-cover "
         />
 
-        <div className="flex justify-center items-center absolute inset-0 bg-white bg-opacity-50">
-          {total}
+        <div className="flex justify-center items-center absolute bottom-[-15px] w-full">
+          <div className="flex justify-center items-center rounded-full bg-gray-700 w-5 h-5 min-h-5 min-w-5">
+            <div className="text-xs">{total}</div>
+          </div>
         </div>
       </button>
 
-      <div className="w-[150px]">
-        <div className="flex justify-between">
-          {isCounting ? (
-            <Countdown duration={duration} onFinish={handleFinish} />
-          ) : (
-            <p>00:0{duration}</p>
-          )}
+      <div className="w-[300px]">
+        <Progress duration={duration} seconds={seconds}>
+          ${value * total}
+        </Progress>
 
-          {`x${value * total}`}
+        <div className="flex items-center space-x-5 mt-1">
+          <button
+            className="flex justify-between text-sm w-full bg-blue-400 text-white font-bold py-2 px-4 rounded uppercase"
+            onClick={handleBuy}
+          >
+            <span>Buy</span>
+
+            <span>${total * cost}</span>
+          </button>
+
+          <button
+            className="flex justify-center text-sm w-full bg-gray-600 text-white font-bold p-2 rounded cursor-default"
+            disabled
+          >
+            {formatted}
+          </button>
         </div>
-
-        <button
-          className="text-sm w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded uppercase tracking-wide"
-          onClick={handleBuy}
-        >
-          Buy
-        </button>
       </div>
     </div>
   )
