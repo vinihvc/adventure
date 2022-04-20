@@ -2,7 +2,6 @@ import clsx from 'clsx'
 import { useState } from 'react'
 import { useCountdown } from '../hooks/use-countdown'
 
-import { Countdown } from './countdown'
 import { Progress } from './progress'
 
 type ItemProps = {
