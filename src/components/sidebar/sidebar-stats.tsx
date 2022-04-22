@@ -34,7 +34,7 @@ export const SidebarStats = () => {
             <span className="text-lg font-bold">Total</span>
 
             <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.current)}
+              $ {Intl.NumberFormat().format(balance.total)}
             </span>
           </div>
 
