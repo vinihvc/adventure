@@ -1,5 +1,7 @@
 import { PropsWithChildren } from 'react'
 
+import * as ProgressPrimitive from '@radix-ui/react-progress'
+
 type ProgressProps = {
   duration: number
   seconds: number
@@ -10,20 +12,21 @@ export const Progress = ({
   seconds,
   children,
 }: PropsWithChildren<ProgressProps>) => {
-  const reverseWidth = 100 - (seconds / duration) * 100
-
-  console.log(reverseWidth)
+  const progress = 100 - (seconds / duration) * 100
 
   return (
-    <div className="relative w-full bg-gray-200 rounded h-[20px] dark:bg-gray-700">
+    <ProgressPrimitive.Root
+      value={progress}
+      className="relative h-[20px] w-full overflow-hidden rounded bg-gray-500"
+    >
       <div className="flex justify-center items-center absolute inset-0 text-xs font-bold">
         {children}
       </div>
 
-      <div
-        className="bg-green-600 h-[20px] rounded transition-all"
-        style={{ width: `${reverseWidth}%` }}
+      <ProgressPrimitive.Indicator
+        style={{ width: `${progress}%` }}
+        className="h-full bg-green-600 duration-300 ease-in-out00"
       />
-    </div>
+    </ProgressPrimitive.Root>
   )
 }

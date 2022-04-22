@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
+import { useInterval } from './use-interval'
 
 type CountdownProps = {
   seconds?: number
   running?: boolean
   onComplete?: () => void
+  interval?: number
 }
 
 const padLeft = (num: number) => {
@@ -14,27 +16,22 @@ export const useCountdown = ({
   seconds: initialSeconds = 0,
   running: initiallyRunning = false,
   onComplete,
+  interval = 1000,
 }: CountdownProps) => {
   const [seconds, setSeconds] = useState(initialSeconds)
   const [isRunning, setIsRunning] = useState(initiallyRunning)
 
-  useEffect(() => {
-    const myInterval = setInterval(() => {
-      if (seconds > 0 && isRunning) {
-        setSeconds(seconds - 1)
-      }
-
-      if (seconds === 0) {
-        setSeconds(initialSeconds)
-        setIsRunning(false)
-        !!onComplete && onComplete()
-        clearInterval(myInterval)
-      }
-    }, 1000)
-    return () => {
-      clearInterval(myInterval)
+  useInterval(() => {
+    if (seconds > 0 && isRunning) {
+      setSeconds(seconds - 1)
     }
-  })
+
+    if (seconds === 0) {
+      setSeconds(initialSeconds)
+      setIsRunning(false)
+      !!onComplete && onComplete()
+    }
+  }, interval)
 
   const formatted = `${padLeft(Math.floor(seconds / 60))}:${padLeft(
     seconds % 60,

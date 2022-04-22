@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply flex justify-center items-center text-sm w-full bg-gray-500 text-white font-bold h-[40px] px-4 rounded uppercase transition-colors duration-200 disabled:bg-gray-400 hover:disabled:bg-gray-400;
+  }
+}
+
