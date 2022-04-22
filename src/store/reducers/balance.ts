@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { FactoryTypeModel } from '@/models/factories'
 
 import { add } from '@/store/thunks/balance'
-import { amount } from '@/store/thunks/factories'
+import { amount, automatic, upgrade } from '@/store/thunks/factories'
 
 const initialState = {
   total: 0,
@@ -39,6 +39,24 @@ const balanceSlice = createSlice({
       const { toDecrease } = action.payload
 
       state.current -= toDecrease
+    },
+    [automatic.fulfilled.type]: (
+      state,
+      action: PayloadAction<{ type: FactoryTypeModel; toDecrease: number }>,
+    ) => {
+      const { type, toDecrease } = action.payload
+
+      state.current -= toDecrease
+      state.factories[type] -= toDecrease
+    },
+    [upgrade.fulfilled.type]: (
+      state,
+      action: PayloadAction<{ type: FactoryTypeModel; toDecrease: number }>,
+    ) => {
+      const { type, toDecrease } = action.payload
+
+      state.current -= toDecrease
+      state.factories[type] -= toDecrease
     },
   },
 })

@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 import { useAppSelector } from '@/hooks/use-redux'
 
 import { GameWrapper } from '@/components/game-wrapper'

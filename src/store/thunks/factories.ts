@@ -34,7 +34,7 @@ export const automatic = createAsyncThunk(
     const factory = factories.find((f: any) => f.type === type)
 
     if (balance.current >= factory.amountCost) {
-      return type
+      return { type, toDecrease: factory.autoCost }
     }
   },
 )
@@ -47,7 +47,7 @@ export const upgrade = createAsyncThunk(
     const factory = factories.find((f: any) => f.type === type)
 
     if (balance.current >= factory.upgradeCost) {
-      return type
+      return { type, toDecrease: factory.upgradeCost }
     }
   },
 )

@@ -97,16 +97,19 @@ const factoriesSlice = createSlice({
     },
     [automatic.fulfilled.type]: (
       state,
-      action: PayloadAction<FactoryModel>,
+      action: PayloadAction<{ type: FactoryModel }>,
     ) => {
-      const factory = state.find((f: any) => f.type === action.payload)
+      const factory = state.find((f: any) => f.type === action.payload.type)
 
       if (factory) {
         factory.auto = true
       }
     },
-    [upgrade.fulfilled.type]: (state, action: PayloadAction<FactoryModel>) => {
-      const factory = state.find((f: any) => f.type === action.payload)
+    [upgrade.fulfilled.type]: (
+      state,
+      action: PayloadAction<{ type: FactoryModel }>,
+    ) => {
+      const factory = state.find((f: any) => f.type === action.payload.type)
 
       if (factory) {
         factory.upgrade = true
