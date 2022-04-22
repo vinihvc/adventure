@@ -42,21 +42,19 @@ const balanceSlice = createSlice({
     },
     [automatic.fulfilled.type]: (
       state,
-      action: PayloadAction<{ type: FactoryTypeModel; toDecrease: number }>,
+      action: PayloadAction<{ toDecrease: number }>,
     ) => {
-      const { type, toDecrease } = action.payload
+      const { toDecrease } = action.payload
 
       state.current -= toDecrease
-      state.factories[type] -= toDecrease
     },
     [upgrade.fulfilled.type]: (
       state,
-      action: PayloadAction<{ type: FactoryTypeModel; toDecrease: number }>,
+      action: PayloadAction<{ toDecrease: number }>,
     ) => {
-      const { type, toDecrease } = action.payload
+      const { toDecrease } = action.payload
 
       state.current -= toDecrease
-      state.factories[type] -= toDecrease
     },
   },
 })
