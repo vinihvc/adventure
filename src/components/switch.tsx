@@ -23,7 +23,7 @@ export const Switch = ({ checked, ariaLabel, onChange }: SwitchProps) => {
       checked={enabled}
       onChange={handleChange}
       className={clsx(
-        'relative inline-flex flex-shrink-0 h-[30px] w-[58px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75',
+        'relative inline-flex flex-shrink-0 h-[30px] w-[58px] rounded-full cursor-pointer',
         enabled ? 'bg-blue-500' : 'bg-gray-500',
       )}
     >
@@ -31,8 +31,8 @@ export const Switch = ({ checked, ariaLabel, onChange }: SwitchProps) => {
       <span
         aria-hidden="true"
         className={clsx(
-          'pointer-events-none inline-block h-[26px] w-[26px] rounded-full bg-white shadow-lg transform translate-y-[1px] ring-0 transition ease-in-out duration-200',
-          enabled ? 'translate-x-[29px]' : 'translate-x-[1px]',
+          'pointer-events-none inline-block h-[26px] w-[26px] rounded-full transform translate-y-[2px] bg-white transition ease-in-out duration-200',
+          enabled ? 'translate-x-[30px]' : 'translate-x-[2px]',
         )}
       />
     </BaseSwitch>

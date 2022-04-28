@@ -1,8 +1,8 @@
 import clsx from 'clsx'
 
-import { FactoryTypeModel } from '@/models/factories'
+import { FactoryTypeModel } from '@/models/factory'
 
-import { useAppSelector } from '@/hooks/use-redux'
+import { useFactory } from '@/hooks/use-factory'
 
 type FactoryBuyProps = {
   type: FactoryTypeModel
@@ -15,25 +15,28 @@ export const FactoryStartProduce = ({
   isRunning,
   onStart,
 }: FactoryBuyProps) => {
-  const { factories } = useAppSelector((state) => state)
-
-  const factory = factories.find((factory) => factory.type === type)
+  const { factory } = useFactory(type)
 
   return (
     <button
       type="button"
       className={clsx(
-        'rounded-full relative w-12 h-12 overflow-auto text-white font-bold border-[4px] transition-all',
+        'relative',
+        'w-12 h-12',
+        'bg-gray-900',
+        'rounded-full border-[4px] ',
+        'font-bold',
+        'overflow-auto font-bold transition-all',
         isRunning ? 'border-green-600' : 'border-blue-400',
       )}
-      title={`Produce ${factory?.type}`}
+      aria-label={`Produce ${factory.type}`}
       onClick={onStart}
       disabled={isRunning}
     >
       <img
-        src={factory!.image}
+        src={factory.image}
         alt={type}
-        className="w-12 h-12 object-cover bg-cover "
+        className="w-12 h-12 aspect-square object-cover"
       />
 
       <div className="flex justify-center items-center absolute bottom-[-15px] w-full">
@@ -43,7 +46,7 @@ export const FactoryStartProduce = ({
             isRunning ? 'bg-green-800' : 'bg-blue-800',
           )}
         >
-          <div className="text-xs">{factory!.amount}</div>
+          <div className="text-xs">{factory.amount}</div>
         </div>
       </div>
     </button>

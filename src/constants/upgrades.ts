@@ -1,0 +1,42 @@
+export const UPGRADES = {
+  super: {
+    multiplier: 3,
+    potato: 60,
+    land: 80_000,
+    ore: 80_000,
+    weapon: 80_000,
+    medicine: 80_000,
+  },
+  ultra: {
+    multiplier: 6,
+    potato: 60,
+    land: 80_000,
+    ore: 80_000,
+    weapon: 80_000,
+    medicine: 80_000,
+  },
+  epic: {
+    multiplier: 12,
+    potato: 60,
+    land: 80_000,
+    ore: 80_000,
+    weapon: 80_000,
+    medicine: 80_000,
+  },
+  legendary: {
+    multiplier: 9,
+    potato: 60,
+    land: 80_000,
+    ore: 80_000,
+    weapon: 80_000,
+    medicine: 80_000,
+  },
+  god: {
+    multiplier: 15,
+    potato: 60,
+    land: 80_000,
+    ore: 80_000,
+    weapon: 80_000,
+    medicine: 80_000,
+  },
+}

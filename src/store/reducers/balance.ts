@@ -1,19 +1,47 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { FactoryTypeModel } from '@/models/factories'
+import { FactoryTypeModel } from '@/models/factory'
 
-import { add } from '@/store/thunks/balance'
-import { amount, automatic, upgrade } from '@/store/thunks/factories'
+import { balanceThunk } from '@/store/thunks/balance'
+import { factoriesThunk } from '@/store/thunks/factories'
 
 const initialState = {
-  total: 0,
-  current: 0,
-  factories: {
+  total: {
+    cash: 0,
     potato: 0,
     land: 0,
     ore: 0,
     weapon: 0,
     medicine: 0,
+    rocket: 0,
+    planet: 0,
+    galaxy: 0,
+    sorcery: 0,
+    timeTravel: 0,
+    angel: 0,
+    magic: 0,
+    reset: 0,
+
+    // ...Object.keys(FACTORIES).reduce((acc, cur) => {
+    //   acc[cur] = 0
+    //   return acc
+    // }, {}),
+  },
+  current: {
+    cash: 0,
+    potato: 0,
+    land: 0,
+    ore: 0,
+    weapon: 0,
+    medicine: 0,
+    rocket: 0,
+    planet: 0,
+    galaxy: 0,
+    sorcery: 0,
+    timeTravel: 0,
+    angel: 0,
+    magic: 0,
+    reset: 0,
   },
 }
 
@@ -22,39 +50,39 @@ const balanceSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [add.fulfilled.type]: (
+    [balanceThunk.add.fulfilled.type]: (
       state,
-      action: PayloadAction<{ value: number; type: FactoryTypeModel }>,
+      action: PayloadAction<{ type: FactoryTypeModel; value: number }>,
     ) => {
       const { value, type } = action.payload
 
-      state.total += value
-      state.current += value
-      state.factories[type] += value
+      state.total.cash += value
+      state.current.cash += value
+      state.total[type] += value
     },
-    [amount.fulfilled.type]: (
+    [factoriesThunk.amount.fulfilled.type]: (
       state,
       action: PayloadAction<{ toDecrease: number }>,
     ) => {
       const { toDecrease } = action.payload
 
-      state.current -= toDecrease
+      state.current.cash -= toDecrease
     },
-    [automatic.fulfilled.type]: (
+    [factoriesThunk.automatic.fulfilled.type]: (
       state,
       action: PayloadAction<{ toDecrease: number }>,
     ) => {
       const { toDecrease } = action.payload
 
-      state.current -= toDecrease
+      state.current.cash -= toDecrease
     },
-    [upgrade.fulfilled.type]: (
+    [factoriesThunk.upgrade.fulfilled.type]: (
       state,
       action: PayloadAction<{ toDecrease: number }>,
     ) => {
       const { toDecrease } = action.payload
 
-      state.current -= toDecrease
+      state.current.cash -= toDecrease
     },
   },
 })

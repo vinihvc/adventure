@@ -5,9 +5,7 @@ import { useAppSelector } from '@/hooks/use-redux'
 import { GameWrapper } from '@/components/game-wrapper'
 import { Factory } from '@/components/factory'
 import { Sidebar } from '@/components/sidebar'
-import { useEffect } from 'react'
-
-// import theme from '@/assets/sfx/theme.wav'
+import { TotalAmount } from '@/components/total-amount'
 
 export const App = () => {
   const { factories, balance } = useAppSelector((state) => state)
@@ -16,22 +14,26 @@ export const App = () => {
 
   return (
     <>
-      <Helmet title={`$ ${new Intl.NumberFormat().format(balance.current)}`} />
+      <Helmet
+        title={`$ ${new Intl.NumberFormat().format(balance.current.cash)}`}
+      />
 
       <GameWrapper>
-        <Sidebar />
+        <Sidebar className="hidden md:flex" />
 
-        <div>
-          <h2 className="text-5xl text-center font-black">
-            ${new Intl.NumberFormat().format(balance.current)}
-          </h2>
-
-          <div className="grid grid-cols-1 gap-5 mt-10">
+        <section className="mt-5 p-4 md:p-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {factories.map((factory: any) => (
-              <Factory key={factory.type} type={factory.type} />
+              <Factory
+                key={factory.type}
+                type={factory.type}
+                name={factory.name}
+              />
             ))}
           </div>
-        </div>
+        </section>
+
+        <TotalAmount className="absolute top-5 right-5" />
       </GameWrapper>
     </>
   )

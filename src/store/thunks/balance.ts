@@ -1,16 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { FactoryTypeModel } from '@/models/factories'
+import { FactoryModel, FactoryStoreModel } from '@/models/factory'
 
-export const add = createAsyncThunk(
+const add = createAsyncThunk(
   'balance/add',
-  async (type: FactoryTypeModel, { getState }) => {
-    const { factories } = getState() as any
+  async (factory: FactoryStoreModel) => {
+    const { type } = factory
 
-    const factory = factories.find((f: any) => f.type === type)
-
-    const totalToAdd = factory.value * factory.amount * factory.upgradeValue
+    const totalToAdd = factory.value * factory.amount
 
     return { type, value: totalToAdd }
   },
 )
+
+export const balanceThunk = {
+  add,
+}

@@ -5,8 +5,8 @@ const initialState = {
   sfx: true,
 }
 
-const settingsSlice = createSlice({
-  name: 'settings',
+const settingSlice = createSlice({
+  name: 'setting',
   initialState,
   reducers: {
     toggleMusic: (state) => {
@@ -18,6 +18,6 @@ const settingsSlice = createSlice({
   },
 })
 
-export const { toggleMusic, toggleSfx } = settingsSlice.actions
+export const { toggleMusic, toggleSfx } = settingSlice.actions
 
-export default settingsSlice.reducer
+export default settingSlice.reducer

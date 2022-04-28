@@ -2,8 +2,11 @@ import { combineReducers } from 'redux'
 
 import balance from './balance'
 import factories from './factories'
-import loaders from './loaders'
-import settings from './settings'
+import loader from './loaders'
+import setting from './setting'
+import user from './user'
+import upgrade from './upgrade'
+import manager from './manager'
 
 /**
  * Setup Root Reducer
@@ -11,6 +14,9 @@ import settings from './settings'
 export default combineReducers({
   balance,
   factories,
-  loaders,
-  settings,
+  loader,
+  setting,
+  user,
+  upgrade,
+  manager,
 })

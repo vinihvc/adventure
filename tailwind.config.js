@@ -2,7 +2,7 @@ module.exports = {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     fontFamily: {
-      sans: ['Inter', 'system-ui', 'sans-serif'],
+      sans: ['Radio Canada', 'system-ui', 'sans-serif'],
     },
   },
   plugins: [],

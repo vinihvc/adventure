@@ -3,9 +3,9 @@ import { useInterval } from './use-interval'
 
 type CountdownProps = {
   seconds?: number
-  running?: boolean
-  onComplete?: () => void
+  isRunning?: boolean
   interval?: number
+  onComplete?: () => void
 }
 
 const padLeft = (num: number) => {
@@ -14,22 +14,22 @@ const padLeft = (num: number) => {
 
 export const useCountdown = ({
   seconds: initialSeconds = 0,
-  running: initiallyRunning = false,
-  onComplete,
+  isRunning: initiallyRunning = false,
   interval = 1000,
+  onComplete,
 }: CountdownProps) => {
   const [seconds, setSeconds] = useState(initialSeconds)
   const [isRunning, setIsRunning] = useState(initiallyRunning)
 
   useInterval(() => {
-    if (seconds > 0 && isRunning) {
-      setSeconds(seconds - 1)
-    }
-
-    if (seconds === 0) {
+    if (seconds <= 0) {
       setSeconds(initialSeconds)
       setIsRunning(false)
       !!onComplete && onComplete()
+    }
+
+    if (seconds > 0 && isRunning) {
+      setSeconds(seconds - 1)
     }
   }, interval)
 

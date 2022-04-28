@@ -1,9 +1,9 @@
 import { useDisclosure } from '@/hooks/use-disclosure'
 import { useAppSelector } from '@/hooks/use-redux'
 
-import { Avatar } from '../avatar'
-import { Button } from '../button'
-import { Modal } from '../modal'
+import { Avatar } from '@/components/avatar'
+import { Button } from '@/components/button'
+import { Modal } from '@/components/modal'
 
 export const SidebarStats = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -34,7 +34,7 @@ export const SidebarStats = () => {
             <span className="text-lg font-bold">Total</span>
 
             <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.total)}
+              $ {Intl.NumberFormat().format(balance.total.cash)}
             </span>
           </div>
 
@@ -44,7 +44,7 @@ export const SidebarStats = () => {
             <span className="text-lg font-bold">Potatos</span>
 
             <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.factories.potato)}
+              $ {Intl.NumberFormat().format(balance.total.potato)}
             </span>
           </div>
 
@@ -52,7 +52,7 @@ export const SidebarStats = () => {
             <span className="text-lg font-bold">Lands</span>
 
             <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.factories.land)}
+              $ {Intl.NumberFormat().format(balance.total.land)}
             </span>
           </div>
 
@@ -60,7 +60,7 @@ export const SidebarStats = () => {
             <span className="text-lg font-bold">Ores</span>
 
             <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.factories.ore)}
+              $ {Intl.NumberFormat().format(balance.total.ore)}
             </span>
           </div>
 
@@ -68,7 +68,7 @@ export const SidebarStats = () => {
             <span className="text-lg font-bold">Weapons</span>
 
             <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.factories.weapon)}
+              $ {Intl.NumberFormat().format(balance.total.weapon)}
             </span>
           </div>
 
@@ -76,7 +76,7 @@ export const SidebarStats = () => {
             <span className="text-lg font-bold">Medicines</span>
 
             <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.factories.medicine)}
+              $ {Intl.NumberFormat().format(balance.total.medicine)}
             </span>
           </div>
         </div>

@@ -1,46 +1,28 @@
-import useSound from 'use-sound'
+import { FactoryTypeModel } from '@/models/factory'
 
-import { FactoryTypeModel } from '@/models/factories'
-
-import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
-
-import { amount } from '@/store/thunks/factories'
+import { useFactory } from '@/hooks/use-factory'
 
 import { Button } from '@/components/button'
 
-import coinSfx from '@/assets/sfx/coin.wav'
-
 type FactoryBuyProps = {
+  name: string
   type: FactoryTypeModel
 }
 
-export const FactoryBuy = ({ type }: FactoryBuyProps) => {
-  const dispatch = useAppDispatch()
-
-  const { balance, factories, settings } = useAppSelector((state) => state)
-
-  const [play] = useSound(coinSfx, { soundEnabled: settings.sfx })
-
-  const factory = factories.find((factory) => factory.type === type)
-
-  const buyPrice = factory!.amountCost * factory!.amount
-
-  const handleBuy = () => {
-    dispatch(amount({ type, amount: 1 }))
-
-    play()
-  }
+export const FactoryBuy = ({ name, type }: FactoryBuyProps) => {
+  const { canBuyAmount, handleBuyAmount } = useFactory(type)
 
   return (
     <Button
+      type="button"
       className="text-xs bg-blue-500 hover:bg-blue-600"
-      disabled={buyPrice > balance.current}
-      onClick={handleBuy}
+      disabled={canBuyAmount}
+      onClick={handleBuyAmount}
     >
       <span>
         Buy
         <small>{' x'}</small>
-        {`1 ${type}`}
+        {`1 ${name}`}
       </span>
     </Button>
   )

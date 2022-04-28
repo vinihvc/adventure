@@ -2,10 +2,10 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {}
 
-const loadersSlice = createSlice({
-  name: 'loaders',
+const loaderSlice = createSlice({
+  name: 'loader',
   initialState,
   reducers: {},
 })
 
-export default loadersSlice.reducer
+export default loaderSlice.reducer

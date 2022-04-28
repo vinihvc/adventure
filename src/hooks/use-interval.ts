@@ -1,5 +1,15 @@
 import { useEffect, useRef } from 'react'
 
+/**
+ * Custom hook to hack the useInterval function
+ *
+ * @example
+ * ```js
+ * const id = useId('component-name');
+ * ```
+ *
+ * @see https://overreacted.io/making-setinterval-declarative-with-react-hooks
+ */
 export const useInterval = (callback: any, delay = 1000) => {
   const savedCallback = useRef()
 
