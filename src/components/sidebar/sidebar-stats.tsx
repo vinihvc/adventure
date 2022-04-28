@@ -39,46 +39,6 @@ export const SidebarStats = () => {
           </div>
 
           <hr className="border-gray-700" />
-
-          <div className="flex justify-between items-center">
-            <span className="text-lg font-bold">Potatos</span>
-
-            <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.total.potato)}
-            </span>
-          </div>
-
-          <div className="flex justify-between items-center">
-            <span className="text-lg font-bold">Lands</span>
-
-            <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.total.land)}
-            </span>
-          </div>
-
-          <div className="flex justify-between items-center">
-            <span className="text-lg font-bold">Ores</span>
-
-            <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.total.ore)}
-            </span>
-          </div>
-
-          <div className="flex justify-between items-center">
-            <span className="text-lg font-bold">Weapons</span>
-
-            <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.total.weapon)}
-            </span>
-          </div>
-
-          <div className="flex justify-between items-center">
-            <span className="text-lg font-bold">Medicines</span>
-
-            <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.total.medicine)}
-            </span>
-          </div>
         </div>
       </Modal>
     </>
