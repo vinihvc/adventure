@@ -1,27 +1,24 @@
 import { CogIcon } from '@heroicons/react/solid'
 
+import { toggleMusic, toggleSfx } from '@/store/reducers/setting'
+
+import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
 import { useDisclosure } from '@/hooks/use-disclosure'
 
-import { Modal } from './modal'
-import { Switch } from './switch'
-import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
-import { toggleMusic, toggleSfx } from '@/store/reducers/settings'
+import { Modal } from '@/components/modal'
+import { Switch } from '@/components/switch'
 
 export const Settings = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const dispatch = useAppDispatch()
 
-  const { music, sfx } = useAppSelector((state) => state.settings)
+  const { music, sfx } = useAppSelector((state) => state.setting)
 
   return (
     <>
-      <button
-        className="absolute top-4 right-4"
-        onClick={onOpen}
-        aria-label="Open Settings"
-      >
-        <CogIcon className="w-7 h-7 text-white" aria-hidden />
+      <button type="button" onClick={onOpen} aria-label="Open Settings">
+        <CogIcon className="w-7 h-7" aria-hidden />
       </button>
 
       <Modal title="Settings" isOpen={isOpen} onClose={onClose}>

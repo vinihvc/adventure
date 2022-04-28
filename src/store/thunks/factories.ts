@@ -1,53 +1,74 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { FactoryTypeModel } from '@/models/factories'
+import { FactoryStoreModel } from '@/models/factory'
 
-type UpdateAmountParams = {
-  type: FactoryTypeModel
-  amount: number
-}
+import { MultiplierValueModel } from '@/models/multiplier'
 
-export const amount = createAsyncThunk(
-  'factories/updateAmount',
-  async ({ type, amount }: UpdateAmountParams, { getState }) => {
-    const { balance, factories } = getState() as any
+import { AUTOMATIC } from '@/constants/automatic'
+import { UPGRADES } from '@/constants/upgrades'
+import { AMOUNT } from '@/constants/amount'
 
-    const factory = factories.find((f: any) => f.type === type)
+import { multiplierMap } from '@/utils/multiplier-map'
 
-    const amountCost = factory.amountCost * factory.amount
+const amount = createAsyncThunk(
+  'factories/amount',
+  async (factory: FactoryStoreModel, { getState }) => {
+    const { type } = factory
 
-    if (balance.current >= amountCost) {
-      return {
-        type,
-        amount,
-        toDecrease: amountCost,
-      }
+    const { balance } = getState() as any
+
+    const amountCost = AMOUNT[type] * factory.amount
+
+    if (balance.current < amountCost) {
+      return { error: 'Not enough money' }
+    }
+
+    return {
+      type,
+      amount: 1,
+      toDecrease: amountCost,
     }
   },
 )
 
-export const automatic = createAsyncThunk(
+const automatic = createAsyncThunk(
   'factories/automatic',
-  async (type: FactoryTypeModel, { getState }) => {
-    const { balance, factories } = getState() as any
+  async (factory: FactoryStoreModel, { getState }) => {
+    const { type } = factory
 
-    const factory = factories.find((f: any) => f.type === type)
+    const price = AUTOMATIC[type]
 
-    if (balance.current >= factory.amountCost) {
-      return { type, toDecrease: factory.autoCost }
+    const { balance } = getState() as any
+
+    if (balance.current < price) {
+      return { error: 'Not enough money' }
     }
+
+    return { type }
   },
 )
 
-export const upgrade = createAsyncThunk(
+const upgrade = createAsyncThunk(
   'factories/upgrade',
-  async (type: FactoryTypeModel, { getState }) => {
-    const { balance, factories } = getState() as any
+  async (factory: FactoryStoreModel, { getState }) => {
+    const { type, multiplier } = factory
 
-    const factory = factories.find((f: any) => f.type === type)
+    const { balance } = getState() as any
 
-    if (balance.current >= factory.upgradeCost) {
-      return { type, toDecrease: factory.upgradeCost }
+    const multiplierName = multiplierMap[multiplier as MultiplierValueModel]!
+
+    const price = UPGRADES[multiplierName][type]
+
+    if (balance.current < price) {
+      return { error: 'Not enough money' }
     }
+
+    return { type, toDecrease: price }
   },
 )
+
+export const factoriesThunk = {
+  amount,
+  automatic,
+  upgrade,
+}

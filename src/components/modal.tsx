@@ -2,6 +2,8 @@ import { Dialog } from '@headlessui/react'
 
 import { XIcon } from '@heroicons/react/solid'
 
+import clsx from 'clsx'
+
 type ModalProps = {
   title: string
   isOpen: boolean
@@ -17,28 +19,44 @@ export const Modal = ({ title, isOpen, children, onClose }: ModalProps) => {
       className="fixed inset-0 z-10 overflow-y-auto"
       onClose={onClose}
     >
-      <div className="min-h-screen px-4 text-center">
+      <div className="min-h-screen text-center md:px-4">
         {/* This element is to trick the browser into centering the modal contents. */}
         <span className="inline-block h-screen align-middle" aria-hidden="true">
           &#8203;
         </span>
 
-        <div className="relative inline-block w-full max-w-sm p-8 text-white text-left align-middle transition-all transform bg-gray-900 shadow-2xl rounded-2xl">
-          <div className="flex justify-between items-center">
-            <Dialog.Title as="h3" className="text-4xl font-bold leading-6">
-              {title}
-            </Dialog.Title>
+        <div
+          className={clsx(
+            'relative inline-block align-middle',
+            'w-full max-w-3xl',
+            'text-left',
+            'bg-gray-900',
+            'shadow-2xl rounded',
+            'p-3 md:p-5',
+            'transition-all transform ',
+          )}
+        >
+          <div className="flex flex-col max-h-[50vh]">
+            <div className="flex justify-between items-center">
+              <Dialog.Title
+                as="h3"
+                className="text-lg md:text-4xl font-bold leading-6"
+              >
+                {title}
+              </Dialog.Title>
 
-            <button
-              className="appearance-none"
-              aria-label="Close"
-              onClick={onClose}
-            >
-              <XIcon className="h-7 w-7 " aria-hidden />
-            </button>
+              <button
+                type="button"
+                className="appearance-none"
+                aria-label="Close"
+                onClick={onClose}
+              >
+                <XIcon className="h-7 w-7" aria-hidden />
+              </button>
+            </div>
+
+            <div className="mt-5 flex-1 overflow-auto p-1">{children}</div>
           </div>
-
-          <div className="mt-10">{children}</div>
         </div>
       </div>
     </Dialog>

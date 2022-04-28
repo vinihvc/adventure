@@ -1,9 +1,9 @@
 import { useDisclosure } from '@/hooks/use-disclosure'
 import { useAppSelector } from '@/hooks/use-redux'
 
-import { Avatar } from '../avatar'
-import { Button } from '../button'
-import { Modal } from '../modal'
+import { Avatar } from '@/components/avatar'
+import { Button } from '@/components/button'
+import { Modal } from '@/components/modal'
 
 export const SidebarStats = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -34,51 +34,11 @@ export const SidebarStats = () => {
             <span className="text-lg font-bold">Total</span>
 
             <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.total)}
+              $ {Intl.NumberFormat().format(balance.total.cash)}
             </span>
           </div>
 
           <hr className="border-gray-700" />
-
-          <div className="flex justify-between items-center">
-            <span className="text-lg font-bold">Potatos</span>
-
-            <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.factories.potato)}
-            </span>
-          </div>
-
-          <div className="flex justify-between items-center">
-            <span className="text-lg font-bold">Lands</span>
-
-            <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.factories.land)}
-            </span>
-          </div>
-
-          <div className="flex justify-between items-center">
-            <span className="text-lg font-bold">Ores</span>
-
-            <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.factories.ore)}
-            </span>
-          </div>
-
-          <div className="flex justify-between items-center">
-            <span className="text-lg font-bold">Weapons</span>
-
-            <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.factories.weapon)}
-            </span>
-          </div>
-
-          <div className="flex justify-between items-center">
-            <span className="text-lg font-bold">Medicines</span>
-
-            <span className="text-4xl font-extrabold">
-              $ {Intl.NumberFormat().format(balance.factories.medicine)}
-            </span>
-          </div>
         </div>
       </Modal>
     </>
