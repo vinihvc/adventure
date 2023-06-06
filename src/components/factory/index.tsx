@@ -1,40 +1,39 @@
 import { useEffect } from 'react'
 
-import { FactoryTypeModel } from '@/models/factories'
+import { FactoryTypeModel } from '@/models/factory'
+
+import { balanceThunk } from '@/store/thunks/balance'
 
 import { useCountdown } from '@/hooks/use-countdown'
-import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
+import { useAppDispatch } from '@/hooks/use-redux'
+import { useFactory } from '@/hooks/use-factory'
 
 import { Progress } from '@/components/progress'
 import { Button } from '@/components/button'
 
 import { FactoryBuy } from './factory.buy'
 import { FactoryStartProduce } from './factory.start-produce'
-import { add } from '@/store/thunks/balance'
 
 type FactoryProps = {
   type: FactoryTypeModel
+  name: string
 }
 
-export const Factory = ({ type }: FactoryProps) => {
+export const Factory = ({ name, type }: FactoryProps) => {
   const dispatch = useAppDispatch()
 
-  const { factories } = useAppSelector((state) => state)
-
-  const factory = factories.find((factory) => factory.type === type)
-
-  const amountGen = factory!.value * factory!.amount * factory!.upgradeValue
+  const { factory, amountGenerated } = useFactory(type)
 
   useEffect(() => {
-    if (factory!.auto) {
+    if (factory!.automatic) {
       onStart()
     }
   }, [factory])
 
   const handleComplete = () => {
-    dispatch(add(type))
+    dispatch(balanceThunk.add(factory))
 
-    if (factory!.auto) {
+    if (factory!.automatic) {
       onStart()
     }
   }
@@ -53,12 +52,17 @@ export const Factory = ({ type }: FactoryProps) => {
       />
 
       <div className="w-[300px] space-y-1">
-        <Progress duration={factory!.duration} seconds={seconds}>
-          ${amountGen}
+        <Progress
+          duration={factory!.duration}
+          seconds={seconds}
+          isAutomatic={factory!.automatic}
+          isPlaying={isRunning}
+        >
+          ${amountGenerated}
         </Progress>
 
         <div className="flex items-center space-x-1">
-          <FactoryBuy type={type} />
+          <FactoryBuy name={name} type={type} />
 
           <Button
             className="disabled:bg-gray-900 hover:disabled:bg-gray-900"
