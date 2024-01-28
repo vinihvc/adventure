@@ -1,28 +1,19 @@
 import { useEffect } from 'react'
 
-import { FactoryTypeModel } from '@/models/factories'
+import { FactoryModel } from '@/models/factories'
 
 import { useCountdown } from '@/hooks/use-countdown'
-import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
-
-import { Progress } from '@/components/progress'
-import { Button } from '@/components/button'
 
 import { FactoryBuy } from './factory.buy'
 import { FactoryStartProduce } from './factory.start-produce'
-import { add } from '@/store/thunks/balance'
+import { Progress } from '../ui/progress'
+import { Button } from '../ui/button'
 
 type FactoryProps = {
-  type: FactoryTypeModel
+  factory: FactoryModel
 }
 
-export const Factory = ({ type }: FactoryProps) => {
-  const dispatch = useAppDispatch()
-
-  const { factories } = useAppSelector((state) => state)
-
-  const factory = factories.find((factory) => factory.type === type)
-
+export const Factory = ({ factory }: FactoryProps) => {
   const amountGen = factory!.value * factory!.amount * factory!.upgradeValue
 
   useEffect(() => {
@@ -32,8 +23,6 @@ export const Factory = ({ type }: FactoryProps) => {
   }, [factory])
 
   const handleComplete = () => {
-    dispatch(add(type))
-
     if (factory!.auto) {
       onStart()
     }
@@ -47,7 +36,7 @@ export const Factory = ({ type }: FactoryProps) => {
   return (
     <div className="flex items-center space-x-5">
       <FactoryStartProduce
-        type={type}
+        factory={factory}
         isRunning={isRunning}
         onStart={onStart}
       />
@@ -58,7 +47,7 @@ export const Factory = ({ type }: FactoryProps) => {
         </Progress>
 
         <div className="flex items-center space-x-1">
-          <FactoryBuy type={type} />
+          <FactoryBuy factory={factory.type} />
 
           <Button
             className="disabled:bg-gray-900 hover:disabled:bg-gray-900"

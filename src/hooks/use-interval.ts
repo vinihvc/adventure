@@ -1,22 +1,32 @@
-import { useEffect, useRef } from 'react'
+import React from 'react'
 
-export const useInterval = (callback: any, delay = 1000) => {
-  const savedCallback = useRef()
+type IntervalFunction = () => void
 
-  useEffect(() => {
-    savedCallback.current = callback
-  }, [callback])
+/**
+ * Hook that fixes the delay of setInterval
+ *
+ * @param handler a handler function to be called when clicked outside
+ * @param delay the delay in milliseconds
+ */
+export const useInterval = (handler: IntervalFunction, delay?: number) => {
+  const savedCallback = React.useRef<IntervalFunction | null>(null)
 
-  useEffect(() => {
+  React.useEffect(() => {
+    if (!delay) return
+
+    savedCallback.current = handler
+  })
+
+  React.useEffect(() => {
+    if (!delay) return
+
     const tick = () => {
-      // @ts-ignore
-      savedCallback.current()
+      if (savedCallback.current !== null) {
+        savedCallback.current()
+      }
     }
+    const id = setInterval(tick, delay)
 
-    if (delay !== null) {
-      const id = setInterval(tick, delay)
-
-      return () => clearInterval(id)
-    }
+    return () => clearInterval(id)
   }, [delay])
 }

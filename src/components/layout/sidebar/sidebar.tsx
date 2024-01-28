@@ -1,4 +1,4 @@
-import { Button } from '../button'
+import { Button } from '../../ui/button'
 
 import { SidebarStats } from './sidebar-stats'
 import { SidebarManagers } from './sidebar.managers'
@@ -6,7 +6,7 @@ import { SidebarUpgrades } from './sidebar.upgrades'
 
 export const Sidebar = () => {
   return (
-    <aside className="flex flex-col justify-center items-center  w-[200px] p-5">
+    <aside className="flex flex-col justify-center items-center w-[200px] p-5">
       <div className="space-y-6">
         <SidebarStats />
 

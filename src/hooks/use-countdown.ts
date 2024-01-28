@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import React from 'react'
 import { useInterval } from './use-interval'
 
 type CountdownProps = {
@@ -18,8 +18,8 @@ export const useCountdown = ({
   onComplete,
   interval = 1000,
 }: CountdownProps) => {
-  const [seconds, setSeconds] = useState(initialSeconds)
-  const [isRunning, setIsRunning] = useState(initiallyRunning)
+  const [seconds, setSeconds] = React.useState(initialSeconds)
+  const [isRunning, setIsRunning] = React.useState(initiallyRunning)
 
   useInterval(() => {
     if (seconds > 0 && isRunning) {
@@ -37,7 +37,7 @@ export const useCountdown = ({
     seconds % 60,
   )}`
 
-  const onStart = useCallback(() => {
+  const onStart = React.useCallback(() => {
     setIsRunning(true)
   }, [])
 

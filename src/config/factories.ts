@@ -1,16 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
-import { FactoryModel } from '@/models/factories'
-
-import { automatic, amount, upgrade } from '@/store/thunks/factories'
-
 import potato from '@/assets/img/potato.png'
 import land from '@/assets/img/land.png'
 import ore from '@/assets/img/ore.png'
 import weapon from '@/assets/img/weapon.png'
 import medicine from '@/assets/img/medicine.png'
 
-const initialState: FactoryModel[] = [
+export const FACTORIES = [
   {
     type: 'potato',
     duration: 2,
@@ -77,46 +71,3 @@ const initialState: FactoryModel[] = [
     image: medicine,
   },
 ]
-
-const factoriesSlice = createSlice({
-  name: 'factories',
-  initialState,
-  reducers: {},
-  extraReducers: {
-    [amount.fulfilled.type]: (
-      state,
-      action: PayloadAction<{ type: FactoryModel; amount: number }>,
-    ) => {
-      const { type, amount } = action.payload
-
-      const factory = state.find((f: any) => f.type === type)
-
-      if (factory) {
-        factory.amount += amount
-      }
-    },
-    [automatic.fulfilled.type]: (
-      state,
-      action: PayloadAction<{ type: FactoryModel }>,
-    ) => {
-      const factory = state.find((f: any) => f.type === action.payload.type)
-
-      if (factory) {
-        factory.auto = true
-      }
-    },
-    [upgrade.fulfilled.type]: (
-      state,
-      action: PayloadAction<{ type: FactoryModel }>,
-    ) => {
-      const factory = state.find((f: any) => f.type === action.payload.type)
-
-      if (factory) {
-        factory.upgrade = true
-        factory.upgradeValue = 3
-      }
-    },
-  },
-})
-
-export default factoriesSlice.reducer

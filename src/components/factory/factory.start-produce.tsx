@@ -1,24 +1,18 @@
 import clsx from 'clsx'
 
-import { FactoryTypeModel } from '@/models/factories'
-
-import { useAppSelector } from '@/hooks/use-redux'
+import { FactoryModel } from '@/models/factories'
 
 type FactoryBuyProps = {
-  type: FactoryTypeModel
+  factory: FactoryModel
   isRunning: boolean
   onStart: () => void
 }
 
 export const FactoryStartProduce = ({
-  type,
+  factory,
   isRunning,
   onStart,
 }: FactoryBuyProps) => {
-  const { factories } = useAppSelector((state) => state)
-
-  const factory = factories.find((factory) => factory.type === type)
-
   return (
     <button
       type="button"
@@ -32,7 +26,7 @@ export const FactoryStartProduce = ({
     >
       <img
         src={factory!.image}
-        alt={type}
+        alt={factory.type}
         className="w-12 h-12 object-cover bg-cover "
       />
 

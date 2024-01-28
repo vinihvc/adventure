@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React from 'react'
 
 export type UseDisclosureProps = {
   defaultIsOpen?: boolean
@@ -13,9 +13,9 @@ export type UseDisclosureProps = {
  * ```
  */
 export const useDisclosure = (props: UseDisclosureProps = {}) => {
-  const [isOpenState, setIsOpen] = useState(props.defaultIsOpen || false)
+  const [isOpenState, setIsOpen] = React.useState(props.defaultIsOpen || false)
 
-  const onClose = useCallback(() => {
+  const onClose = React.useCallback(() => {
     setIsOpen(false)
   }, [])
 
@@ -23,7 +23,7 @@ export const useDisclosure = (props: UseDisclosureProps = {}) => {
     setIsOpen(true)
   }, [])
 
-  const onToggle = useCallback(() => {
+  const onToggle = React.useCallback(() => {
     setIsOpen((e) => !e)
   }, [])
 
