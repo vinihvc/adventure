@@ -3,71 +3,57 @@ import land from '@/assets/img/land.png'
 import ore from '@/assets/img/ore.png'
 import weapon from '@/assets/img/weapon.png'
 import medicine from '@/assets/img/medicine.png'
+import time from '@/assets/img/time.png'
 
-export const FACTORIES = [
-  {
-    type: 'potato',
-    duration: 2,
+export type FactoryType =
+  | 'potato'
+  | 'land'
+  | 'ore'
+  | 'weapon'
+  | 'medicine'
+  | 'time-travel'
+
+export const FACTORIES = {
+  potato: {
+    time: 2000, // 2 seconds
     value: 6,
-    amount: 1,
-    amountCost: 6,
-    auto: false,
-    autoCost: 60,
-    upgrade: false,
-    upgradeCost: 6_000,
-    upgradeValue: 1,
+    buyCost: 6,
+    autoCost: 6_000,
     image: potato,
   },
-  {
-    type: 'land',
-    duration: 4,
+  land: {
+    time: 4000, // 4 seconds
     value: 12,
-    amount: 1,
-    amountCost: 12,
-    auto: false,
-    autoCost: 120,
-    upgrade: false,
-    upgradeCost: 12_000,
-    upgradeValue: 1,
+    buyCost: 12,
+    autoCost: 12_000,
     image: land,
   },
-  {
-    type: 'ore',
-    duration: 6,
+  ore: {
+    time: 6000, // 6 seconds
     value: 24,
-    amount: 1,
-    amountCost: 24,
-    auto: false,
-    autoCost: 240,
-    upgrade: false,
-    upgradeCost: 24_000,
-    upgradeValue: 1,
+    buyCost: 24,
+    autoCost: 24_000,
     image: ore,
   },
-  {
-    type: 'weapon',
-    duration: 8,
+  weapon: {
+    time: 8000, // 8 seconds
     value: 32,
-    amount: 1,
-    amountCost: 32,
-    auto: false,
-    autoCost: 320,
-    upgrade: false,
-    upgradeCost: 32_000,
-    upgradeValue: 1,
+    buyCost: 32,
+    autoCost: 32_000,
     image: weapon,
   },
-  {
-    type: 'medicine',
-    duration: 9,
+  medicine: {
+    time: 9000, // 9 seconds
     value: 40,
-    amount: 1,
-    amountCost: 40,
-    auto: false,
-    autoCost: 400,
-    upgrade: false,
-    upgradeCost: 40_000,
-    upgradeValue: 1,
+    buyCost: 40,
+    autoCost: 40_000,
     image: medicine,
   },
-]
+  'time-travel': {
+    time: 10000, // 10 seconds
+    value: 50,
+    buyCost: 50,
+    autoCost: 50_000,
+    image: time,
+  },
+}

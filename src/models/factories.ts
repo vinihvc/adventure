@@ -1,4 +1,10 @@
-export type FactoryTypeModel = 'potato' | 'land' | 'ore' | 'weapon' | 'medicine'
+export type FactoryTypeModel =
+  | 'potato'
+  | 'land'
+  | 'ore'
+  | 'weapon'
+  | 'medicine'
+  | 'time-travel'
 
 export type FactoryModel = {
   type: FactoryTypeModel

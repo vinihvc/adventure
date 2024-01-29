@@ -1,6 +1,6 @@
 import React from 'react'
 
-type IntervalFunction = () => void
+type IntervalFunction = () => void | unknown
 
 /**
  * Hook that fixes the delay of setInterval

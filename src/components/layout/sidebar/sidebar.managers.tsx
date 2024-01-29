@@ -1,13 +1,18 @@
-import clsx from 'clsx'
-
-import useSound from 'use-sound'
-
-import { FactoryTypeModel } from '@/models/factories'
+// import useSound from 'use-sound'
 
 import { Button } from '../../ui/button'
 
-import autoSfx from '@/assets/sfx/auto.wav'
-import { Dialog, DialogContent, DialogTrigger } from '../../ui/dialog'
+// import autoSfx from '@/assets/sfx/auto.wav'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '../../ui/dialog'
+import { cn } from '../../../utils/cn'
+import { FactoryTypeModel } from '../../../models/factories'
 
 export const SidebarManagers = () => {
   // const [play] = useSound(autoSfx, { soundEnabled: settings.sfx })
@@ -26,17 +31,26 @@ export const SidebarManagers = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="bg-blue-500 hover:bg-blue-600">Managers</Button>
+        <Button className="w-full" size="sm">
+          Managers
+        </Button>
       </DialogTrigger>
 
       <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Managers</DialogTitle>
+          <DialogDescription>
+            Hire managers to automate your factories.
+          </DialogDescription>
+        </DialogHeader>
+
         <div className="space-y-5">
           <Button
-            className={clsx(
-              'bg-blue-500 hover:bg-blue-600 justify-between disabled:bg-slate-500 hover:disabled:bg-slate-500',
+            className={
+              cn('w-full')
               // potato!.auto &&
               //   'disabled:disabled:bg-green-600 hover:disabled:bg-green-600',
-            )}
+            }
             onClick={() => handleAutomatic('potato')}
             // disabled={potato!.auto || potato!.autoCost > balance.current}
           >
@@ -52,11 +66,11 @@ export const SidebarManagers = () => {
           </Button>
 
           <Button
-            className={clsx(
-              'bg-blue-500 hover:bg-blue-600 justify-between disabled:bg-slate-500 hover:disabled:bg-slate-500',
+            className={
+              cn('w-full')
               // land!.auto &&
               //   'disabled:disabled:bg-green-600 disabled:hover:bg-green-600',
-            )}
+            }
             onClick={() => handleAutomatic('land')}
             // disabled={land!.auto || land!.autoCost > balance.current}
           >
@@ -72,11 +86,11 @@ export const SidebarManagers = () => {
           </Button>
 
           <Button
-            className={clsx(
-              'bg-blue-500 hover:bg-blue-600 justify-between disabled:bg-slate-500 hover:disabled:bg-slate-500',
+            className={
+              cn('w-full')
               // ore!.auto &&
               //   'disabled:disabled:bg-green-600 disabled:hover:bg-green-600',
-            )}
+            }
             onClick={() => handleAutomatic('ore')}
             // disabled={ore!.auto || ore!.autoCost > balance.current}
           >
@@ -92,11 +106,11 @@ export const SidebarManagers = () => {
           </Button>
 
           <Button
-            className={clsx(
-              'bg-blue-500 hover:bg-blue-600 justify-between disabled:bg-slate-500 hover:disabled:bg-slate-500',
+            className={
+              cn('w-full')
               // weapon!.auto &&
               //   'disabled:disabled:bg-green-600 disabled:hover:bg-green-600',
-            )}
+            }
             onClick={() => handleAutomatic('weapon')}
             // disabled={weapon!.auto || weapon!.autoCost > balance.current}
           >
@@ -112,11 +126,11 @@ export const SidebarManagers = () => {
           </Button>
 
           <Button
-            className={clsx(
-              'bg-blue-500 hover:bg-blue-600 justify-between disabled:bg-slate-500 hover:disabled:bg-slate-500',
+            className={
+              cn('w-full')
               // medicine!.auto &&
               //   'disabled:disabled:bg-green-600 disabled:hover:bg-green-600',
-            )}
+            }
             onClick={() => handleAutomatic('medicine')}
             // disabled={medicine!.auto || medicine!.autoCost > balance.current}
           >

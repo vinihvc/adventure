@@ -1,29 +1,32 @@
-import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar'
+import { DialogDescription } from '@radix-ui/react-dialog'
 import { Button } from '../../ui/button'
-import { Dialog, DialogContent, DialogTrigger } from '../../ui/dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '../../ui/dialog'
 
 export const SidebarStats = () => {
   return (
     <>
-      <div className="relative bg-gray-900 rounded-full p-1">
-        <Avatar className="size-40">
-          <AvatarImage
-            src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=Pumpkin"
-            alt="Vinicius"
-          />
-          <AvatarFallback>VV</AvatarFallback>
-        </Avatar>
-      </div>
-
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="h-[30px] bg-blue-500 hover:bg-blue-600 rounded-full w-[100px]">
+          <Button className="w-full" size="sm">
             Stats
           </Button>
         </DialogTrigger>
 
         <DialogContent>
-          <div className="space-y-5">
+          <DialogHeader>
+            <DialogTitle>Statistics</DialogTitle>
+            <DialogDescription>
+              Check your statistics and see how you are doing.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-2">
             <div className="flex justify-between items-center">
               <span className="text-lg font-bold">Total</span>
 
@@ -31,8 +34,6 @@ export const SidebarStats = () => {
                 {/* $ {Intl.NumberFormat().format(balance.total)} */}
               </span>
             </div>
-
-            <hr className="border-gray-700" />
 
             <div className="flex justify-between items-center">
               <span className="text-lg font-bold">Potatos</span>

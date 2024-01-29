@@ -1,13 +1,18 @@
-import clsx from 'clsx'
-
-import useSound from 'use-sound'
-
-import { FactoryTypeModel } from '@/models/factories'
+// import useSound from 'use-sound'
 
 import { Button } from '../../ui/button'
 
-import upgradeSfx from '@/assets/sfx/upgrade.wav'
-import { Dialog, DialogContent, DialogTrigger } from '../../ui/dialog'
+// import upgradeSfx from '@/assets/sfx/upgrade.wav'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '../../ui/dialog'
+import { cn } from '../../../utils/cn'
+import { FactoryTypeModel } from '../../../models/factories'
 
 export const SidebarUpgrades = () => {
   // const [play] = useSound(upgradeSfx, { soundEnabled: settings.sfx })
@@ -26,17 +31,27 @@ export const SidebarUpgrades = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="bg-blue-500 hover:bg-blue-600">Upgrades</Button>
+        <Button className="w-full" size="sm">
+          Upgrades
+        </Button>
       </DialogTrigger>
 
       <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Upgrades</DialogTitle>
+          <DialogDescription>
+            Upgrade your factories to increase your income.
+          </DialogDescription>
+        </DialogHeader>
+
         <div className="space-y-5">
           <Button
-            className={clsx(
-              'bg-blue-500 hover:bg-blue-600 justify-between disabled:bg-slate-500 hover:disabled:bg-slate-500',
+            className={
+              cn('w-full')
+
               // potato!.upgrade &&
               //   'disabled:disabled:bg-green-600 disabled:hover:bg-green-600',
-            )}
+            }
             onClick={() => handleUpgrade('potato')}
             // disabled={potato!.upgrade || potato!.upgradeCost > balance.current}
           >
@@ -52,11 +67,12 @@ export const SidebarUpgrades = () => {
           </Button>
 
           <Button
-            className={clsx(
-              'bg-blue-500 hover:bg-blue-600 justify-between disabled:bg-slate-500 hover:disabled:bg-slate-500',
+            className={
+              cn('w-full')
+
               // land!.upgrade &&
               //   'disabled:disabled:bg-green-600 disabled:hover:bg-green-600',
-            )}
+            }
             onClick={() => handleUpgrade('land')}
             // disabled={land!.upgrade || land!.upgradeCost > balance.current}
           >
@@ -72,11 +88,12 @@ export const SidebarUpgrades = () => {
           </Button>
 
           <Button
-            className={clsx(
-              'bg-blue-500 hover:bg-blue-600 justify-between disabled:bg-slate-500 hover:disabled:bg-slate-500',
+            className={
+              cn('w-full')
+
               // ore!.upgrade &&
               //   'disabled:disabled:bg-green-600 disabled:hover:bg-green-600',
-            )}
+            }
             onClick={() => handleUpgrade('ore')}
             // disabled={ore!.upgrade || ore!.upgradeCost > balance.current}
           >
@@ -92,11 +109,12 @@ export const SidebarUpgrades = () => {
           </Button>
 
           <Button
-            className={clsx(
-              'bg-blue-500 hover:bg-blue-600 justify-between disabled:bg-slate-500 hover:disabled:bg-slate-500',
+            className={
+              cn('w-full')
+
               // weapon!.upgrade &&
               //   'disabled:disabled:bg-green-600 disabled:hover:bg-green-600',
-            )}
+            }
             onClick={() => handleUpgrade('weapon')}
             // disabled={weapon!.upgrade || weapon!.upgradeCost > balance.current}
           >
@@ -112,11 +130,12 @@ export const SidebarUpgrades = () => {
           </Button>
 
           <Button
-            className={clsx(
-              'bg-blue-500 hover:bg-blue-600 justify-between disabled:bg-slate-500 hover:disabled:bg-slate-500',
+            className={
+              cn('w-full')
+
               // medicine!.upgrade &&
               //   'disabled:disabled:bg-green-600 disabled:hover:bg-green-600',
-            )}
+            }
             onClick={() => handleUpgrade('medicine')}
             // disabled={
             //   medicine!.upgrade || medicine!.upgradeCost > balance.current

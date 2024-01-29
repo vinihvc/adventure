@@ -11,6 +11,7 @@ import { Switch } from '../ui/switch'
 
 import { Cog } from 'lucide-react'
 import { cn } from '../../utils/cn'
+import { Button } from '../ui/button'
 
 interface SettingDialogProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
@@ -21,10 +22,15 @@ export const SettingDialog = (props: SettingDialogProps) => {
   return (
     <Dialog>
       <DialogTrigger>
-        <button className={cn(className)} {...rest}>
+        <Button
+          className={cn(className)}
+          variant="secondary"
+          size="icon"
+          {...rest}
+        >
           <Cog />
-          <div className="sr-only">Open Settings</div>
-        </button>
+          <span className="sr-only">Open Settings</span>
+        </Button>
       </DialogTrigger>
 
       <DialogContent>

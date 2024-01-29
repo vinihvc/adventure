@@ -17,7 +17,7 @@ export const Progress = ({
   return (
     <ProgressPrimitive.Root
       value={progress}
-      className="relative h-[20px] w-full overflow-hidden rounded bg-gray-500"
+      className="relative h-[20px] w-full overflow-hidden rounded bg-neutral-500"
     >
       <div className="flex justify-center items-center absolute inset-0 text-xs font-bold">
         {children}
