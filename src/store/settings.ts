@@ -1,6 +1,6 @@
-import { atomWithStorage } from 'jotai/utils'
+import { atomWithStorage } from "jotai/utils";
 
-export const settingsAtom = atomWithStorage('settings', {
-  music: true,
-  sfx: true,
-})
+export const settingsAtom = atomWithStorage("settings", {
+	music: true,
+	sfx: true,
+});

@@ -1,9 +1,9 @@
-import { atomWithStorage } from 'jotai/utils'
+import { atomWithStorage } from "jotai/utils";
 
-type MscAtom = {
-  amountToBuy: 1 | '10%' | '50%' | 'max'
-}
+export type MscAtom = {
+	amountToBuy: 1 | 10 | 50;
+};
 
-export const mscAtom = atomWithStorage<MscAtom>('msc', {
-  amountToBuy: 1,
-})
+export const mscAtom = atomWithStorage<MscAtom>("msc", {
+	amountToBuy: 1,
+});

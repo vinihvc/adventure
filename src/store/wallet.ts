@@ -1,5 +1,8 @@
-import { atomWithStorage } from 'jotai/utils'
+// import { atomWithStorage } from "jotai/utils";
 
-export const walletAtom = atomWithStorage('wallet', {
-  money: 0,
-})
+import { atom } from "jotai";
+
+export const walletAtom = atom({
+	// export const walletAtom = atomWithStorage("wallet", {
+	money: 0,
+});

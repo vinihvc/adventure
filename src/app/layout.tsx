@@ -1,34 +1,31 @@
-import { Helmet } from 'react-helmet'
-import { GameForeground } from '../components/layout/game/foreground'
-import { Sidebar } from '../components/layout/sidebar'
-import { GameBackground } from '../components/layout/game/background'
-import { SettingDialog } from '../components/dialog/settings'
-import { AmountToBuy } from '../components/layout/amount'
-
+import { Helmet } from "react-helmet";
+import { GameBackground } from "../components/layout/game/background";
+import { GameForeground } from "../components/layout/game/foreground";
+import { Sidebar } from "../components/layout/sidebar";
+import { Header } from "../components/layout/header";
+import { ThemeProvider } from "next-themes";
 interface RootLayoutProps {
-  children: React.ReactNode
+	children: React.ReactNode;
 }
 
 export const RootLayout = (props: RootLayoutProps) => {
-  const { children } = props
+	const { children } = props;
 
-  return (
-    <>
-      <Helmet defaultTitle="$ 0" titleTemplate="%s // Adventure" />
+	return (
+		<ThemeProvider attribute="class" defaultTheme="system">
+			<Helmet defaultTitle="$ 0" titleTemplate="%s // Adventure" />
 
-      <GameBackground>
-        <GameForeground className="gap-5">
-          <Sidebar />
+			<GameBackground>
+				<GameForeground className="flex flex-col">
+					<Header />
 
-          {children}
+					<div className="flex">
+						<Sidebar />
 
-          <div className="absolute top-4 right-4">
-            <AmountToBuy />
-
-            <SettingDialog />
-          </div>
-        </GameForeground>
-      </GameBackground>
-    </>
-  )
-}
+						{children}
+					</div>
+				</GameForeground>
+			</GameBackground>
+		</ThemeProvider>
+	);
+};

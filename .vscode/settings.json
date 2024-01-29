@@ -1,7 +1,7 @@
 {
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "tailwindCSS.experimental.classRegex": [
-    ["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
-  ]
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "biomejs.biome",
+	"tailwindCSS.experimental.classRegex": [
+		["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+	]
 }

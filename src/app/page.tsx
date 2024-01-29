@@ -1,34 +1,23 @@
-import { Helmet } from 'react-helmet'
+import { Helmet } from "react-helmet";
 
-import { RootLayout } from './layout'
-import { FACTORIES } from '../config/factories'
-import { Factory } from '../components/factory'
-
-import useSound from 'use-sound'
-
-import theme from '@/assets/sfx/theme.wav'
-import React from 'react'
+import { Factory } from "../components/factory";
+import { FACTORIES, FactoryType } from "../config/factories";
+import { RootLayout } from "./layout";
 
 export const HomePage = () => {
-  const [play] = useSound(theme, { soundEnabled: true })
+	return (
+		<>
+			<Helmet title={`$ ${new Intl.NumberFormat().format(1)}`} />
 
-  React.useEffect(() => {
-    play()
-  }, [])
-
-  return (
-    <>
-      <Helmet title={`$ ${new Intl.NumberFormat().format(1)}`} />
-
-      <RootLayout>
-        <div className="w-full items-center flex">
-          <div className="grid grid-cols-2 gap-10">
-            {Object.keys(FACTORIES).map((factory: any) => (
-              <Factory key={factory} type={factory} />
-            ))}
-          </div>
-        </div>
-      </RootLayout>
-    </>
-  )
-}
+			<RootLayout>
+				<div className="w-full items-center flex">
+					<div className="grid grid-cols-2 gap-10 w-full p-5">
+						{Object.keys(FACTORIES).map((factory) => (
+							<Factory key={factory} type={factory as FactoryType} />
+						))}
+					</div>
+				</div>
+			</RootLayout>
+		</>
+	);
+};

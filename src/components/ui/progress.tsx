@@ -1,32 +1,24 @@
-import { PropsWithChildren } from 'react'
+import * as React from "react";
+import * as ProgressPrimitive from "@radix-ui/react-progress";
+import { cn } from "../../utils/cn";
 
-import * as ProgressPrimitive from '@radix-ui/react-progress'
+export const Progress = React.forwardRef<
+	React.ElementRef<typeof ProgressPrimitive.Root>,
+	React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
+>(({ className, value, ...props }, ref) => (
+	<ProgressPrimitive.Root
+		ref={ref}
+		className={cn(
+			"relative h-5 w-full overflow-hidden rounded bg-foreground",
+			className,
+		)}
+		{...props}
+	>
+		<ProgressPrimitive.Indicator
+			className="h-full w-full flex-1 bg-green-500 transition-all"
+			style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
+		/>
+	</ProgressPrimitive.Root>
+));
 
-type ProgressProps = {
-  duration: number
-  seconds: number
-}
-
-export const Progress = ({
-  duration,
-  seconds,
-  children,
-}: PropsWithChildren<ProgressProps>) => {
-  const progress = 100 - (seconds / duration) * 100
-
-  return (
-    <ProgressPrimitive.Root
-      value={progress}
-      className="relative h-[20px] w-full overflow-hidden rounded bg-neutral-500"
-    >
-      <div className="flex justify-center items-center absolute inset-0 text-xs font-bold">
-        {children}
-      </div>
-
-      <ProgressPrimitive.Indicator
-        style={{ width: `${progress}%` }}
-        className="h-full bg-green-600 duration-300 ease-in-out00"
-      />
-    </ProgressPrimitive.Root>
-  )
-}
+Progress.displayName = ProgressPrimitive.Root.displayName;
