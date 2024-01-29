@@ -19,6 +19,9 @@ export const ManagersDialog = () => {
 
 	const handleAutomatic = (type: FactoryType) => {
 		// play()
+
+		console.log(type);
+
 		// dispatch(automatic(type))
 	};
 

@@ -7,9 +7,9 @@ import { Button } from "../ui/button";
 interface AmountProps extends React.HTMLAttributes<HTMLButtonElement> {}
 
 const changeAmount = (value: MscAtom["amountToBuy"]) => {
-	if (value === 1) return "10";
+	if (value === 1) return 10;
 
-	if (value === "10") return "50";
+	if (value === 10) return 50;
 
 	return 1;
 };

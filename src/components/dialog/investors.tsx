@@ -2,17 +2,17 @@
 
 import { Button } from "../ui/button";
 
-import { FactoryType } from "../../config/factories";
+// import { FactoryType } from "../../config/factories";
 // import autoSfx from '@/assets/sfx/auto.wav'
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 
 export const InvestorsDialog = () => {
 	// const [play] = useSound(autoSfx, { soundEnabled: settings.sfx })
 
-	const handleAutomatic = (type: FactoryType) => {
-		// play()
-		// dispatch(automatic(type))
-	};
+	// const handleAutomatic = (type: FactoryType) => {
+	// 	// play()
+	// 	// dispatch(automatic(type))
+	// };
 
 	// const potato = factories.find((factory) => factory.type === 'potato')
 	// const land = factories.find((factory) => factory.type === 'land')

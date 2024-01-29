@@ -18,8 +18,10 @@ export const UpgradesDialog = () => {
 	// const [play] = useSound(upgradeSfx, { soundEnabled: settings.sfx })
 
 	const handleUpgrade = (type: FactoryType) => {
-		// play()
-		// dispatch(upgrade(type))
+		// 	// play()
+		// 	// dispatch(upgrade(type))
+
+		console.log(type);
 	};
 
 	// const potato = factories.find((factory) => factory.type === 'potato')
