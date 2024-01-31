@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet";
 import { GameBackground } from "@/components/layout/game/background";
 import { GameForeground } from "@/components/layout/game/foreground";
 import { Sidebar } from "@/components/layout/sidebar";
@@ -13,8 +12,6 @@ export const RootLayout = (props: RootLayoutProps) => {
 
 	return (
 		<ThemeProvider attribute="class" defaultTheme="system">
-			<Helmet defaultTitle="$ 0" titleTemplate="%s // Adventure" />
-
 			<GameBackground>
 				<GameForeground className="flex flex-col">
 					<Header />
