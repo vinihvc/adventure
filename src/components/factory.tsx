@@ -107,7 +107,10 @@ export const Factory = (props: FactoryProps) => {
 
 			<div className="w-full space-y-1">
 				<div className="relative">
-					<Progress value={currentFactory.time} />
+					<Progress
+						value={currentFactory.time}
+						aria-label={`Time to generate ${type}`}
+					/>
 					<div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-white">
 						{totalAmountGen}
 					</div>
