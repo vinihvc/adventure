@@ -2,12 +2,12 @@ import { Button } from "./ui/button";
 import { Progress } from "./ui/progress";
 
 import { useAtom } from "jotai";
-import { FACTORIES, FactoryType } from "../config/factories";
-import { factoriesAtom } from "../store/factories";
-import { statisticsAtom } from "../store/statistics";
-import { walletAtom } from "../store/wallet";
-import { cn } from "../utils/cn";
-import { mscAtom } from "../store/msc";
+import { FACTORIES, FactoryType } from "@/game-data/factories";
+import { factoriesAtom } from "@/store/factories";
+import { statisticsAtom } from "@/store/statistics";
+import { walletAtom } from "@/store/wallet";
+import { cn } from "@/utils/cn";
+import { mscAtom } from "@/store/msc";
 
 interface FactoryProps extends React.HTMLAttributes<HTMLDivElement> {
 	type: FactoryType;
@@ -69,18 +69,24 @@ export const Factory = (props: FactoryProps) => {
 	};
 
 	return (
-		<div className={cn("flex items-center gap-x-5", className)} {...rest}>
+		<div
+			className={cn(
+				"flex items-center gap-x-4 bg-card rounded-lg p-5 border border-border drop-shadow-2xl",
+				className,
+			)}
+			{...rest}
+		>
 			<Button
 				title={`Produce ${type}`}
 				variant="outline"
-				className="relative rounded-full shrink-0 border-4 focus:border-green-500 group"
+				className="relative rounded-full size-14 shrink-0 border-4 focus:border-green-500 group"
 				size="icon"
 				disabled={currentFactory.amount === 0}
 				onClick={handleProduce}
 			>
 				<img
 					src={currentFactory.image}
-					alt={type}
+					alt=""
 					className={cn(
 						"size-5 object-cover",
 						!currentFactory.isUnlocked && "grayscale",
@@ -92,7 +98,7 @@ export const Factory = (props: FactoryProps) => {
 					{`Produce ${type} for ${totalAmountGen}`}
 				</span>
 
-				<div className="absolute -bottom-3 bg-foreground text-muted border rounded-full w-10 h-5 group-focus:border-green-500">
+				<div className="absolute -bottom-3 bg-foreground text-muted-foreground border rounded-full w-10 h-5 group-focus:border-green-500">
 					<div className="flex justify-center items-center rounded-full">
 						<div className="text-xs">{currentFactory.amount || 0}</div>
 					</div>
@@ -109,8 +115,8 @@ export const Factory = (props: FactoryProps) => {
 
 				<div className="flex items-center space-x-1">
 					<Button
-						className="w-full text-xs"
-						variant="secondary"
+						className="w-full text-sm"
+						variant="primary"
 						disabled={wallet.money < currentFactory.moneyToUnlock}
 						onClick={
 							!currentFactory.isUnlocked ? handleAcquire : handleBuyAmount
@@ -130,12 +136,12 @@ export const Factory = (props: FactoryProps) => {
 
 						{!currentFactory.isUnlocked &&
 							wallet.money < currentFactory.moneyToUnlock && (
-								<span>Not money enough</span>
+								<span>Money not enough</span>
 							)}
 					</Button>
 
 					{currentFactory.amount > 0 && (
-						<Button variant="secondary" className="w-auto text-xs" disabled>
+						<Button variant="primary" className="w-auto text-xs" disabled>
 							{new Date(currentFactory.time).toISOString().substring(14, 19)}
 						</Button>
 					)}

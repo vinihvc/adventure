@@ -1,10 +1,7 @@
-// import useSound from 'use-sound'
+import { Button } from "@/components/ui/button";
 
-import { Button } from "../ui/button";
-
-import { FactoryType } from "../../config/factories";
-import { cn } from "../../utils/cn";
-// import autoSfx from '@/assets/sfx/auto.wav'
+import { FACTORIES, FactoryType } from "@/game-data/factories";
+import autoSfx from "@/assets/sfx/auto.wav";
 import {
 	Dialog,
 	DialogContent,
@@ -12,24 +9,34 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from "../ui/dialog";
+} from "@/components/ui/dialog";
+import { useAtom } from "jotai";
+import { factoriesAtom } from "@/store/factories";
+import { amountFormatter } from "@/utils/formatters";
+import { walletAtom } from "@/store/wallet";
+import { cn } from "@/utils/cn";
+import { useAudio } from "@/hooks/use-sound";
 
 export const ManagersDialog = () => {
-	// const [play] = useSound(autoSfx, { soundEnabled: settings.sfx })
+	const { toggle } = useAudio(autoSfx);
+
+	const [factories, setFactories] = useAtom(factoriesAtom);
+
+	const [wallet] = useAtom(walletAtom);
 
 	const handleAutomatic = (type: FactoryType) => {
-		// play()
+		toggle();
 
-		console.log(type);
-
-		// dispatch(automatic(type))
+		setFactories((prev) => {
+			return {
+				...prev,
+				[type]: {
+					...prev[type],
+					isAuto: true,
+				},
+			};
+		});
 	};
-
-	// const potato = factories.find((factory) => factory.type === 'potato')
-	// const land = factories.find((factory) => factory.type === 'land')
-	// const ore = factories.find((factory) => factory.type === 'ore')
-	// const weapon = factories.find((factory) => factory.type === 'weapon')
-	// const medicine = factories.find((factory) => factory.type === 'medicine')
 
 	return (
 		<Dialog>
@@ -39,7 +46,7 @@ export const ManagersDialog = () => {
 				</Button>
 			</DialogTrigger>
 
-			<DialogContent>
+			<DialogContent className="flex flex-col max-h-[500px]">
 				<DialogHeader>
 					<DialogTitle>Managers</DialogTitle>
 					<DialogDescription>
@@ -47,106 +54,33 @@ export const ManagersDialog = () => {
 					</DialogDescription>
 				</DialogHeader>
 
-				<div className="space-y-5">
-					<Button
-						className={
-							cn("w-full")
-							// potato!.auto &&
-							//   'disabled:disabled:bg-green-600 hover:disabled:bg-green-600',
-						}
-						onClick={() => handleAutomatic("potato")}
-						// disabled={potato!.auto || potato!.autoCost > balance.current}
-					>
-						<span> Auto Potato</span>
+				<div className="grid grid-cols-2 gap-5 overflow-auto py-2">
+					{Object.entries(factories).map(([key, value]) => {
+						const factory = { ...value, ...FACTORIES[key as FactoryType] };
 
-						{/* <span>
-              {potato?.auto ? (
-                <CheckIcon className="w-5 h-5" />
-              ) : (
-                `$ ${potato?.autoCost}`
-              )}
-            </span> */}
-					</Button>
-
-					<Button
-						className={
-							cn("w-full")
-							// land!.auto &&
-							//   'disabled:disabled:bg-green-600 disabled:hover:bg-green-600',
-						}
-						onClick={() => handleAutomatic("land")}
-						// disabled={land!.auto || land!.autoCost > balance.current}
-					>
-						<span> Auto Land</span>
-
-						{/* <span>
-              {land?.auto ? (
-                <CheckIcon className="w-5 h-5" />
-              ) : (
-                `$ ${land?.autoCost}`
-              )}
-            </span> */}
-					</Button>
-
-					<Button
-						className={
-							cn("w-full")
-							// ore!.auto &&
-							//   'disabled:disabled:bg-green-600 disabled:hover:bg-green-600',
-						}
-						onClick={() => handleAutomatic("ore")}
-						// disabled={ore!.auto || ore!.autoCost > balance.current}
-					>
-						<span> Auto Ore</span>
-
-						{/* <span>
-              {ore?.auto ? (
-                <CheckIcon className="w-5 h-5" />
-              ) : (
-                `$ ${ore?.autoCost}`
-              )}
-            </span> */}
-					</Button>
-
-					<Button
-						className={
-							cn("w-full")
-							// weapon!.auto &&
-							//   'disabled:disabled:bg-green-600 disabled:hover:bg-green-600',
-						}
-						onClick={() => handleAutomatic("weapon")}
-						// disabled={weapon!.auto || weapon!.autoCost > balance.current}
-					>
-						<span> Auto Weapon</span>
-
-						{/* <span>
-              {weapon?.auto ? (
-                <CheckIcon className="w-5 h-5" />
-              ) : (
-                `$ ${weapon?.autoCost}`
-              )}
-            </span> */}
-					</Button>
-
-					<Button
-						className={
-							cn("w-full")
-							// medicine!.auto &&
-							//   'disabled:disabled:bg-green-600 disabled:hover:bg-green-600',
-						}
-						onClick={() => handleAutomatic("medicine")}
-						// disabled={medicine!.auto || medicine!.autoCost > balance.current}
-					>
-						<span> Auto Medicine</span>
-
-						{/* <span>
-              {medicine?.auto ? (
-                <CheckIcon className="w-5 h-5" />
-              ) : (
-                `$ ${medicine?.autoCost}`
-              )}
-            </span> */}
-					</Button>
+						return (
+							<Button
+								key={key}
+								className={cn(
+									"aspect-square w-full h-48 flex-col bg-green-500",
+									factory.isAuto && "disabled:bg-green-200",
+								)}
+								onClick={() => handleAutomatic(key as FactoryType)}
+								disabled={factory.isAuto || factory.autoCost > wallet.money}
+							>
+								<span className="capitalize text-2xl text-bold">{key}</span>
+								<span>
+									{!value?.isAuto && (
+										<div>
+											{`cost ${amountFormatter(
+												FACTORIES[key as FactoryType]?.autoCost,
+											)}`}
+										</div>
+									)}
+								</span>
+							</Button>
+						);
+					})}
 				</div>
 			</DialogContent>
 		</Dialog>

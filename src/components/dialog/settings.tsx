@@ -6,15 +6,15 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from "../ui/dialog";
-import { Switch } from "../ui/switch";
+} from "@/components/ui/dialog";
+import { Switch } from "@/components/ui/switch";
 
 import { useAtom } from "jotai";
 import { Cog } from "lucide-react";
-import { settingsAtom } from "../../store/settings";
-import { cn } from "../../utils/cn";
-import { Button } from "../ui/button";
-import { ThemeSwitch } from "../layout/theme";
+import { settingsAtom } from "@/store/settings";
+import { cn } from "@/utils/cn";
+import { Button } from "@/components/ui/button";
+import { ThemeSwitch } from "@/components/layout/theme";
 
 interface SettingDialogProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
@@ -27,8 +27,12 @@ export const SettingDialog = (props: SettingDialogProps) => {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button className={cn(className)} size="icon" {...rest}>
-					<Cog />
+				<Button
+					className={cn("bg-sky-400 text-white rounded-lg", className)}
+					size="icon"
+					{...rest}
+				>
+					<Cog className="drop-shadow" />
 					<span className="sr-only">Open Settings</span>
 				</Button>
 			</DialogTrigger>

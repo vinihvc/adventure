@@ -1,9 +1,9 @@
 // import useSound from 'use-sound'
 
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
-import { FactoryType } from "../../config/factories";
-import { cn } from "../../utils/cn";
+import { FactoryType } from "@/game-data/factories";
+import { cn } from "@/utils/cn";
 // import upgradeSfx from '@/assets/sfx/upgrade.wav'
 import {
 	Dialog,
@@ -12,7 +12,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from "../ui/dialog";
+} from "@/components/ui/dialog";
 
 export const UpgradesDialog = () => {
 	// const [play] = useSound(upgradeSfx, { soundEnabled: settings.sfx })

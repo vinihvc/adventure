@@ -1,10 +1,17 @@
 // import useSound from 'use-sound'
 
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
-// import { FactoryType } from "../../config/factories";
+// import { FactoryType } from "@/config/factories";
 // import autoSfx from '@/assets/sfx/auto.wav'
-import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "@/components/ui/dialog";
 
 export const InvestorsDialog = () => {
 	// const [play] = useSound(autoSfx, { soundEnabled: settings.sfx })
@@ -29,7 +36,12 @@ export const InvestorsDialog = () => {
 			</DialogTrigger>
 
 			<DialogContent>
-				<div>a</div>
+				<DialogHeader>
+					<DialogTitle>Investors</DialogTitle>
+					<DialogDescription>
+						Investors are a great way to earn money passively.
+					</DialogDescription>
+				</DialogHeader>
 			</DialogContent>
 		</Dialog>
 	);

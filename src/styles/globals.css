@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 96%;
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
@@ -25,9 +25,6 @@
     --accent: 0 0% 96.1%;
     --accent-foreground: 0 0% 9%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
@@ -36,8 +33,8 @@
   }
 
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 25%;
+    --foreground: 0 0% 25%;
 
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -71,7 +68,11 @@
     @apply border-border;
   }
 
+  html{
+    @apply select-none
+  }
+
   body {
-    @apply min-h-screen bg-neutral-900 text-foreground antialiased;
+    @apply min-h-screen bg-background text-muted-foreground antialiased transition-colors duration-200;
   }
 }

@@ -1,15 +1,16 @@
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { useAtom } from "jotai";
-import { FACTORIES, FactoryType } from "../../config/factories";
-import { statisticsAtom } from "../../store/statistics";
-import { Button } from "../ui/button";
+import { FACTORIES, FactoryType } from "@/game-data/factories";
+import { statisticsAtom } from "@/store/statistics";
+import { Button } from "@/components/ui/button";
 import {
 	Dialog,
 	DialogContent,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from "../ui/dialog";
+} from "@/components/ui/dialog";
+import { amountFormatter } from "@/utils/formatters";
 
 export const StatisticsDialog = () => {
 	const [statistics] = useAtom(statisticsAtom);
@@ -35,22 +36,18 @@ export const StatisticsDialog = () => {
 						<span className="text-lg font-bold">Total</span>
 
 						<span className="text-4xl font-extrabold">
-							{Intl.NumberFormat("en-US", {
-								style: "currency",
-								currency: "EUR",
-							}).format(statistics.moneyEarned)}
+							{amountFormatter(statistics.moneyEarned)}
 						</span>
 					</div>
 
 					{Object.entries(FACTORIES).map(([key]) => (
 						<div key={key} className="flex justify-between items-center">
-							<span className="text-lg font-bold">{key}</span>
+							<span className="text-lg font-bold capitalize">{key}</span>
 
-							<span className="text-4xl font-extrabold">
-								{Intl.NumberFormat("en-US", {
-									style: "currency",
-									currency: "EUR",
-								}).format(statistics.factories[key as FactoryType].moneyEarned)}
+							<span className="text-xl font-extrabold">
+								{amountFormatter(
+									statistics.factories[key as FactoryType].moneyEarned,
+								)}
 							</span>
 						</div>
 					))}

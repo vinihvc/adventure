@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 
-import { Factory } from "../components/factory";
-import { FACTORIES, FactoryType } from "../config/factories";
+import { Factory } from "@/components/factory";
+import { FACTORIES, FactoryType } from "@/game-data/factories";
 import { RootLayout } from "./layout";
 
 export const HomePage = () => {
