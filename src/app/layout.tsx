@@ -1,8 +1,9 @@
 import { GameBackground } from "@/components/layout/game/background";
 import { GameForeground } from "@/components/layout/game/foreground";
 import { Sidebar } from "@/components/layout/sidebar";
-import { Header } from "@/components/layout/header";
+import { Header } from "@/components/layout/header/header";
 import { ThemeProvider } from "next-themes";
+
 interface RootLayoutProps {
 	children: React.ReactNode;
 }

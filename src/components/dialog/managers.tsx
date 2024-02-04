@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 
-import { FACTORIES, FactoryType } from "@/game-data/factories";
+import { FACTORIES, FactoryType } from "@/data/factories";
 import autoSfx from "@/assets/sfx/auto.wav";
 import {
 	Dialog,

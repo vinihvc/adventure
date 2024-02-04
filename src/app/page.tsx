@@ -1,5 +1,5 @@
-import { Factory } from "@/components/factory";
-import { FACTORIES, FactoryType } from "@/game-data/factories";
+import { Factory } from "@/components/ui/factory";
+import { FACTORIES, FactoryType } from "@/data/factories";
 import { RootLayout } from "./layout";
 
 export const HomePage = () => {

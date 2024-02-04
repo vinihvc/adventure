@@ -1,3 +1,5 @@
+import { fontFamily } from "tailwindcss/defaultTheme";
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	darkMode: ["class"],
@@ -11,6 +13,9 @@ module.exports = {
 			},
 		},
 		extend: {
+			fontFamily: {
+				sans: ["Quicksand", ...fontFamily.sans],
+			},
 			colors: {
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",
@@ -19,6 +24,8 @@ module.exports = {
 				foreground: "hsl(var(--foreground))",
 				primary: {
 					DEFAULT: "hsl(var(--primary))",
+					light: "hsl(var(--primary-light))",
+					hover: "hsl(var(--primary-hover))",
 					foreground: "hsl(var(--primary-foreground))",
 				},
 				secondary: {

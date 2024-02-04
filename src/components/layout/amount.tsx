@@ -28,12 +28,10 @@ export const AmountToBuy = (props: AmountProps) => {
 
 	return (
 		<Button
-			className={cn(
-				"bg-rose-400 text-white rounded-lg text-lg font-bold drop-shadow h-10 w-14",
-				className,
-			)}
-			size="icon"
-			variant="solid"
+			className={cn("w-14", className)}
+			size="sm"
+			variant="destructive"
+			pressed
 			onClick={handleClick}
 			{...rest}
 		>

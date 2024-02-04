@@ -8,7 +8,7 @@ export const GameForeground = (props: GameForegroundProps) => {
 	return (
 		<div
 			className={cn(
-				"relative max-w-5xl w-full bg-foreground rounded-xl overflow-hidden border-4",
+				"relative max-w-5xl w-full bg-background rounded-lg overflow-hidden border-4",
 				className,
 			)}
 			{...rest}

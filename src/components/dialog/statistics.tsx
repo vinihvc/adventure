@@ -1,6 +1,6 @@
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { useAtom } from "jotai";
-import { FACTORIES, FactoryType } from "@/game-data/factories";
+import { FACTORIES, FactoryType } from "@/data/factories";
 import { statisticsAtom } from "@/store/statistics";
 import { Button } from "@/components/ui/button";
 import {

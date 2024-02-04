@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 
-import { FactoryType } from "@/game-data/factories";
+import { FactoryType } from "@/data/factories";
 import { cn } from "@/utils/cn";
 // import upgradeSfx from '@/assets/sfx/upgrade.wav'
 import {
