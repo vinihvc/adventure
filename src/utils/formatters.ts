@@ -52,7 +52,6 @@ export const amountFormatter = (amount: number) => {
 
 	if (item) {
 		const formattedValue = amount / item.value;
-
 		return `${formattedValue.toFixed(2).replace(regex, "$1")} ${item.symbol}`;
 	}
 
