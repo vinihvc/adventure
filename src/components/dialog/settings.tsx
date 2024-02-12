@@ -9,12 +9,12 @@ import {
 } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 
-import { useAtom } from "jotai";
 import { Cog } from "lucide-react";
-import { settingsAtom } from "@/store/settings";
+
 import { cn } from "@/utils/cn";
 import { Button } from "@/components/ui/button";
 import { ThemeSwitch } from "@/components/layout/theme";
+import { useSettings, toggleMusic, toggleSfx } from "@/store/atoms/settings";
 
 interface SettingDialogProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
@@ -22,7 +22,7 @@ interface SettingDialogProps
 export const SettingDialog = (props: SettingDialogProps) => {
 	const { className, ...rest } = props;
 
-	const [settings, setSettings] = useAtom(settingsAtom);
+	const settings = useSettings();
 
 	return (
 		<Dialog>
@@ -45,18 +45,17 @@ export const SettingDialog = (props: SettingDialogProps) => {
 					</DialogDescription>
 				</DialogHeader>
 				<div className="space-y-5">
-					{Object.entries(settings).map(([key, value]) => (
-						<div key={key} className="flex justify-between items-center">
-							<div className="text-xl font-semibold">{key}</div>
+					<div className="flex justify-between items-center">
+						<div className="text-xl font-semibold">Music</div>
 
-							<Switch
-								checked={value}
-								onCheckedChange={() =>
-									setSettings((prev) => ({ ...prev, [key]: !value }))
-								}
-							/>
-						</div>
-					))}
+						<Switch checked={settings.music} onCheckedChange={toggleMusic} />
+					</div>
+
+					<div className="flex justify-between items-center">
+						<div className="text-xl font-semibold">SFX</div>
+
+						<Switch checked={settings.sfx} onCheckedChange={toggleSfx} />
+					</div>
 
 					<div className="flex justify-between items-center">
 						<div className="text-xl font-semibold">Dark Mode</div>

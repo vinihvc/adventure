@@ -1,13 +1,12 @@
-import { useAtom } from "jotai";
-import { FACTORIES, FactoryType } from "@/data/factories";
-import { factoriesAtom } from "@/store/factories";
-import { statisticsAtom } from "@/store/statistics";
-import { walletAtom } from "@/store/wallet";
+import { FactoryType } from "@/data/factories";
+import { setStatistics } from "@/store/atoms/statistics";
 import { cn } from "@/utils/cn";
-import { mscAtom } from "@/store/msc";
 import { FactoryProgress } from "./factory.progress";
 import { FactoryUpgrade } from "./factory.upgrade";
 import { FactoryProduce } from "./factory.produce";
+import { useFactory, setAmount, upgradeUnlock } from "@/store/atoms/factories";
+import { useMsc } from "@/store/atoms/msc";
+import { useWallet, setMoney } from "@/store/atoms/wallet";
 
 interface FactoryProps extends React.HTMLAttributes<HTMLDivElement> {
 	type: FactoryType;
@@ -16,56 +15,24 @@ interface FactoryProps extends React.HTMLAttributes<HTMLDivElement> {
 export const Factory = (props: FactoryProps) => {
 	const { type, className, ...rest } = props;
 
-	const [factories, setFactories] = useAtom(factoriesAtom);
-	const [wallet, setWallet] = useAtom(walletAtom);
-	const [, setStatistics] = useAtom(statisticsAtom);
-	const [msc] = useAtom(mscAtom);
-
-	const factory = {
-		...FACTORIES[type],
-		...factories[type],
-	};
+	const msc = useMsc();
+	const factory = useFactory(type);
+	const wallet = useWallet();
 
 	const totalAmountGen = factory.value * factory.amount;
 
 	const handleBuyAmount = () => {
-		setFactories((prev) => ({
-			...prev,
-			[type]: {
-				...prev[type],
-				amount: Number(prev[type].amount) + Number(msc.amountToBuy),
-			},
-		}));
+		setAmount(type, factory.amount + 1);
 	};
 
 	const handleProduce = () => {
-		setWallet((prev) => ({
-			...prev,
-			money: prev.money + totalAmountGen,
-		}));
+		setMoney(totalAmountGen);
 
-		setStatistics((prev) => ({
-			...prev,
-			moneyEarned: prev.moneyEarned + totalAmountGen,
-			factories: {
-				...prev.factories,
-				[type]: {
-					...prev.factories[type],
-					moneyEarned: prev.factories[type].moneyEarned + totalAmountGen,
-				},
-			},
-		}));
+		setStatistics(type, totalAmountGen);
 	};
 
 	const handleAcquire = () => {
-		setFactories((prev) => ({
-			...prev,
-			[type]: {
-				...prev[type],
-				amount: 1,
-				isUnlocked: true,
-			},
-		}));
+		upgradeUnlock(type);
 	};
 
 	return (
@@ -84,8 +51,8 @@ export const Factory = (props: FactoryProps) => {
 
 				<FactoryUpgrade
 					factory={factory}
-					wallet={wallet}
-					msc={msc}
+					totalMoney={wallet.money}
+					amountToBuy={msc.amountToBuy}
 					onAcquire={handleAcquire}
 					onBuyAmount={handleBuyAmount}
 				/>

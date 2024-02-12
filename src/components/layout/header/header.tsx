@@ -1,5 +1,4 @@
-import { useAtom } from "jotai";
-import { walletAtom } from "@/store/wallet";
+import { useWallet } from "@/store/atoms/wallet";
 import { SettingDialog } from "@/components/dialog/settings";
 import { AmountToBuy } from "../amount";
 import { amountFormatter } from "@/utils/formatters";
@@ -7,7 +6,7 @@ import { HeaderItem } from "./header.item";
 import { CoinIcon } from "@/components/icon/coin";
 
 export const Header = () => {
-	const [wallet] = useAtom(walletAtom);
+	const wallet = useWallet();
 
 	return (
 		<header className="h-[90px] bg-card container flex justify-between items-center px-5">

@@ -1,7 +1,6 @@
 import { DialogDescription } from "@radix-ui/react-dialog";
-import { useAtom } from "jotai";
 import { FACTORIES, FactoryType } from "@/data/factories";
-import { statisticsAtom } from "@/store/statistics";
+import { useStatistics } from "@/store/atoms/statistics";
 import { Button } from "@/components/ui/button";
 import {
 	Dialog,
@@ -13,7 +12,7 @@ import {
 import { amountFormatter } from "@/utils/formatters";
 
 export const StatisticsDialog = () => {
-	const [statistics] = useAtom(statisticsAtom);
+	const statistics = useStatistics();
 
 	return (
 		<Dialog>

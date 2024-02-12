@@ -10,32 +10,21 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
-import { useAtom } from "jotai";
-import { factoriesAtom } from "@/store/factories";
 import { amountFormatter } from "@/utils/formatters";
-import { walletAtom } from "@/store/wallet";
 import { cn } from "@/utils/cn";
 import { useAudio } from "@/hooks/use-sound";
+import { useFactory, upgradeAuto } from "@/store/atoms/factories";
+import { useWallet } from "@/store/atoms/wallet";
 
 export const ManagersDialog = () => {
 	const { toggle } = useAudio(autoSfx);
 
-	const [factories, setFactories] = useAtom(factoriesAtom);
-
-	const [wallet] = useAtom(walletAtom);
+	const wallet = useWallet();
 
 	const handleAutomatic = (type: FactoryType) => {
 		toggle();
 
-		setFactories((prev) => {
-			return {
-				...prev,
-				[type]: {
-					...prev[type],
-					isAuto: true,
-				},
-			};
-		});
+		upgradeAuto(type);
 	};
 
 	return (
@@ -55,8 +44,8 @@ export const ManagersDialog = () => {
 				</DialogHeader>
 
 				<div className="grid grid-cols-2 gap-5 overflow-auto py-2">
-					{Object.entries(factories).map(([key, value]) => {
-						const factory = { ...value, ...FACTORIES[key as FactoryType] };
+					{Object.entries(FACTORIES).map(([key, value]) => {
+						const factory = useFactory(key as FactoryType);
 
 						return (
 							<Button
@@ -66,11 +55,11 @@ export const ManagersDialog = () => {
 									factory.isAuto && "disabled:bg-green-200",
 								)}
 								onClick={() => handleAutomatic(key as FactoryType)}
-								disabled={factory.isAuto || factory.autoCost > wallet.money}
+								disabled={factory.isAuto || value.autoCost > wallet.money}
 							>
 								<span className="capitalize text-2xl text-bold">{key}</span>
 								<span>
-									{!value?.isAuto && (
+									{!factory?.isAuto && (
 										<div>
 											{`cost ${amountFormatter(
 												FACTORIES[key as FactoryType]?.autoCost,
