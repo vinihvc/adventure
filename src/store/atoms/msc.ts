@@ -5,7 +5,7 @@ export type MscAtomProps = {
 	amountToBuy: 1 | 10 | 50;
 };
 
-const mscAtom = atom<MscAtomProps>({
+export const mscAtom = atom<MscAtomProps>({
 	amountToBuy: 1,
 });
 

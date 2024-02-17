@@ -1,45 +1,43 @@
 import React from "react";
 import { useInterval } from "./use-interval";
+import { FactoryType } from "@/data/factories";
+import { useFactory } from "@/store/atoms/factories";
+import { setMoney } from "@/store/atoms/wallet";
+import { setStatistics } from "@/store/atoms/statistics";
 
-type CountdownProps = {
-	seconds?: number;
-	running?: boolean;
-	onComplete?: () => void;
-	interval?: number;
-};
+export const useCountdown = (factory: FactoryType) => {
+	const f = useFactory(factory);
 
-const padLeft = (num: number) => {
-	return num < 10 ? `0${num}` : num;
-};
+	const timeDuration = f.time / 1000;
 
-export const useCountdown = ({
-	seconds: initialSeconds = 0,
-	running: initiallyRunning = false,
-	onComplete,
-	interval = 1000,
-}: CountdownProps) => {
-	const [seconds, setSeconds] = React.useState(initialSeconds);
-	const [isRunning, setIsRunning] = React.useState(initiallyRunning);
+	const isAuto = f.isAuto;
+
+	const [seconds, setSeconds] = React.useState(timeDuration);
+	const [isRunning, setIsRunning] = React.useState(isAuto);
+
+	const handleOnComplete = () => {
+		setMoney(factory);
+		setStatistics(factory);
+	};
 
 	useInterval(() => {
+		if (!f.isUnlocked) return;
+		if (!isRunning) return;
+
 		if (seconds > 0 && isRunning) {
 			setSeconds(seconds - 1);
 		}
 
 		if (seconds === 0) {
-			setSeconds(initialSeconds);
-			setIsRunning(false);
-			!!onComplete && onComplete();
+			setSeconds(timeDuration);
+			setIsRunning(isAuto ? true : false);
+			handleOnComplete();
 		}
-	}, interval);
+	}, 1000);
 
-	const formatted = `${padLeft(Math.floor(seconds / 60))}:${padLeft(
-		seconds % 60,
-	)}`;
-
-	const onStart = React.useCallback(() => {
+	const onRun = () => {
 		setIsRunning(true);
-	}, []);
+	};
 
-	return { seconds, formatted, onStart, isRunning };
+	return { seconds, isRunning, onRun };
 };

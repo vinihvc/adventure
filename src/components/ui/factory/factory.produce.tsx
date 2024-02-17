@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Button } from "../button";
 
 import { cn } from "@/utils/cn";

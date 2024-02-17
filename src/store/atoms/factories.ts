@@ -2,11 +2,12 @@ import { atom, useAtomValue } from "jotai";
 import { FactoryType, FACTORIES } from "@/data/factories";
 
 import { store } from "@/store";
+import { mscAtom } from "./msc";
 
-const factoriesAtom = atom({
+export const factoriesAtom = atom({
 	potato: {
 		amount: 1,
-		isAuto: false,
+		isAuto: true,
 		isUnlocked: true,
 	},
 	land: {
@@ -39,15 +40,18 @@ const factoriesAtom = atom({
 export const useFactory = (factory: FactoryType) => {
 	const factories = useAtomValue(factoriesAtom);
 
-	return { ...FACTORIES[factory], ...factories[factory] };
+	return {
+		...FACTORIES[factory],
+		...factories[factory],
+	};
 };
 
-export const setAmount = (factory: FactoryType, amount: number) => {
+export const setAmount = (factory: FactoryType) => {
 	store.set(factoriesAtom, (prev) => ({
 		...prev,
 		[factory]: {
 			...prev[factory],
-			amount: prev[factory].amount + amount,
+			amount: prev[factory].amount + store.get(mscAtom).amountToBuy,
 		},
 	}));
 };

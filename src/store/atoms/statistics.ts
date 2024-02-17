@@ -1,7 +1,8 @@
 import { atomWithStorage } from "jotai/utils";
 import { store } from "..";
-import { FactoryType } from "@/data/factories";
+import { FactoryType, FACTORIES } from "@/data/factories";
 import { useAtomValue } from "jotai";
+import { factoriesAtom } from "./factories";
 
 export const statisticsAtom = atomWithStorage("statistics", {
 	moneyEarned: 0,
@@ -42,15 +43,17 @@ export const statisticsAtom = atomWithStorage("statistics", {
 
 export const useStatistics = () => useAtomValue(statisticsAtom);
 
-export const setStatistics = (factory: FactoryType, value: number) => {
+export const setStatistics = (factory: FactoryType) => {
+	const f = { ...FACTORIES[factory], ...store.get(factoriesAtom)[factory] };
+
 	store.set(statisticsAtom, (prev) => ({
 		...prev,
-		moneyEarned: prev.moneyEarned + value,
+		moneyEarned: prev.moneyEarned + f.amount * f.value,
 		factories: {
 			...prev.factories,
 			[factory]: {
 				...prev.factories[factory],
-				moneyEarned: prev.factories[factory].moneyEarned + value,
+				moneyEarned: prev.factories[factory].moneyEarned + f.amount * f.value,
 			},
 		},
 	}));

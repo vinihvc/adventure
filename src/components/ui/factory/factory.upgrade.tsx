@@ -7,7 +7,7 @@ interface FactoryUpgradeProps
 	factory: any;
 	totalMoney: number;
 	amountToBuy: MscAtomProps["amountToBuy"];
-	onAcquire: () => void;
+	onUnlock: () => void;
 	onBuyAmount: () => void;
 }
 
@@ -17,7 +17,7 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 		totalMoney,
 		amountToBuy,
 		className,
-		onAcquire,
+		onUnlock,
 		onBuyAmount,
 		...rest
 	} = props;
@@ -28,7 +28,7 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 				className="w-full text-sm"
 				variant="primary"
 				disabled={totalMoney < factory.moneyToUnlock}
-				onClick={!factory.isUnlocked ? onAcquire : onBuyAmount}
+				onClick={!factory.isUnlocked ? onUnlock : onBuyAmount}
 				{...rest}
 			>
 				{factory.isUnlocked && (
