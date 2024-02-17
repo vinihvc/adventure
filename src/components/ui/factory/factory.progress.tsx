@@ -11,28 +11,30 @@ interface FactoryProgressProps extends React.HTMLAttributes<HTMLDivElement> {
 	 */
 	type: FactoryType;
 	/**
+	 *
+	 */
+	seconds: number;
+	/**
 	 * The time in seconds
 	 */
 	isRunning: boolean;
 }
 
 export const FactoryProgress = (props: FactoryProgressProps) => {
-	const { type, isRunning, className, ...rest } = props;
+	const { type, seconds, isRunning, className, ...rest } = props;
 
 	const factory = useFactory(type);
 
-	const duration = factory.time / 1000 + 1;
+	const progress = 100 - (seconds / (factory.time / 1000)) * 100;
+	// improve the following code
+
+	if (type === "potato") {
+		console.log(100 - progress);
+	}
 
 	return (
 		<div className={cn("relative", className)} {...rest}>
-			<div className="w-full relative mx-auto my-0 p-px rounded-[10px] border-4 border-solid border-transparent before:content-[''] before:border before:absolute before:rounded-[10px] before:border-solid before:border-white before:-inset-1">
-				<div
-					className={cn(
-						"absolute [background:#fff] w-0  rounded-[10px] left-0 right-full inset-y-0",
-						isRunning && `animate-[progressbar_${duration}s_linear_infinite]`,
-					)}
-				/>
-			</div>
+			<Progress value={progress} />
 
 			<div className="absolute inset-0 flex items-center justify-center text-sm font-bold text-primary-foreground [text-shadow:_0_1.5px_3px_var(--tw-shadow-color)]">
 				{amountFormatter(factory.amount * factory.value)}

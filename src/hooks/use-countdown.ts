@@ -20,20 +20,20 @@ export const useCountdown = (factory: FactoryType) => {
 		setStatistics(factory);
 	};
 
-	useInterval(() => {
-		if (!f.isUnlocked) return;
-		if (!isRunning) return;
+	useInterval(
+		() => {
+			if (seconds > 0 && isRunning) {
+				setSeconds(seconds - 1);
+			}
 
-		if (seconds > 0 && isRunning) {
-			setSeconds(seconds - 1);
-		}
-
-		if (seconds === 0) {
-			setSeconds(timeDuration);
-			setIsRunning(isAuto ? true : false);
-			handleOnComplete();
-		}
-	}, 1000);
+			if (seconds === 0) {
+				setSeconds(timeDuration);
+				setIsRunning(isAuto ? true : false);
+				handleOnComplete();
+			}
+		},
+		isRunning && f.isUnlocked ? 1000 : undefined,
+	);
 
 	const onRun = () => {
 		setIsRunning(true);

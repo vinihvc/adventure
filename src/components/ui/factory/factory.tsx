@@ -21,7 +21,7 @@ export const Factory = (props: FactoryProps) => {
 	const factory = useFactory(type);
 	const wallet = useWallet();
 
-	const { isRunning } = useCountdown(type);
+	const { seconds, isRunning, onRun } = useCountdown(type);
 
 	const handleProduce = () => {
 		setMoney(type);
@@ -48,7 +48,7 @@ export const Factory = (props: FactoryProps) => {
 			<FactoryProduce factory={factory} onProduce={handleProduce} />
 
 			<div className="w-full space-y-1 bg-foreground p-2 pl-14 rounded-xl">
-				<FactoryProgress type={type} isRunning={isRunning} />
+				<FactoryProgress type={type} seconds={seconds} isRunning={isRunning} />
 
 				<FactoryUpgrade
 					factory={factory}
