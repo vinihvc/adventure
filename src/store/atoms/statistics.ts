@@ -1,6 +1,6 @@
 import { atomWithStorage } from "jotai/utils";
 import { store } from "..";
-import { FactoryType, FACTORIES } from "@/data/factories";
+import { type FactoryType, FACTORIES } from "@/data/factories";
 import { useAtomValue } from "jotai";
 import { factoriesAtom } from "./factories";
 

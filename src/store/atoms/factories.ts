@@ -1,5 +1,5 @@
 import { atom, useAtomValue } from "jotai";
-import { FactoryType, FACTORIES } from "@/data/factories";
+import { type FactoryType, FACTORIES } from "@/data/factories";
 
 import { store } from "@/store";
 import { mscAtom } from "./msc";

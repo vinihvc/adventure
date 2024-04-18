@@ -1,6 +1,6 @@
 import React from "react";
 import { useInterval } from "./use-interval";
-import { FactoryType } from "@/data/factories";
+import type { FactoryType } from "@/data/factories";
 import { useFactory } from "@/store/atoms/factories";
 import { setMoney } from "@/store/atoms/wallet";
 import { setStatistics } from "@/store/atoms/statistics";
