@@ -36,7 +36,7 @@ export const UpgradesDialog = () => {
 				</DialogHeader>
 
 				<div className="grid grid-cols-2 gap-2 py-2">
-					{Object.entries(FACTORIES).map(([key, value]) => {
+					{Object.entries(FACTORIES).map(([key]) => {
 						const factory = useFactory(key as FactoryType);
 
 						return (

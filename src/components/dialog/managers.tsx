@@ -10,14 +10,10 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { amountFormatter } from "@/utils/formatters";
-import { cn } from "@/utils/cn";
 import { useFactory, upgradeAuto } from "@/store/atoms/factories";
-import { useWallet } from "@/store/atoms/wallet";
 import { UserRound } from "lucide-react";
 
 export const ManagersDialog = () => {
-	const wallet = useWallet();
-
 	const handleAutomatic = (type: FactoryType) => {
 		upgradeAuto(type);
 	};
@@ -40,7 +36,7 @@ export const ManagersDialog = () => {
 				</DialogHeader>
 
 				<div className="grid grid-cols-2 gap-2 py-2">
-					{Object.entries(FACTORIES).map(([key, value]) => {
+					{Object.entries(FACTORIES).map(([key]) => {
 						const factory = useFactory(key as FactoryType);
 
 						return (
