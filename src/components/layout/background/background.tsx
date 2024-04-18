@@ -8,7 +8,7 @@ export const GameBackground = (props: GameBackgroundProps) => {
 	return (
 		<div
 			className={cn(
-				"flex flex-col min-h-screen items-center justify-center",
+				"relative w-full max-w-6xl bg-neutral-50 border-2",
 				className,
 			)}
 			{...rest}

@@ -5,27 +5,19 @@ import { cn } from "@/utils/cn";
 
 const buttonVariants = tv({
 	base: [
-		[
-			"inline-flex items-center justify-center uppercase",
-			"rounded-lg [text-shadow:_0_1.5px_3px_var(--tw-shadow-color)]",
-			"transition-color whitespace-nowrap",
-			"font-bold",
-			"ring-offset-background",
-			"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-			"focus-visible:ring-offset-2",
-			"disabled:pointer-events-none disabled:grayscale",
-		],
+		"inline-flex items-center justify-center",
+		"font-semibold whitespace-nowrap",
+		"transition",
+		"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
+		"disabled:pointer-events-none disabled:grayscale",
 	],
 	variants: {
 		variant: {
-			primary:
-				"bg-primary text-primary-foreground shadow-primary-hover disabled:text-primary-foreground",
-			destructive: "bg-destructive text-destructive-foreground shadow-red-600",
+			solid: "bg-red-500 text-white focus-visible:ring-red-500",
 			outline:
-				"border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-			secondary: "bg-secondary text-secondary-foreground",
-			ghost: "hover:bg-accent hover:text-accent-foreground",
-			link: "text-primary underline-offset-4 hover:underline",
+				"border border-red-500 bg-transparent hover:bg-red-500 hover:text-white",
+			ghost: "hover:bg-red-500 hover:text-white",
+			link: "text-red-500 underline-offset-4 hover:underline",
 		},
 		size: {
 			sm: "h-9 px-3",
@@ -38,7 +30,7 @@ const buttonVariants = tv({
 		},
 	},
 	defaultVariants: {
-		variant: "primary",
+		variant: "solid",
 		size: "md",
 		pressed: false,
 	},

@@ -5,11 +5,10 @@ import { FactoryUpgrade } from "./factory.upgrade";
 import { FactoryProduce } from "./factory.produce";
 import { useFactory, setAmount, upgradeUnlock } from "@/store/atoms/factories";
 import { useWallet, setMoney } from "@/store/atoms/wallet";
-import { FactoryType } from "@/data/factories";
+import type { FactoryType } from "@/data/factories";
 import { useMsc } from "@/store/atoms/msc";
 import { useCountdown } from "@/hooks/use-countdown";
 
-import React from "react";
 interface FactoryProps extends React.HTMLAttributes<HTMLDivElement> {
 	type: FactoryType;
 }
@@ -21,7 +20,7 @@ export const Factory = (props: FactoryProps) => {
 	const factory = useFactory(type);
 	const wallet = useWallet();
 
-	const { seconds, isRunning, onRun } = useCountdown(type);
+	const { seconds, isRunning } = useCountdown(type);
 
 	const handleProduce = () => {
 		setMoney(type);
@@ -38,16 +37,13 @@ export const Factory = (props: FactoryProps) => {
 
 	return (
 		<div
-			className={cn(
-				"flex items-center gap-x-4 aria-[disabled=true]:grayscale",
-				className,
-			)}
+			className={cn("flex items-center gap-2", className)}
 			aria-disabled={!factory.isUnlocked}
 			{...rest}
 		>
 			<FactoryProduce factory={factory} onProduce={handleProduce} />
 
-			<div className="w-full space-y-1 bg-foreground p-2 pl-14 rounded-xl">
+			<div className="w-full space-y-1">
 				<FactoryProgress type={type} seconds={seconds} isRunning={isRunning} />
 
 				<FactoryUpgrade

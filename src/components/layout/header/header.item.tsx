@@ -11,7 +11,7 @@ export const HeaderItem = (props: HeaderItemProps) => {
 	return (
 		<div
 			className={cn(
-				"flex justify-between items-center w-40 text-sm h-12 px-4 rounded-lg whitespace-nowrap bg-primary text-primary-foreground",
+				"flex justify-between items-center w-32 text-sm h-11 px-4 whitespace-nowrap",
 				className,
 			)}
 			{...rest}

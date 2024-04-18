@@ -1,7 +1,7 @@
 import { atom, useAtomValue } from "jotai";
 import { store } from "..";
 import { factoriesAtom } from "./factories";
-import { FactoryType, FACTORIES } from "@/data/factories";
+import { type FactoryType, FACTORIES } from "@/data/factories";
 
 const walletAtom = atom({
 	money: 0,

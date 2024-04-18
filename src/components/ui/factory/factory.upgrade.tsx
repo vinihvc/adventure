@@ -1,5 +1,5 @@
-import { MscAtomProps } from "@/store/atoms/msc";
-import { Button } from "../button";
+import type { MscAtomProps } from "@/store/atoms/msc";
+import { Button } from "@/components/ui/button";
 
 interface FactoryUpgradeProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -25,8 +25,7 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 	return (
 		<div className="flex items-center space-x-1">
 			<Button
-				className="w-full text-sm"
-				variant="primary"
+				className="w-full text-xs uppercase font-bold"
 				disabled={totalMoney < factory.moneyToUnlock}
 				onClick={!factory.isUnlocked ? onUnlock : onBuyAmount}
 				{...rest}
@@ -48,7 +47,7 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 			</Button>
 
 			{factory.amount > 0 && (
-				<Button variant="primary" className="w-auto text-xs" disabled>
+				<Button className="w-40 text-xs" disabled>
 					{new Date(factory.time).toISOString().substring(14, 19)}
 				</Button>
 			)}

@@ -1,5 +1,5 @@
 import { DialogDescription } from "@radix-ui/react-dialog";
-import { FACTORIES, FactoryType } from "@/data/factories";
+import { FACTORIES, type FactoryType } from "@/data/factories";
 import { useStatistics } from "@/store/atoms/statistics";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,6 +10,7 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { amountFormatter } from "@/utils/formatters";
+import { PieChart } from "lucide-react";
 
 export const StatisticsDialog = () => {
 	const statistics = useStatistics();
@@ -17,8 +18,9 @@ export const StatisticsDialog = () => {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button className="w-full" size="sm">
-					Stats
+				<Button size="icon">
+					<div className="sr-only">Open Statistics</div>
+					<PieChart />
 				</Button>
 			</DialogTrigger>
 
@@ -32,19 +34,17 @@ export const StatisticsDialog = () => {
 
 				<div className="space-y-2">
 					<div className="flex justify-between items-center">
-						<span className="text-lg font-bold">Total</span>
+						<span className="font-semibold capitalize">Total</span>
 
-						<span className="text-4xl font-extrabold">
-							{amountFormatter(statistics.moneyEarned)}
-						</span>
+						<span>{amountFormatter(statistics.moneyEarned)}</span>
 					</div>
 
 					{Object.entries(FACTORIES).map(([key]) => (
 						<div key={key} className="flex justify-between items-center">
-							<span className="text-lg font-bold capitalize">{key}</span>
+							<span className="font-semibold capitalize">{key}</span>
 
-							<span className="text-xl font-extrabold">
-								{amountFormatter(
+							<span>
+								{new Intl.NumberFormat().format(
 									statistics.factories[key as FactoryType].moneyEarned,
 								)}
 							</span>
