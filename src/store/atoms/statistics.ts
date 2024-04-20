@@ -1,10 +1,9 @@
-import { atomWithStorage } from "jotai/utils";
 import { store } from "..";
 import { type FactoryType, FACTORIES } from "@/data/factories";
-import { useAtomValue } from "jotai";
+import { atom, useAtomValue } from "jotai";
 import { factoriesAtom } from "./factories";
 
-export const statisticsAtom = atomWithStorage("statistics", {
+export const statisticsAtom = atom({
 	moneyEarned: 0,
 	moneySpent: 0,
 	factories: {
@@ -13,27 +12,27 @@ export const statisticsAtom = atomWithStorage("statistics", {
 			moneySpent: 0,
 			moneyEarned: 0,
 		},
-		land: {
+		peasant: {
 			quantity: 0,
 			moneySpent: 0,
 			moneyEarned: 0,
 		},
-		ore: {
+		knight: {
 			quantity: 0,
 			moneySpent: 0,
 			moneyEarned: 0,
 		},
-		weapon: {
+		archer: {
 			quantity: 0,
 			moneySpent: 0,
 			moneyEarned: 0,
 		},
-		medicine: {
+		engineer: {
 			quantity: 0,
 			moneySpent: 0,
 			moneyEarned: 0,
 		},
-		"time-travel": {
+		mage: {
 			quantity: 0,
 			moneySpent: 0,
 			moneyEarned: 0,

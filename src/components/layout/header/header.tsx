@@ -7,15 +7,16 @@ import { StatisticsDialog } from "@/components/dialog/statistics";
 import { UpgradesDialog } from "@/components/dialog/upgrades";
 import { ManagersDialog } from "@/components/dialog/managers";
 import { InvestorsDialog } from "@/components/dialog/investors";
+import { CircleDollarSign } from "lucide-react";
 
 export const Header = () => {
 	const wallet = useWallet();
 
 	return (
-		<header className="h-20 bg-neutral-100 flex justify-between items-center px-5">
+		<header className="flex justify-between items-center p-5">
 			<div className="flex items-center space-x-5">
 				<div className="flex space-x-5">
-					<HeaderItem className="bg-green-500 text-white">
+					<HeaderItem icon={CircleDollarSign} className="bg-black text-white">
 						{amountFormatter(wallet.money)}
 					</HeaderItem>
 				</div>

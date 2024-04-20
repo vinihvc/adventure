@@ -10,27 +10,27 @@ export const factoriesAtom = atom({
 		isAuto: true,
 		isUnlocked: true,
 	},
-	land: {
+	peasant: {
 		amount: 0,
 		isAuto: false,
 		isUnlocked: false,
 	},
-	ore: {
+	knight: {
 		amount: 0,
 		isAuto: false,
 		isUnlocked: false,
 	},
-	weapon: {
+	archer: {
 		amount: 0,
 		isAuto: false,
 		isUnlocked: false,
 	},
-	medicine: {
+	engineer: {
 		amount: 0,
 		isAuto: false,
 		isUnlocked: false,
 	},
-	"time-travel": {
+	mage: {
 		amount: 0,
 		isAuto: false,
 		isUnlocked: false,

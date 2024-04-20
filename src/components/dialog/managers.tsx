@@ -43,7 +43,8 @@ export const ManagersDialog = () => {
 							<Button
 								key={key}
 								data-auto={factory.isAuto}
-								className="w-full h-32 flex-col data-[auto='true']:bg-green-500"
+								colorScheme={factory.isAuto ? "green" : "white"}
+								className="w-full h-32 flex-col border"
 								onClick={() => handleAutomatic(key as FactoryType)}
 							>
 								<span className="capitalize text-2xl text-bold">{key}</span>

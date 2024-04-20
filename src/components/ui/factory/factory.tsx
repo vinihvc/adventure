@@ -37,7 +37,10 @@ export const Factory = (props: FactoryProps) => {
 
 	return (
 		<div
-			className={cn("flex items-center gap-2", className)}
+			className={cn(
+				"flex items-center gap-2 bg-white border shadow-xl p-4",
+				className,
+			)}
 			aria-disabled={!factory.isUnlocked}
 			{...rest}
 		>
