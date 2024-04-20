@@ -14,7 +14,7 @@ module.exports = {
 		},
 		extend: {
 			fontFamily: {
-				sans: ["Inter", ...fontFamily.sans],
+				sans: ["Radio Canada", ...fontFamily.sans],
 			},
 
 			keyframes: {
