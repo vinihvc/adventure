@@ -1,6 +1,6 @@
 import { atomWithStorage } from "jotai/utils";
 import { store } from "..";
-import { atom, useAtomValue } from "jotai";
+import { useAtomValue } from "jotai";
 
 export type MscAtomProps = {
 	amountToBuy: 1 | 10 | 50;
