@@ -17,14 +17,14 @@ export const InvestorsDialog = () => {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<DialogTrigger asChild>
-						<Button size="icon">
+						<Button size="icon" className="max-sm:w-full">
 							<span className="sr-only">Open Investors</span>
 							<Handshake />
 						</Button>
 					</DialogTrigger>
 				</TooltipTrigger>
 
-				<TooltipContent>Open Investors</TooltipContent>
+				<TooltipContent>Investors</TooltipContent>
 			</Tooltip>
 
 			<DialogContent>

@@ -24,14 +24,14 @@ export const UpgradesDialog = () => {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<DialogTrigger asChild>
-						<Button size="icon">
+						<Button size="icon" className="max-sm:w-full">
 							<span className="sr-only">Open Upgrades</span>
 							<ArrowBigUpDash />
 						</Button>
 					</DialogTrigger>
 				</TooltipTrigger>
 
-				<TooltipContent>Open Upgrades</TooltipContent>
+				<TooltipContent>Upgrades</TooltipContent>
 			</Tooltip>
 
 			<DialogContent>

@@ -1,19 +1,16 @@
 import { useWallet } from "@/store/atoms/wallet";
 import { SettingDialog } from "@/components/dialog/settings";
-import { AmountToBuy } from "../amount";
+import { AmountToBuy } from "./header.amount";
 import { amountFormatter } from "@/utils/formatters";
 import { HeaderItem } from "./header.item";
-import { StatisticsDialog } from "@/components/dialog/statistics";
-import { UpgradesDialog } from "@/components/dialog/upgrades";
-import { ManagersDialog } from "@/components/dialog/managers";
-import { InvestorsDialog } from "@/components/dialog/investors";
 import { CircleDollarSign } from "lucide-react";
+import { Navigation } from "../navigation";
 
 export const Header = () => {
 	const wallet = useWallet();
 
 	return (
-		<header className="flex justify-between items-center p-5">
+		<header className="sticky top-0 flex justify-between items-center p-2 md:p-5 bg-white z-10">
 			<div className="flex items-center space-x-5">
 				<div className="flex space-x-5">
 					<HeaderItem icon={CircleDollarSign} className="bg-black text-white">
@@ -22,17 +19,9 @@ export const Header = () => {
 				</div>
 			</div>
 
-			<nav className="max-sm:hidden flex items-center gap-2">
-				<StatisticsDialog />
+			<Navigation className="max-sm:hidden" />
 
-				<UpgradesDialog />
-
-				<ManagersDialog />
-
-				<InvestorsDialog />
-			</nav>
-
-			<nav className="flex items-center gap-2">
+			<nav className="flex gap-2">
 				<AmountToBuy />
 
 				<SettingDialog />

@@ -7,7 +7,7 @@ const buttonVariants = tv({
 	base: [
 		"inline-flex items-center justify-center",
 		"font-semibold whitespace-nowrap",
-		"transition",
+		"transition duration-200",
 		"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
 		"disabled:pointer-events-none disabled:grayscale disabled:opacity-50",
 	],
@@ -19,7 +19,7 @@ const buttonVariants = tv({
 			black: "ring-black",
 		},
 		variant: {
-			solid: "",
+			solid: "hover:opacity-80",
 			outline: "border bg-transparent",
 			ghost: "",
 			link: "underline-offset-4 hover:underline",

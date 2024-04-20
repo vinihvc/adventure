@@ -21,14 +21,14 @@ export const StatisticsDialog = () => {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<DialogTrigger asChild>
-						<Button size="icon">
+						<Button size="icon" className="max-sm:w-full">
 							<span className="sr-only">Open Statistics</span>
 							<PieChart />
 						</Button>
 					</DialogTrigger>
 				</TooltipTrigger>
 
-				<TooltipContent>Open Statistics</TooltipContent>
+				<TooltipContent>Statistics</TooltipContent>
 			</Tooltip>
 
 			<DialogContent>

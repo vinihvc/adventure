@@ -1,3 +1,4 @@
+import { cn } from "@/utils/cn";
 import { Button } from "../button";
 import { Image } from "../image";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../tooltip";
@@ -24,7 +25,10 @@ export const FactoryProduce = (props: FactoryProduceProps) => {
 			<TooltipTrigger asChild>
 				<Button
 					colorScheme="white"
-					className="group relative shrink-0 size-16 rounded-full border-2 border-black data-[auto='true']:border-green-500 p-0 focus-visible:ring focus-visible:ring-offset-2 focus-visible:ring-black"
+					className={cn(
+						"group relative shrink-0 size-16 rounded-full border-2 border-black data-[auto='true']:border-green-500 p-0 focus-visible:ring focus-visible:ring-offset-2 focus-visible:ring-black",
+						className,
+					)}
 					disabled={factory.amount === 0}
 					data-auto={factory.isAuto}
 					data-unlocked={factory.isUnlocked}
@@ -47,7 +51,7 @@ export const FactoryProduce = (props: FactoryProduceProps) => {
 				</Button>
 			</TooltipTrigger>
 
-			<TooltipContent>{`Click to produce ${factoryType}`}</TooltipContent>
+			<TooltipContent>{`Produce ${factoryType}`}</TooltipContent>
 		</Tooltip>
 	);
 };

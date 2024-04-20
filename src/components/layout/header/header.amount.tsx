@@ -1,6 +1,6 @@
 import { useMsc, toggleAmountToBuy } from "@/store/atoms/msc";
 import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../../ui/tooltip";
 
 export const AmountToBuy = () => {
 	const msc = useMsc();

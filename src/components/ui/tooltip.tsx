@@ -6,11 +6,11 @@ import { cn } from "@/utils/cn";
 export const Tooltip = React.forwardRef<
 	React.ElementRef<typeof RTooltip.Provider>,
 	React.ComponentPropsWithoutRef<typeof RTooltip.Provider>
->((props) => {
-	const { children, ...rest } = props;
+>((props, ref) => {
+	const { delayDuration = 100, children, ...rest } = props;
 
 	return (
-		<RTooltip.Provider {...rest}>
+		<RTooltip.Provider delayDuration={delayDuration} {...rest}>
 			<RTooltip.Root>{children}</RTooltip.Root>
 		</RTooltip.Provider>
 	);
@@ -23,15 +23,16 @@ export const TooltipContent = React.forwardRef<
 	React.ComponentPropsWithoutRef<typeof RTooltip.Content>
 >((props, ref) => {
 	const { className, sideOffset = 4, ...rest } = props;
+
 	return (
 		<RTooltip.Content
 			ref={ref}
 			sideOffset={sideOffset}
 			className={cn(
 				"z-50 overflow-hidden",
-				"px-3 py-1.5",
-				"border border-neutral-200 shadow-md",
-				"bg-black text-sm text-white",
+				"px-2 py-1",
+				"border border-neutral-700 shadow-md",
+				"text-xs text-white bg-black",
 				"animate-in fade-in-0 zoom-in-95",
 				"data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
 				"data-[side=bottom]:slide-in-from-top-2",

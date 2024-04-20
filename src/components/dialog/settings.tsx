@@ -29,7 +29,7 @@ export const SettingDialog = () => {
 					</DialogTrigger>
 				</TooltipTrigger>
 
-				<TooltipContent>Open Settings</TooltipContent>
+				<TooltipContent>Settings</TooltipContent>
 			</Tooltip>
 
 			<DialogContent>
@@ -42,15 +42,27 @@ export const SettingDialog = () => {
 
 				<div className="space-y-5">
 					<div className="flex justify-between items-center">
-						<div className="font-semibold">Music</div>
+						<label htmlFor="toggle-music" className="font-semibold">
+							Music
+						</label>
 
-						<Switch checked={settings.music} onCheckedChange={toggleMusic} />
+						<Switch
+							id="toggle-music"
+							checked={settings.music}
+							onCheckedChange={toggleMusic}
+						/>
 					</div>
 
 					<div className="flex justify-between items-center">
-						<div className="font-semibold">SFX</div>
+						<label htmlFor="toggle-sfx" className="font-semibold">
+							SFX
+						</label>
 
-						<Switch checked={settings.sfx} onCheckedChange={toggleSfx} />
+						<Switch
+							id="toggle-sfx"
+							checked={settings.sfx}
+							onCheckedChange={toggleSfx}
+						/>
 					</div>
 				</div>
 			</DialogContent>

@@ -45,7 +45,7 @@ export const DialogContent = React.forwardRef<
 				"shadow-lg border",
 				"duration-200",
 				"max-sm:data-[state=open]:slide-in-from-bottom-[48%]",
-				"data-[state=open]:animate-in data-[state=open]:slide-in-from-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:zoom-in-95",
+				"data-[state=open]:animate-in data-[state=open]:slide-in-from-top-[48%] data-[state=open]:slide-in-from-left-1/2 sm:data-[state=open]:zoom-in-95",
 				"max-sm:data-[state=closed]:slide-out-to-bottom-[48%]",
 				"data-[state=closed]:animate-out data-[state=closed]:fade-out-0 x data-[state=closed]:zoom-out-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%]",
 				className,

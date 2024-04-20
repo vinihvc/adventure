@@ -5,6 +5,7 @@ import { Provider as JotaiProvider } from "jotai";
 import { store } from "@/store";
 import { Footer } from "@/components/layout/footer";
 import { TailwindIndicator } from "@/components/debug/tailwind-indicator";
+import { Navigation } from "@/components/layout/navigation";
 
 export const HomePage = () => {
 	return (
@@ -24,7 +25,7 @@ export const HomePage = () => {
 					<Header />
 
 					<div className="w-full items-center flex">
-						<div className="grid md:grid-cols-2 gap-5 w-full p-5">
+						<div className="grid md:grid-cols-2 gap-5 w-full p-2 md:p-5">
 							{Object.keys(FACTORIES).map((factory) => (
 								<Factory key={factory} type={factory as FactoryType} />
 							))}
@@ -34,6 +35,8 @@ export const HomePage = () => {
 			</div>
 
 			<Footer />
+
+			<Navigation className="sm:hidden sticky bottom-0 inset-x-0 bg-black h-14" />
 
 			<TailwindIndicator />
 		</JotaiProvider>

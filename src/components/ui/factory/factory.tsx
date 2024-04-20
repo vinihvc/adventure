@@ -41,19 +41,20 @@ export const Factory = (props: FactoryProps) => {
 			tabIndex={factory.isUnlocked ? 0 : -1}
 			aria-label={`${type} section`}
 			className={cn(
-				"flex items-center gap-2 bg-white border shadow-xl p-4 focus-visible:ring-2 outline-none focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
+				"flex items-center gap-5 bg-white border shadow-xl p-4 focus-visible:ring-2 outline-none focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
 				className,
 			)}
 			aria-disabled={!factory.isUnlocked}
 			{...rest}
 		>
 			<FactoryProduce
+				className="relative -top-1"
 				factoryType={type}
 				factory={factory}
 				onProduce={handleProduce}
 			/>
 
-			<div className="w-full space-y-1">
+			<div className="w-full space-y-2">
 				<FactoryProgress type={type} seconds={seconds} isRunning={isRunning} />
 
 				<FactoryUpgrade

@@ -24,14 +24,14 @@ export const ManagersDialog = () => {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<DialogTrigger asChild>
-						<Button size="icon">
+						<Button size="icon" className="max-sm:w-full">
 							<span className="sr-only">Open Managers</span>
 							<UserRound />
 						</Button>
 					</DialogTrigger>
 				</TooltipTrigger>
 
-				<TooltipContent>Open Managers</TooltipContent>
+				<TooltipContent>Managers</TooltipContent>
 			</Tooltip>
 
 			<DialogContent className="flex flex-col">
