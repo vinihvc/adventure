@@ -6,7 +6,7 @@ import { cn } from "@/utils/cn";
 export const Tooltip = React.forwardRef<
 	React.ElementRef<typeof RTooltip.Provider>,
 	React.ComponentPropsWithoutRef<typeof RTooltip.Provider>
->((props, ref) => {
+>((props, _ref) => {
 	const { delayDuration = 100, children, ...rest } = props;
 
 	return (
