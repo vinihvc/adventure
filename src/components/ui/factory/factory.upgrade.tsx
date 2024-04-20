@@ -46,7 +46,10 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 				{factory.isUnlocked && (
 					<span className="space-x-1">
 						<span>Buy</span>
-						<span>{`x${amountToBuy}`}</span>
+						<span>
+							<span className="text-xs normal-case">x</span>
+							<span>{amountToBuy}</span>
+						</span>
 					</span>
 				)}
 
