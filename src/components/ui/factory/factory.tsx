@@ -44,12 +44,17 @@ export const Factory = (props: FactoryProps) => {
 			aria-disabled={!factory.isUnlocked}
 			{...rest}
 		>
-			<FactoryProduce factory={factory} onProduce={handleProduce} />
+			<FactoryProduce
+				factoryType={type}
+				factory={factory}
+				onProduce={handleProduce}
+			/>
 
 			<div className="w-full space-y-1">
 				<FactoryProgress type={type} seconds={seconds} isRunning={isRunning} />
 
 				<FactoryUpgrade
+					factoryType={type}
 					factory={factory}
 					totalMoney={wallet.money}
 					amountToBuy={msc.amountToBuy}

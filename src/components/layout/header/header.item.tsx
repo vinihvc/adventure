@@ -1,5 +1,6 @@
+import * as React from "react";
+
 import { cn } from "@/utils/cn";
-import React from "react";
 
 interface HeaderItemProps extends React.HTMLAttributes<HTMLDivElement> {
 	icon?: React.ElementType;

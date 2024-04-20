@@ -30,8 +30,12 @@ export const FactoryProgress = (props: FactoryProgressProps) => {
 		<div className={cn("relative", className)} {...rest}>
 			<Progress value={progress} />
 
-			<div className="absolute inset-0 flex items-center justify-center text-sm font-semibold text-black">
-				{amountFormatter(factory.amount * factory.value)}
+			<div className="absolute inset-0 flex items-center justify-between text-sm font-semibold text-black px-5">
+				<span className="w-40 text-xs">
+					{new Date(factory.time).toISOString().substring(14, 19)}
+				</span>
+
+				<span>{amountFormatter(factory.amount * factory.value)}</span>
 			</div>
 		</div>
 	);

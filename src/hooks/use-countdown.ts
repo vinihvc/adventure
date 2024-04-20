@@ -1,4 +1,5 @@
-import React from "react";
+import * as React from "react";
+
 import { useInterval } from "./use-interval";
 import type { FactoryType } from "@/data/factories";
 import { useFactory } from "@/store/atoms/factories";
@@ -28,7 +29,7 @@ export const useCountdown = (factory: FactoryType) => {
 
 			if (seconds === 0) {
 				setSeconds(timeDuration);
-				setIsRunning(isAuto ? true : false);
+				setIsRunning(isAuto);
 				handleOnComplete();
 			}
 		},

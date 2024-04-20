@@ -9,7 +9,7 @@ export const Progress = React.forwardRef<
 	<RProgress.Root
 		ref={ref}
 		className={cn(
-			"relative h-5 w-full overflow-hidden bg-neutral-100",
+			"relative h-6 w-full overflow-hidden bg-neutral-100",
 			className,
 		)}
 		{...props}

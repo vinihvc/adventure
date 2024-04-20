@@ -1,7 +1,9 @@
 import { Button } from "../button";
+import { Image } from "../image";
 
 interface FactoryProduceProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	factoryType: string;
 	/**
 	 *
 	 */
@@ -14,7 +16,7 @@ interface FactoryProduceProps
 }
 
 export const FactoryProduce = (props: FactoryProduceProps) => {
-	const { factory, onProduce, className, ...rest } = props;
+	const { factoryType, factory, onProduce, className, ...rest } = props;
 
 	return (
 		<Button
@@ -27,10 +29,10 @@ export const FactoryProduce = (props: FactoryProduceProps) => {
 			onClick={onProduce}
 			{...rest}
 		>
-			<img
-				src={factory.image}
+			<Image
+				src={`/images/${factoryType}.jpg`}
 				alt=""
-				className="w-full rounded-full object-cover group-data-[unlocked='false']:grayscale"
+				className="rounded-full group-data-[unlocked='false']:grayscale"
 				aria-hidden
 			/>
 

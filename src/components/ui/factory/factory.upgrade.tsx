@@ -1,8 +1,19 @@
 import type { MscAtomProps } from "@/store/atoms/msc";
 import { Button } from "@/components/ui/button";
+import { Info } from "lucide-react";
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "../dialog";
+import { Image } from "../image";
 
 interface FactoryUpgradeProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	factoryType: string;
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	factory: any;
 	totalMoney: number;
@@ -13,6 +24,7 @@ interface FactoryUpgradeProps
 
 export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 	const {
+		factoryType,
 		factory,
 		totalMoney,
 		amountToBuy,
@@ -46,11 +58,51 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 				)}
 			</Button>
 
-			{factory.amount > 0 && (
-				<Button className="w-40 text-xs" disabled>
-					{new Date(factory.time).toISOString().substring(14, 19)}
-				</Button>
-			)}
+			<Dialog>
+				<DialogTrigger asChild>
+					<Button className="w-14">
+						<Info />
+					</Button>
+				</DialogTrigger>
+
+				<DialogContent>
+					<DialogHeader>
+						<div className="flex gap-4 items-center">
+							<div className="shrink-0">
+								<Image
+									src={`/images/${factoryType}.jpg`}
+									alt={`Factory of ${factory.name}`}
+									className="w-16 h-16 rounded-full"
+								/>
+							</div>
+
+							<div>
+								<DialogTitle>{factory.name}</DialogTitle>
+								<DialogDescription>{factory.description}</DialogDescription>
+							</div>
+						</div>
+					</DialogHeader>
+
+					<div className="space-y-2 text-sm">
+						<p className="font-semibold text-lg">Statistics</p>
+
+						<div className="flex justify-between">
+							<div>Production speed</div>
+							<div>{`${factory.time / 1000}x`}</div>
+						</div>
+
+						<div className="flex justify-between">
+							<div>Production per click</div>
+							<div>{factory.value}</div>
+						</div>
+
+						<div className="flex justify-between">
+							<div>Production per hour</div>
+							<div>{factory.value * 3600}</div>
+						</div>
+					</div>
+				</DialogContent>
+			</Dialog>
 		</div>
 	);
 };
