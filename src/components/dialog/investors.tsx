@@ -9,16 +9,30 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { Handshake } from "lucide-react";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "../ui/tooltip";
 
 export const InvestorsDialog = () => {
 	return (
 		<Dialog>
-			<DialogTrigger asChild>
-				<Button size="icon">
-					<div className="sr-only">Open Investors</div>
-					<Handshake />
-				</Button>
-			</DialogTrigger>
+			<TooltipProvider>
+				<Tooltip>
+					<TooltipTrigger asChild>
+						<DialogTrigger asChild>
+							<Button size="icon">
+								<span className="sr-only">Open Investors</span>
+								<Handshake />
+							</Button>
+						</DialogTrigger>
+					</TooltipTrigger>
+
+					<TooltipContent>Open Investors</TooltipContent>
+				</Tooltip>
+			</TooltipProvider>
 
 			<DialogContent>
 				<DialogHeader>

@@ -11,18 +11,32 @@ import {
 } from "@/components/ui/dialog";
 import { amountFormatter } from "@/utils/formatters";
 import { PieChart } from "lucide-react";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "../ui/tooltip";
 
 export const StatisticsDialog = () => {
 	const statistics = useStatistics();
 
 	return (
 		<Dialog>
-			<DialogTrigger asChild>
-				<Button size="icon">
-					<div className="sr-only">Open Statistics</div>
-					<PieChart />
-				</Button>
-			</DialogTrigger>
+			<TooltipProvider>
+				<Tooltip>
+					<TooltipTrigger asChild>
+						<DialogTrigger asChild>
+							<Button size="icon">
+								<span className="sr-only">Open Statistics</span>
+								<PieChart />
+							</Button>
+						</DialogTrigger>
+					</TooltipTrigger>
+
+					<TooltipContent>Open Statistics</TooltipContent>
+				</Tooltip>
+			</TooltipProvider>
 
 			<DialogContent>
 				<DialogHeader>
