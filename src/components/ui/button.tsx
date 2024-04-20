@@ -44,7 +44,7 @@ const buttonVariants = tv({
 		{
 			variant: "outline",
 			colorScheme: "red",
-			className: "text-red-500 border-red-500 hover:bg-red-500/50",
+			className: "text-red-500 border-red-500 hover:bg-red-500/10",
 		},
 		{
 			variant: "ghost",
@@ -65,7 +65,7 @@ const buttonVariants = tv({
 		{
 			variant: "outline",
 			colorScheme: "green",
-			className: "text-green-500 border-green-500 hover:bg-green-500/50",
+			className: "text-green-500 border-green-500 hover:bg-green-500/10",
 		},
 		{
 			variant: "ghost",
@@ -86,7 +86,7 @@ const buttonVariants = tv({
 		{
 			variant: "outline",
 			colorScheme: "white",
-			className: "text-black border-white hover:bg-white/50",
+			className: "text-black border-white hover:bg-white/10",
 		},
 		{
 			variant: "ghost",
@@ -107,7 +107,7 @@ const buttonVariants = tv({
 		{
 			variant: "outline",
 			colorScheme: "black",
-			className: "text-black border-black hover:bg-black/50",
+			className: "text-black border-black hover:bg-black/10",
 		},
 		{
 			variant: "ghost",

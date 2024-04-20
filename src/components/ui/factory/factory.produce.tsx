@@ -1,5 +1,11 @@
 import { Button } from "../button";
 import { Image } from "../image";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "../tooltip";
 
 interface FactoryProduceProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -19,30 +25,36 @@ export const FactoryProduce = (props: FactoryProduceProps) => {
 	const { factoryType, factory, onProduce, className, ...rest } = props;
 
 	return (
-		<Button
-			title={`Produce ${factory.type}`}
-			colorScheme="white"
-			className="group relative shrink-0 size-16 rounded-full border-2 border-black data-[auto='true']:border-green-500 p-0"
-			disabled={factory.amount === 0}
-			data-auto={factory.isAuto}
-			data-unlocked={factory.isUnlocked}
-			onClick={onProduce}
-			{...rest}
-		>
-			<Image
-				src={`/images/${factoryType}.jpg`}
-				alt=""
-				className="rounded-full group-data-[unlocked='false']:grayscale"
-				aria-hidden
-			/>
+		<TooltipProvider>
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Button
+						colorScheme="white"
+						className="group relative shrink-0 size-16 rounded-full border-2 border-black data-[auto='true']:border-green-500 p-0 focus-visible:ring focus-visible:ring-offset-2 focus-visible:ring-black"
+						disabled={factory.amount === 0}
+						data-auto={factory.isAuto}
+						data-unlocked={factory.isUnlocked}
+						onClick={onProduce}
+						{...rest}
+					>
+						<Image
+							src={`/images/${factoryType}.webp`}
+							alt={`Produce ${factoryType}`}
+							className="rounded-full group-data-[unlocked='false']:grayscale"
+						/>
 
-			<span className="sr-only">{`Produce ${factory.type}`}</span>
+						<span className="sr-only">{`Produce ${factory.type}`}</span>
 
-			<div className="absolute -bottom-3">
-				<div className="flex justify-center items-center text-white bg-red-500 rounded-full border-2 border-black w-14 h-6 group-data-[auto='true']:border-green-500">
-					<div className="text-xs">{factory.amount || 0}</div>
-				</div>
-			</div>
-		</Button>
+						<div className="absolute -bottom-3">
+							<div className="flex justify-center items-center text-white bg-red-500 rounded-full border-2 border-black w-14 h-6 group-data-[auto='true']:border-green-500">
+								<div className="text-xs">{factory.amount || 0}</div>
+							</div>
+						</div>
+					</Button>
+				</TooltipTrigger>
+
+				<TooltipContent>{`Click to produce ${factoryType}`}</TooltipContent>
+			</Tooltip>
+		</TooltipProvider>
 	);
 };

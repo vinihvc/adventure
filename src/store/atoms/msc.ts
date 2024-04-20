@@ -1,3 +1,4 @@
+import { atomWithStorage } from "jotai/utils";
 import { store } from "..";
 import { atom, useAtomValue } from "jotai";
 
@@ -5,7 +6,7 @@ export type MscAtomProps = {
 	amountToBuy: 1 | 10 | 50;
 };
 
-export const mscAtom = atom<MscAtomProps>({
+export const mscAtom = atomWithStorage<MscAtomProps>("msc", {
 	amountToBuy: 1,
 });
 

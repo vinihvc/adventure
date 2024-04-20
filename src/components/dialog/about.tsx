@@ -10,7 +10,7 @@ import {
 export const AboutDialog = () => {
 	return (
 		<Dialog>
-			<DialogTrigger className="underline-offset-4 hover:underline">
+			<DialogTrigger className="underline-offset-4 hover:underline outline-none focus-visible:underline">
 				About
 			</DialogTrigger>
 

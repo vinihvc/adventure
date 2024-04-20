@@ -33,12 +33,15 @@ export const Factory = (props: FactoryProps) => {
 
 	const handleUnlock = () => {
 		upgradeUnlock(type);
+		setAmount(type);
 	};
 
 	return (
 		<div
+			tabIndex={factory.isUnlocked ? 0 : -1}
+			aria-label={`${type} section`}
 			className={cn(
-				"flex items-center gap-2 bg-white border shadow-xl p-4",
+				"flex items-center gap-2 bg-white border shadow-xl p-4 focus-visible:ring-2 outline-none focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
 				className,
 			)}
 			aria-disabled={!factory.isUnlocked}

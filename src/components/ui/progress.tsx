@@ -9,13 +9,13 @@ export const Progress = React.forwardRef<
 	<RProgress.Root
 		ref={ref}
 		className={cn(
-			"relative h-6 w-full overflow-hidden bg-neutral-100",
+			"relative h-6 w-full overflow-hidden bg-white border border-black",
 			className,
 		)}
 		{...props}
 	>
 		<RProgress.Indicator
-			className="h-full w-full flex-1 bg-green-500 transition-all"
+			className="h-full w-full flex-1 bg-green-400 transition-all"
 			style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
 		/>
 	</RProgress.Root>

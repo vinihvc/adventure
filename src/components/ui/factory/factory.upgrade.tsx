@@ -10,6 +10,12 @@ import {
 	DialogTrigger,
 } from "../dialog";
 import { Image } from "../image";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "../tooltip";
 
 interface FactoryUpgradeProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -59,28 +65,33 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 			</Button>
 
 			<Dialog>
-				<DialogTrigger asChild>
-					<Button className="w-14">
-						<Info />
-					</Button>
-				</DialogTrigger>
+				<TooltipProvider>
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<DialogTrigger asChild>
+								<Button className="w-12 p-0" variant="outline">
+									<span className="sr-only">{`${factory.name}'s Info`}</span>
+									<Info className="size-5" />
+								</Button>
+							</DialogTrigger>
+						</TooltipTrigger>
+
+						<TooltipContent>{`${factory.name}'s Info`}</TooltipContent>
+					</Tooltip>
+				</TooltipProvider>
 
 				<DialogContent>
-					<DialogHeader>
-						<div className="flex gap-4 items-center">
-							<div className="shrink-0">
-								<Image
-									src={`/images/${factoryType}.jpg`}
-									alt={`Factory of ${factory.name}`}
-									className="w-16 h-16 rounded-full"
-								/>
-							</div>
+					<div className="absolute -top-28 left-2">
+						<Image
+							src={`/images/${factoryType}.webp`}
+							alt={`Factory of ${factory.name}`}
+							className="size-40 rounded-full border-2 border-black drop-shadow-2xl"
+						/>
+					</div>
 
-							<div>
-								<DialogTitle>{factory.name}</DialogTitle>
-								<DialogDescription>{factory.description}</DialogDescription>
-							</div>
-						</div>
+					<DialogHeader className="mt-10">
+						<DialogTitle className="text-xl">{factory.name}</DialogTitle>
+						<DialogDescription>{factory.description}</DialogDescription>
 					</DialogHeader>
 
 					<div className="space-y-2 text-sm">

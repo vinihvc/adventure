@@ -21,8 +21,8 @@ export const TooltipContent = React.forwardRef<
 			className={cn(
 				"z-50 overflow-hidden",
 				"px-3 py-1.5",
-				"border shadow-md",
-				"bg-white text-sm text-black",
+				"border border-neutral-200 shadow-md",
+				"bg-black text-sm text-white",
 				"animate-in fade-in-0 zoom-in-95",
 				"data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
 				"data-[side=bottom]:slide-in-from-top-2",
