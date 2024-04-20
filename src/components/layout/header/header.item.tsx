@@ -12,14 +12,14 @@ export const HeaderItem = (props: HeaderItemProps) => {
 	return (
 		<div
 			className={cn(
-				"flex justify-between items-center w-32 text-sm h-11 px-4 whitespace-nowrap",
+				"flex justify-between items-center w-36 text-sm h-11 px-4 whitespace-nowrap gap-2",
 				className,
 			)}
 			{...rest}
 		>
-			{icon && React.createElement(icon)}
+			<span className="shrink-0">{icon && React.createElement(icon)}</span>
 
-			<div className="text-xl font-bold">{children}</div>
+			<span className="text-lg font-bold">{children}</span>
 		</div>
 	);
 };
