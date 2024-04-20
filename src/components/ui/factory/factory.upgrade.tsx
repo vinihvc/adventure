@@ -111,7 +111,7 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 						</div>
 					</div>
 
-					<DialogFooter className="mt-5">
+					<DialogFooter>
 						<DialogClose asChild>
 							<Button>Close Info</Button>
 						</DialogClose>

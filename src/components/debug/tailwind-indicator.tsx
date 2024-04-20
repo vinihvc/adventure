@@ -2,8 +2,8 @@ export const TailwindIndicator = () => {
 	if (process.env.NODE_ENV === "production") return null;
 
 	return (
-		<div className="fixed bottom-1 left-1 z-50">
-			<div className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-800 px-4 py-2 font-mono text-xs text-white">
+		<div className="fixed bottom-5 left-5 z-50">
+			<div className="flex h-6 w-6 items-center justify-center rounded-full bg-white px-4 py-2 font-semibold text-xs text-black">
 				<div className="block sm:hidden">XS</div>
 				<div className="hidden sm:block md:hidden lg:hidden xl:hidden 2xl:hidden">
 					SM
