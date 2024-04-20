@@ -12,12 +12,7 @@ import {
 import { amountFormatter } from "@/utils/formatters";
 import { useFactory, upgradeAuto } from "@/store/atoms/factories";
 import { UserRound } from "lucide-react";
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from "../ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 export const ManagersDialog = () => {
 	const handleAutomatic = (type: FactoryType) => {
@@ -26,20 +21,18 @@ export const ManagersDialog = () => {
 
 	return (
 		<Dialog>
-			<TooltipProvider>
-				<Tooltip>
-					<TooltipTrigger asChild>
-						<DialogTrigger asChild>
-							<Button size="icon">
-								<span className="sr-only">Open Managers</span>
-								<UserRound />
-							</Button>
-						</DialogTrigger>
-					</TooltipTrigger>
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<DialogTrigger asChild>
+						<Button size="icon">
+							<span className="sr-only">Open Managers</span>
+							<UserRound />
+						</Button>
+					</DialogTrigger>
+				</TooltipTrigger>
 
-					<TooltipContent>Open Managers</TooltipContent>
-				</Tooltip>
-			</TooltipProvider>
+				<TooltipContent>Open Managers</TooltipContent>
+			</Tooltip>
 
 			<DialogContent className="flex flex-col">
 				<DialogHeader>

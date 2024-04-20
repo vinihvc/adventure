@@ -12,12 +12,7 @@ import {
 import { ArrowBigUpDash } from "lucide-react";
 import { useFactory } from "@/store/atoms/factories";
 import { amountFormatter } from "@/utils/formatters";
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from "../ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 export const UpgradesDialog = () => {
 	const handleUpgrade = (type: FactoryType) => {
@@ -26,20 +21,18 @@ export const UpgradesDialog = () => {
 
 	return (
 		<Dialog>
-			<TooltipProvider>
-				<Tooltip>
-					<TooltipTrigger asChild>
-						<DialogTrigger asChild>
-							<Button size="icon">
-								<span className="sr-only">Open Upgrades</span>
-								<ArrowBigUpDash />
-							</Button>
-						</DialogTrigger>
-					</TooltipTrigger>
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<DialogTrigger asChild>
+						<Button size="icon">
+							<span className="sr-only">Open Upgrades</span>
+							<ArrowBigUpDash />
+						</Button>
+					</DialogTrigger>
+				</TooltipTrigger>
 
-					<TooltipContent>Open Upgrades</TooltipContent>
-				</Tooltip>
-			</TooltipProvider>
+				<TooltipContent>Open Upgrades</TooltipContent>
+			</Tooltip>
 
 			<DialogContent>
 				<DialogHeader>

@@ -10,12 +10,7 @@ import {
 	DialogTrigger,
 } from "../dialog";
 import { Image } from "../image";
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from "../tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../tooltip";
 
 interface FactoryUpgradeProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -65,20 +60,18 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 			</Button>
 
 			<Dialog>
-				<TooltipProvider>
-					<Tooltip>
-						<TooltipTrigger asChild>
-							<DialogTrigger asChild>
-								<Button className="w-12 p-0" variant="outline">
-									<span className="sr-only">{`${factory.name}'s Info`}</span>
-									<Info className="size-5" />
-								</Button>
-							</DialogTrigger>
-						</TooltipTrigger>
+				<Tooltip>
+					<TooltipTrigger asChild>
+						<DialogTrigger asChild>
+							<Button className="w-12 p-0" variant="outline">
+								<span className="sr-only">{`${factory.name}'s Info`}</span>
+								<Info className="size-5" />
+							</Button>
+						</DialogTrigger>
+					</TooltipTrigger>
 
-						<TooltipContent>{`${factory.name}'s Info`}</TooltipContent>
-					</Tooltip>
-				</TooltipProvider>
+					<TooltipContent>{`${factory.name}'s Info`}</TooltipContent>
+				</Tooltip>
 
 				<DialogContent>
 					<div className="absolute -top-28 left-2">

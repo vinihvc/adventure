@@ -12,32 +12,25 @@ import { Cog } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { useSettings, toggleMusic, toggleSfx } from "@/store/atoms/settings";
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from "../ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 export const SettingDialog = () => {
 	const settings = useSettings();
 
 	return (
 		<Dialog>
-			<TooltipProvider>
-				<Tooltip>
-					<TooltipTrigger asChild>
-						<DialogTrigger asChild>
-							<Button size="icon">
-								<span className="sr-only">Open Settings</span>
-								<Cog />
-							</Button>
-						</DialogTrigger>
-					</TooltipTrigger>
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<DialogTrigger asChild>
+						<Button size="icon">
+							<span className="sr-only">Open Settings</span>
+							<Cog />
+						</Button>
+					</DialogTrigger>
+				</TooltipTrigger>
 
-					<TooltipContent>Open Settings</TooltipContent>
-				</Tooltip>
-			</TooltipProvider>
+				<TooltipContent>Open Settings</TooltipContent>
+			</Tooltip>
 
 			<DialogContent>
 				<DialogHeader>

@@ -1,21 +1,30 @@
 import * as React from "react";
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
+import * as RTooltip from "@radix-ui/react-tooltip";
 
 import { cn } from "@/utils/cn";
 
-export const TooltipProvider = TooltipPrimitive.Provider;
+export const Tooltip = React.forwardRef<
+	React.ElementRef<typeof RTooltip.Provider>,
+	React.ComponentPropsWithoutRef<typeof RTooltip.Provider>
+>((props) => {
+	const { children, ...rest } = props;
 
-export const Tooltip = TooltipPrimitive.Root;
+	return (
+		<RTooltip.Provider {...rest}>
+			<RTooltip.Root>{children}</RTooltip.Root>
+		</RTooltip.Provider>
+	);
+});
 
-export const TooltipTrigger = TooltipPrimitive.Trigger;
+export const TooltipTrigger = RTooltip.Trigger;
 
 export const TooltipContent = React.forwardRef<
-	React.ElementRef<typeof TooltipPrimitive.Content>,
-	React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
+	React.ElementRef<typeof RTooltip.Content>,
+	React.ComponentPropsWithoutRef<typeof RTooltip.Content>
 >((props, ref) => {
 	const { className, sideOffset = 4, ...rest } = props;
 	return (
-		<TooltipPrimitive.Content
+		<RTooltip.Content
 			ref={ref}
 			sideOffset={sideOffset}
 			className={cn(
@@ -36,4 +45,4 @@ export const TooltipContent = React.forwardRef<
 	);
 });
 
-TooltipContent.displayName = TooltipPrimitive.Content.displayName;
+TooltipContent.displayName = RTooltip.Content.displayName;
