@@ -8,10 +8,13 @@ export const Footer = (props: FooterProps) => {
 
 	return (
 		<footer
-			className={cn("absolute bottom-0 text-white inset-x-0 p-5", className)}
+			className={cn(
+				"md:absolute md:bottom-0 text-white inset-x-0 p-5",
+				className,
+			)}
 			{...rest}
 		>
-			<div className="flex justify-end text-sm gap-5">
+			<div className="flex justify-center md:justify-end text-sm gap-5">
 				<div>
 					<AboutDialog />
 				</div>

@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/header";
 import { Provider as JotaiProvider } from "jotai";
 import { store } from "@/store";
 import { Footer } from "@/components/layout/footer";
+import { TailwindIndicator } from "@/components/debug/tailwind-indicator";
 
 export const HomePage = () => {
 	return (
@@ -33,6 +34,8 @@ export const HomePage = () => {
 			</div>
 
 			<Footer />
+
+			<TailwindIndicator />
 		</JotaiProvider>
 	);
 };

@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Info } from "lucide-react";
 import {
 	Dialog,
+	DialogClose,
 	DialogContent,
 	DialogDescription,
+	DialogFooter,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
@@ -77,7 +79,7 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 				</Tooltip>
 
 				<DialogContent>
-					<div className="absolute -top-28 left-2">
+					<div className="absolute -top-28 md:left-2 max-sm:inset-x-0 max-sm:flex max-sm:justify-center">
 						<Image
 							src={`/images/${factoryType}.webp`}
 							alt={`Factory of ${factory.name}`}
@@ -108,6 +110,12 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 							<div>{factory.value * 3600}</div>
 						</div>
 					</div>
+
+					<DialogFooter className="mt-5">
+						<DialogClose asChild>
+							<Button>Close Info</Button>
+						</DialogClose>
+					</DialogFooter>
 				</DialogContent>
 			</Dialog>
 		</div>

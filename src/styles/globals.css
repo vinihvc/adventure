@@ -6,8 +6,12 @@
   html {
     @apply select-none
   }
+
+  body{
+    @apply text-black antialiased bg-black overflow-y-scroll
+  }
   
   #root {
-    @apply h-full min-h-screen flex flex-col text-white antialiased bg-black
+    @apply h-full min-h-screen flex flex-col
   }
 }

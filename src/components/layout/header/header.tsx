@@ -22,7 +22,7 @@ export const Header = () => {
 				</div>
 			</div>
 
-			<nav className="flex items-center gap-2">
+			<nav className="max-sm:hidden flex items-center gap-2">
 				<StatisticsDialog />
 
 				<UpgradesDialog />
