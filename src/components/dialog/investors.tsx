@@ -2,8 +2,10 @@ import { Button } from "@/components/ui/button";
 
 import {
 	Dialog,
+	DialogClose,
 	DialogContent,
 	DialogDescription,
+	DialogFooter,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
@@ -34,6 +36,12 @@ export const InvestorsDialog = () => {
 						Investors are a great way to earn money passively.
 					</DialogDescription>
 				</DialogHeader>
+
+				<DialogFooter>
+					<DialogClose asChild>
+						<Button className="shadow-md">Close Investors</Button>
+					</DialogClose>
+				</DialogFooter>
 			</DialogContent>
 		</Dialog>
 	);

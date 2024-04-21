@@ -1,7 +1,9 @@
 import {
 	Dialog,
+	DialogClose,
 	DialogContent,
 	DialogDescription,
+	DialogFooter,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
@@ -65,6 +67,12 @@ export const SettingDialog = () => {
 						/>
 					</div>
 				</div>
+
+				<DialogFooter>
+					<DialogClose asChild>
+						<Button className="shadow-md">Close settings</Button>
+					</DialogClose>
+				</DialogFooter>
 			</DialogContent>
 		</Dialog>
 	);

@@ -10,7 +10,7 @@ export const Navigation = (props: NavigationProps) => {
 	const { className, ...rest } = props;
 
 	return (
-		<nav className={cn("flex items-center gap-2", className)} {...rest}>
+		<nav className={cn("flex items-center gap-2 z-10", className)} {...rest}>
 			<StatisticsDialog />
 			<UpgradesDialog />
 			<ManagersDialog />

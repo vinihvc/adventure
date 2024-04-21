@@ -4,7 +4,9 @@ import { useStatistics } from "@/store/atoms/statistics";
 import { Button } from "@/components/ui/button";
 import {
 	Dialog,
+	DialogClose,
 	DialogContent,
+	DialogFooter,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
@@ -58,6 +60,12 @@ export const StatisticsDialog = () => {
 						</div>
 					))}
 				</div>
+
+				<DialogFooter>
+					<DialogClose asChild>
+						<Button className="shadow-md">Close statistics</Button>
+					</DialogClose>
+				</DialogFooter>
 			</DialogContent>
 		</Dialog>
 	);

@@ -1,11 +1,14 @@
 import {
 	Dialog,
+	DialogClose,
 	DialogContent,
 	DialogDescription,
+	DialogFooter,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
+import { Button } from "../ui/button";
 
 export const AboutDialog = () => {
 	return (
@@ -95,6 +98,12 @@ export const AboutDialog = () => {
 						</li>
 					</ul>
 				</div>
+
+				<DialogFooter>
+					<DialogClose asChild>
+						<Button className="shadow-md">Close about</Button>
+					</DialogClose>
+				</DialogFooter>
 			</DialogContent>
 		</Dialog>
 	);

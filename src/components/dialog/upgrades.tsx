@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button";
 import { FACTORIES, type FactoryType } from "@/data/factories";
 import {
 	Dialog,
+	DialogClose,
 	DialogContent,
 	DialogDescription,
+	DialogFooter,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
@@ -67,6 +69,12 @@ export const UpgradesDialog = () => {
 						);
 					})}
 				</div>
+
+				<DialogFooter>
+					<DialogClose asChild>
+						<Button className="shadow-md">Close upgrades</Button>
+					</DialogClose>
+				</DialogFooter>
 			</DialogContent>
 		</Dialog>
 	);

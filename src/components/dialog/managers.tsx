@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button";
 import { FACTORIES, type FactoryType } from "@/data/factories";
 import {
 	Dialog,
+	DialogClose,
 	DialogContent,
 	DialogDescription,
+	DialogFooter,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
@@ -50,8 +52,7 @@ export const ManagersDialog = () => {
 							<Button
 								key={key}
 								data-auto={factory.isAuto}
-								colorScheme={factory.isAuto ? "green" : "white"}
-								className="w-full h-32 flex-col border"
+								className="w-full h-32 flex-col data-[auto='true']:bg-green-500"
 								onClick={() => handleAutomatic(key as FactoryType)}
 							>
 								<span className="capitalize text-2xl text-bold">{key}</span>
@@ -68,6 +69,12 @@ export const ManagersDialog = () => {
 						);
 					})}
 				</div>
+
+				<DialogFooter>
+					<DialogClose asChild>
+						<Button className="shadow-md">Close Managers</Button>
+					</DialogClose>
+				</DialogFooter>
 			</DialogContent>
 		</Dialog>
 	);
