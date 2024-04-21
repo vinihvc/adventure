@@ -26,7 +26,7 @@ export const AboutDialog = () => {
 					/>
 				</div>
 
-				<DialogHeader className="mt-10">
+				<DialogHeader className="mt-12 sm:mt-10">
 					<DialogTitle>About this game</DialogTitle>
 					<DialogDescription>
 						Adventure game is a idle game where you can build your own town,

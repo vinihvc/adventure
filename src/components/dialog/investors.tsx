@@ -38,7 +38,7 @@ export const InvestorsDialog = () => {
 					/>
 				</div>
 
-				<DialogHeader className="mt-10">
+				<DialogHeader className="mt-12 sm:mt-10">
 					<DialogTitle>Investors</DialogTitle>
 					<DialogDescription>
 						Investors are a great way to earn money passively.

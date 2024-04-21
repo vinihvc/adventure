@@ -46,7 +46,7 @@ export const FactoryDialog = (props: FactoryDialogProps) => {
 					/>
 				</div>
 
-				<DialogHeader className="mt-10">
+				<DialogHeader className="mt-12 sm:mt-10">
 					<DialogTitle className="text-xl">{factory.name}</DialogTitle>
 					<DialogDescription>{factory.description}</DialogDescription>
 				</DialogHeader>

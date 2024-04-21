@@ -43,7 +43,7 @@ export const SettingDialog = () => {
 					/>
 				</div>
 
-				<DialogHeader className="mt-10">
+				<DialogHeader className="mt-12 sm:mt-10">
 					<DialogTitle>Settings</DialogTitle>
 					<DialogDescription>
 						Change your settings to fit your preferences.

@@ -51,7 +51,7 @@ export const UpgradesDialog = () => {
 					/>
 				</div>
 
-				<DialogHeader className="mt-10">
+				<DialogHeader className="mt-12 sm:mt-10">
 					<DialogTitle>Upgrades</DialogTitle>
 					<DialogDescription>
 						Upgrade your factories to increase your income.

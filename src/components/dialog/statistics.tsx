@@ -42,7 +42,7 @@ export const StatisticsDialog = () => {
 					/>
 				</div>
 
-				<DialogHeader className="mt-10">
+				<DialogHeader className="mt-12 sm:mt-10">
 					<DialogTitle>Statistics</DialogTitle>
 					<DialogDescription>
 						Check your statistics and see how you are doing.

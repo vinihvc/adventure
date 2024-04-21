@@ -51,7 +51,7 @@ export const ManagersDialog = () => {
 					/>
 				</div>
 
-				<DialogHeader className="mt-10">
+				<DialogHeader className="mt-12 sm:mt-10">
 					<DialogTitle>Managers</DialogTitle>
 					<DialogDescription>
 						Hire managers to automate your factories.
