@@ -2,7 +2,9 @@ import type { MscAtomProps } from "@/store/atoms/msc";
 import { Button } from "@/components/ui/button";
 
 import { FactoryDialog } from "@/components/dialog/factory";
+import coinSfx from "@/assets/sfx/coin.wav";
 
+import { useAppSound } from "@/hooks/use-sound";
 interface FactoryUpgradeProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	factoryType: string;
@@ -26,12 +28,20 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 		...rest
 	} = props;
 
+	const { play } = useAppSound(coinSfx);
+
+	const handleBuy = () => {
+		!factory.isUnlocked ? onUnlock() : onBuyAmount();
+
+		play();
+	};
+
 	return (
 		<div className="flex items-center space-x-2">
 			<Button
 				className="w-full text-xs uppercase font-bold"
 				disabled={totalMoney < factory.moneyToUnlock}
-				onClick={!factory.isUnlocked ? onUnlock : onBuyAmount}
+				onClick={handleBuy}
 				{...rest}
 			>
 				{factory.isUnlocked && (
