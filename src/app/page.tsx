@@ -36,7 +36,7 @@ export const HomePage = () => {
 
 			<Footer />
 
-			<Navigation className="sm:hidden sticky bottom-0 inset-x-0 bg-black h-14" />
+			<Navigation className="sm:hidden sticky bottom-0 inset-x-0 bg-black border-t border-neutral-700 h-14" />
 
 			<TailwindIndicator />
 		</JotaiProvider>
