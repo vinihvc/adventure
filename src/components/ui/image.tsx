@@ -18,7 +18,7 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
 				onLoad={() => setIsLoaded(true)}
 				data-loaded={isLoaded}
 				className={cn(
-					"bg-neutral-200 w-full object-cover data-[loaded='false']:bg-neutral-200 pointer-events-none",
+					"w-full object-cover data-[loaded='false']:bg-neutral-200 pointer-events-none",
 					className,
 				)}
 				{...rest}

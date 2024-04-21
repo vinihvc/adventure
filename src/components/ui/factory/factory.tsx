@@ -41,7 +41,12 @@ export const Factory = (props: FactoryProps) => {
 			tabIndex={factory.isUnlocked ? 0 : -1}
 			aria-label={`${type} section`}
 			className={cn(
-				"flex items-center gap-5 bg-white border shadow-xl p-4 focus-visible:ring-2 outline-none focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
+				"flex items-center gap-5",
+				"p-3 md:p-4",
+				"bg-white",
+				"outline-none",
+				"focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:ring-red-500",
+				"border shadow-xl",
 				className,
 			)}
 			aria-disabled={!factory.isUnlocked}

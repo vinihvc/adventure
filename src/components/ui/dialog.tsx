@@ -33,6 +33,7 @@ export const DialogContent = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
 	<DialogPortal>
 		<DialogOverlay />
+
 		<RDialog.Content
 			ref={ref}
 			className={cn(
@@ -40,7 +41,7 @@ export const DialogContent = React.forwardRef<
 				"max-sm:bottom-0 max-sm:translate-y-0",
 				"left-[50%] sm:top-[50%] translate-x-[-50%] sm:translate-y-[-50%]",
 				"w-full max-w-lg",
-				"gap-4 p-6",
+				"gap-4 p-3 md:p-6",
 				"bg-white",
 				"shadow-lg border",
 				"duration-200",

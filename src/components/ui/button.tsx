@@ -9,7 +9,7 @@ const buttonVariants = tv({
 		"font-semibold whitespace-nowrap",
 		"transition duration-200",
 		"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
-		"disabled:pointer-events-none disabled:grayscale disabled:opacity-50",
+		"disabled:pointer-events-none disabled:grayscale disabled:opacity-70",
 	],
 	variants: {
 		colorScheme: {
@@ -25,6 +25,7 @@ const buttonVariants = tv({
 			link: "underline-offset-4 hover:underline",
 		},
 		size: {
+			xs: "h-7 px-2",
 			sm: "h-9 px-3",
 			md: "h-10 px-4 py-2",
 			lg: "h-11 px-8",
@@ -32,6 +33,9 @@ const buttonVariants = tv({
 		},
 		pressable: {
 			true: "shadow-[0_5px_0] active:shadow-none active:translate-y-1",
+		},
+		isFullWidth: {
+			true: "w-full",
 		},
 	},
 	compoundVariants: [
@@ -86,7 +90,8 @@ const buttonVariants = tv({
 		{
 			variant: "outline",
 			colorScheme: "white",
-			className: "text-black border-white hover:bg-white/10",
+			className:
+				"text-white border-white hover:bg-white/10 focus-visible:ring-black",
 		},
 		{
 			variant: "ghost",
@@ -125,6 +130,7 @@ const buttonVariants = tv({
 		variant: "solid",
 		size: "md",
 		pressed: false,
+		isFullWidth: false,
 	},
 });
 
@@ -141,6 +147,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 			variant,
 			size,
 			pressable,
+			isFullWidth,
 			asChild = false,
 			className,
 			...rest
@@ -152,7 +159,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 			<Comp
 				ref={ref}
 				className={cn(
-					buttonVariants({ colorScheme, variant, size, pressable, className }),
+					buttonVariants({
+						colorScheme,
+						variant,
+						size,
+						pressable,
+						isFullWidth,
+						className,
+					}),
 				)}
 				{...rest}
 			/>

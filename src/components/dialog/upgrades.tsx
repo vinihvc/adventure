@@ -13,11 +13,12 @@ import {
 } from "@/components/ui/dialog";
 import { ArrowBigUpDash } from "lucide-react";
 import { useFactory } from "@/store/atoms/factories";
-import { amountFormatter } from "@/utils/formatters";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 import { useSound } from "@/hooks/use-sound";
 import upgradeSfx from "@/assets/sfx/upgrade.wav";
+import { Card } from "../ui/card";
+import { Image } from "../ui/image";
 
 export const UpgradesDialog = () => {
 	const { play } = useSound(upgradeSfx);
@@ -43,42 +44,40 @@ export const UpgradesDialog = () => {
 			</Tooltip>
 
 			<DialogContent>
-				<DialogHeader>
+				<div className="absolute -top-28 md:left-2 max-sm:inset-x-0 max-sm:flex max-sm:justify-center">
+					<Image
+						src="/images/upgrades/upgrade.webp"
+						className="size-40 rounded-full border-2 border-black drop-shadow-md aspect-square"
+					/>
+				</div>
+
+				<DialogHeader className="mt-10">
 					<DialogTitle>Upgrades</DialogTitle>
 					<DialogDescription>
 						Upgrade your factories to increase your income.
 					</DialogDescription>
 				</DialogHeader>
 
-				<div className="grid grid-cols-2 gap-2 py-2">
+				<div className="grid grid-cols-3 gap-3">
 					{Object.entries(FACTORIES).map(([key]) => {
 						const factory = useFactory(key as FactoryType);
 
 						return (
-							<Button
+							<Card
 								key={key}
-								data-auto={factory.isAuto}
-								className="w-full h-32 flex-col data-[auto='true']:bg-green-500"
-								onClick={() => handleUpgrade(key as FactoryType)}
-							>
-								<span className="capitalize text-2xl text-bold">{key}</span>
-								<span>
-									{!factory?.isAuto && (
-										<div>
-											{`Price ${amountFormatter(
-												FACTORIES[key as FactoryType]?.autoCost,
-											)}`}
-										</div>
-									)}
-								</span>
-							</Button>
+								factoryType={key}
+								factory={factory}
+								icon={ArrowBigUpDash}
+								image={`/images/upgrades/${key}.webp`}
+								onUpgrade={() => handleUpgrade(key as FactoryType)}
+							/>
 						);
 					})}
 				</div>
 
 				<DialogFooter>
 					<DialogClose asChild>
-						<Button className="shadow-md">Close upgrades</Button>
+						<Button className="shadow-md">Close Upgrades</Button>
 					</DialogClose>
 				</DialogFooter>
 			</DialogContent>

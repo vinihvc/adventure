@@ -14,6 +14,7 @@ import {
 import { amountFormatter } from "@/utils/formatters";
 import { PieChart } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { Image } from "../ui/image";
 
 export const StatisticsDialog = () => {
 	const statistics = useStatistics();
@@ -34,7 +35,14 @@ export const StatisticsDialog = () => {
 			</Tooltip>
 
 			<DialogContent>
-				<DialogHeader>
+				<div className="absolute -top-28 md:left-2 max-sm:inset-x-0 max-sm:flex max-sm:justify-center">
+					<Image
+						src="/images/msc/statistic.webp"
+						className="size-40 rounded-full border-2 border-black drop-shadow-md aspect-square"
+					/>
+				</div>
+
+				<DialogHeader className="mt-10">
 					<DialogTitle>Statistics</DialogTitle>
 					<DialogDescription>
 						Check your statistics and see how you are doing.
@@ -63,7 +71,7 @@ export const StatisticsDialog = () => {
 
 				<DialogFooter>
 					<DialogClose asChild>
-						<Button className="shadow-md">Close statistics</Button>
+						<Button className="shadow-md">Close Statistics</Button>
 					</DialogClose>
 				</DialogFooter>
 			</DialogContent>

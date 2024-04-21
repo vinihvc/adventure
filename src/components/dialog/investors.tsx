@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Handshake } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { Image } from "../ui/image";
 
 export const InvestorsDialog = () => {
 	return (
@@ -30,7 +31,14 @@ export const InvestorsDialog = () => {
 			</Tooltip>
 
 			<DialogContent>
-				<DialogHeader>
+				<div className="absolute -top-28 md:left-2 max-sm:inset-x-0 max-sm:flex max-sm:justify-center">
+					<Image
+						src="/images/investors/investor.webp"
+						className="size-40 rounded-full border-2 border-black drop-shadow-md aspect-square"
+					/>
+				</div>
+
+				<DialogHeader className="mt-10">
 					<DialogTitle>Investors</DialogTitle>
 					<DialogDescription>
 						Investors are a great way to earn money passively.

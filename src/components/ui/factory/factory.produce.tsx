@@ -45,9 +45,9 @@ export const FactoryProduce = (props: FactoryProduceProps) => {
 					{...rest}
 				>
 					<Image
-						src={`/images/${factoryType}.webp`}
+						src={`/images/factories/${factoryType}.webp`}
 						alt={`Produce ${factoryType}`}
-						className="rounded-full group-data-[unlocked='false']:grayscale"
+						className="rounded-full group-data-[unlocked='false']:grayscale aspect-square"
 					/>
 
 					<span className="sr-only">{`Produce ${factory.type}`}</span>

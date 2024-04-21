@@ -9,6 +9,7 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
+import { Image } from "../ui/image";
 
 export const AboutDialog = () => {
 	return (
@@ -18,7 +19,14 @@ export const AboutDialog = () => {
 			</DialogTrigger>
 
 			<DialogContent>
-				<DialogHeader>
+				<div className="absolute -top-28 md:left-2 max-sm:inset-x-0 max-sm:flex max-sm:justify-center">
+					<Image
+						src="/images/msc/about.webp"
+						className="size-40 rounded-full border-2 border-black drop-shadow-md aspect-square"
+					/>
+				</div>
+
+				<DialogHeader className="mt-10">
 					<DialogTitle>About this game</DialogTitle>
 					<DialogDescription>
 						Adventure game is a idle game where you can build your own town,
@@ -101,7 +109,7 @@ export const AboutDialog = () => {
 
 				<DialogFooter>
 					<DialogClose asChild>
-						<Button className="shadow-md">Close about</Button>
+						<Button className="shadow-md">Close About</Button>
 					</DialogClose>
 				</DialogFooter>
 			</DialogContent>

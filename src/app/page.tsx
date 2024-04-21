@@ -25,7 +25,7 @@ export const HomePage = () => {
 					<Header />
 
 					<div className="w-full items-center flex">
-						<div className="grid md:grid-cols-2 gap-5 w-full p-2 md:p-5">
+						<div className="grid sm:grid-cols-2 gap-5 w-full p-2 md:p-5">
 							{Object.keys(FACTORIES).map((factory) => (
 								<Factory key={factory} type={factory as FactoryType} />
 							))}

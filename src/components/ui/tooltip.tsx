@@ -7,10 +7,14 @@ export const Tooltip = React.forwardRef<
 	React.ElementRef<typeof RTooltip.Provider>,
 	React.ComponentPropsWithoutRef<typeof RTooltip.Provider>
 >((props, _ref) => {
-	const { delayDuration = 100, children, ...rest } = props;
+	const { delayDuration = 0, skipDelayDuration = 0, children, ...rest } = props;
 
 	return (
-		<RTooltip.Provider delayDuration={delayDuration} {...rest}>
+		<RTooltip.Provider
+			delayDuration={delayDuration}
+			skipDelayDuration={skipDelayDuration}
+			{...rest}
+		>
 			<RTooltip.Root>{children}</RTooltip.Root>
 		</RTooltip.Provider>
 	);

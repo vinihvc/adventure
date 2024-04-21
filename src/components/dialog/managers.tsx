@@ -11,13 +11,14 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
-import { amountFormatter } from "@/utils/formatters";
 import { useFactory, upgradeAuto } from "@/store/atoms/factories";
 import { UserRound } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 import { useSound } from "@/hooks/use-sound";
 import autoSfx from "@/assets/sfx/auto.wav";
+import { Image } from "../ui/image";
+import { Card } from "../ui/card";
 
 export const ManagersDialog = () => {
 	const { play } = useSound(autoSfx);
@@ -42,36 +43,34 @@ export const ManagersDialog = () => {
 				<TooltipContent>Managers</TooltipContent>
 			</Tooltip>
 
-			<DialogContent className="flex flex-col">
-				<DialogHeader>
+			<DialogContent>
+				<div className="absolute -top-28 md:left-2 max-sm:inset-x-0 max-sm:flex max-sm:justify-center">
+					<Image
+						src="/images/managers/manager.webp"
+						className="size-40 rounded-full border-2 border-black drop-shadow-md aspect-square"
+					/>
+				</div>
+
+				<DialogHeader className="mt-10">
 					<DialogTitle>Managers</DialogTitle>
 					<DialogDescription>
 						Hire managers to automate your factories.
 					</DialogDescription>
 				</DialogHeader>
 
-				<div className="grid grid-cols-2 gap-2 py-2">
+				<div className="grid grid-cols-3 gap-3">
 					{Object.entries(FACTORIES).map(([key]) => {
 						const factory = useFactory(key as FactoryType);
 
 						return (
-							<Button
+							<Card
 								key={key}
-								data-auto={factory.isAuto}
-								className="w-full h-32 flex-col data-[auto='true']:bg-green-500"
-								onClick={() => handleAutomatic(key as FactoryType)}
-							>
-								<span className="capitalize text-2xl text-bold">{key}</span>
-								<span>
-									{!factory?.isAuto && (
-										<div>
-											{`Price ${amountFormatter(
-												FACTORIES[key as FactoryType]?.autoCost,
-											)}`}
-										</div>
-									)}
-								</span>
-							</Button>
+								factoryType={key}
+								factory={factory}
+								icon={UserRound}
+								image={`/images/managers/${key}.webp`}
+								onUpgrade={() => handleAutomatic(key as FactoryType)}
+							/>
 						);
 					})}
 				</div>

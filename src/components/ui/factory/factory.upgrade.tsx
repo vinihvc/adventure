@@ -39,8 +39,9 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 	return (
 		<div className="flex items-center space-x-2">
 			<Button
-				className="w-full text-xs uppercase font-bold"
+				className="text-xs uppercase font-bold"
 				disabled={totalMoney < factory.moneyToUnlock}
+				isFullWidth
 				onClick={handleBuy}
 				{...rest}
 			>

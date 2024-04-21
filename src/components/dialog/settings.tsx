@@ -15,6 +15,7 @@ import { Cog } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSettings, toggleMusic, toggleSfx } from "@/store/atoms/settings";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { Image } from "../ui/image";
 
 export const SettingDialog = () => {
 	const settings = useSettings();
@@ -35,7 +36,14 @@ export const SettingDialog = () => {
 			</Tooltip>
 
 			<DialogContent>
-				<DialogHeader>
+				<div className="absolute -top-28 md:left-2 max-sm:inset-x-0 max-sm:flex max-sm:justify-center">
+					<Image
+						src="/images/msc/setting.webp"
+						className="size-40 rounded-full border-2 border-black drop-shadow-md aspect-square"
+					/>
+				</div>
+
+				<DialogHeader className="mt-10">
 					<DialogTitle>Settings</DialogTitle>
 					<DialogDescription>
 						Change your settings to fit your preferences.
@@ -70,7 +78,7 @@ export const SettingDialog = () => {
 
 				<DialogFooter>
 					<DialogClose asChild>
-						<Button className="shadow-md">Close settings</Button>
+						<Button className="shadow-md">Close Settings</Button>
 					</DialogClose>
 				</DialogFooter>
 			</DialogContent>

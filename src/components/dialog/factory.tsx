@@ -40,9 +40,9 @@ export const FactoryDialog = (props: FactoryDialogProps) => {
 			<DialogContent>
 				<div className="absolute -top-28 md:left-2 max-sm:inset-x-0 max-sm:flex max-sm:justify-center">
 					<Image
-						src={`/images/${factoryType}.webp`}
+						src={`/images/factories/${factoryType}.webp`}
 						alt={`Factory of ${factory.name}`}
-						className="size-40 rounded-full border-2 border-black drop-shadow-md"
+						className="size-40 rounded-full border-2 border-black drop-shadow-md aspect-square"
 					/>
 				</div>
 
