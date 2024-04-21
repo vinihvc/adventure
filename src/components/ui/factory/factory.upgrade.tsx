@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { FactoryDialog } from "@/components/dialog/factory";
 import coinSfx from "@/assets/sfx/coin.wav";
 
-import { useAppSound } from "@/hooks/use-sound";
+import { useSound } from "@/hooks/use-sound";
 interface FactoryUpgradeProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	factoryType: string;
@@ -28,7 +28,7 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 		...rest
 	} = props;
 
-	const { play } = useAppSound(coinSfx);
+	const { play } = useSound(coinSfx);
 
 	const handleBuy = () => {
 		!factory.isUnlocked ? onUnlock() : onBuyAmount();

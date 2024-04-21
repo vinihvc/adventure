@@ -16,8 +16,14 @@ import { useFactory } from "@/store/atoms/factories";
 import { amountFormatter } from "@/utils/formatters";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
+import { useSound } from "@/hooks/use-sound";
+import upgradeSfx from "@/assets/sfx/upgrade.wav";
+
 export const UpgradesDialog = () => {
+	const { play } = useSound(upgradeSfx);
+
 	const handleUpgrade = (type: FactoryType) => {
+		play();
 		console.log(type);
 	};
 

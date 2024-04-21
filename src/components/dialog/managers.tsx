@@ -16,8 +16,14 @@ import { useFactory, upgradeAuto } from "@/store/atoms/factories";
 import { UserRound } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
+import { useSound } from "@/hooks/use-sound";
+import autoSfx from "@/assets/sfx/auto.wav";
+
 export const ManagersDialog = () => {
+	const { play } = useSound(autoSfx);
+
 	const handleAutomatic = (type: FactoryType) => {
+		play();
 		upgradeAuto(type);
 	};
 

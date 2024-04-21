@@ -1,13 +1,13 @@
 import { useSettings } from "@/store/atoms/settings";
-import useSound from "use-sound";
+import useSoundHook from "use-sound";
 
 /**
- * Custom hook play sound and respect mute setting
+ * Play sound effect, it follows sfx setting
  */
-export const useAppSound = (sound: string) => {
+export const useSound = (file: string) => {
 	const { sfx } = useSettings();
 
-	const [play] = useSound(sound, { soundEnabled: sfx });
+	const [play] = useSoundHook(file, { soundEnabled: sfx, volume: 0.5 });
 
 	return { play };
 };

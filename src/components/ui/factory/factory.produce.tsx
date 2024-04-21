@@ -2,6 +2,8 @@ import { cn } from "@/utils/cn";
 import { Button } from "../button";
 import { Image } from "../image";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../tooltip";
+import { useSound } from "@/hooks/use-sound";
+import clickSfx from "@/assets/sfx/click.wav";
 
 interface FactoryProduceProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -20,6 +22,13 @@ interface FactoryProduceProps
 export const FactoryProduce = (props: FactoryProduceProps) => {
 	const { factoryType, factory, onProduce, className, ...rest } = props;
 
+	const { play } = useSound(clickSfx);
+
+	const handleProduce = () => {
+		play();
+		onProduce();
+	};
+
 	return (
 		<Tooltip>
 			<TooltipTrigger asChild>
@@ -32,7 +41,7 @@ export const FactoryProduce = (props: FactoryProduceProps) => {
 					disabled={factory.amount === 0}
 					data-auto={factory.isAuto}
 					data-unlocked={factory.isUnlocked}
-					onClick={onProduce}
+					onClick={handleProduce}
 					{...rest}
 				>
 					<Image

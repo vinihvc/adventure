@@ -30,7 +30,7 @@ const buttonVariants = tv({
 			lg: "h-11 px-8",
 			icon: "size-11",
 		},
-		pressed: {
+		pressable: {
 			true: "shadow-[0_5px_0] active:shadow-none active:translate-y-1",
 		},
 	},
@@ -140,7 +140,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 			colorScheme,
 			variant,
 			size,
-			pressed,
+			pressable,
 			asChild = false,
 			className,
 			...rest
@@ -152,11 +152,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 			<Comp
 				ref={ref}
 				className={cn(
-					buttonVariants({ colorScheme, variant, size, pressed, className }),
+					buttonVariants({ colorScheme, variant, size, pressable, className }),
 				)}
 				{...rest}
 			/>
 		);
 	},
 );
+
 Button.displayName = "Button";

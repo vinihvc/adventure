@@ -6,6 +6,9 @@ import { useFactory } from "@/store/atoms/factories";
 import { setMoney } from "@/store/atoms/wallet";
 import { setStatistics } from "@/store/atoms/statistics";
 
+/**
+ * Emit a countdown timer for a factory
+ */
 export const useCountdown = (factory: FactoryType) => {
 	const f = useFactory(factory);
 
