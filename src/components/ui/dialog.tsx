@@ -48,7 +48,7 @@ export const DialogContent = React.forwardRef<
 				"max-sm:data-[state=open]:slide-in-from-bottom-full",
 				"sm:data-[state=open]:slide-in-from-top-[48%] sm:data-[state=open]:zoom-in-95",
 				"data-[state=closed]:animate-out data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:fade-out-0",
-				"max-sm:data-[state=closed]:slide-out-to-bottom-full",
+				"max-sm:data-[state=closed]:slide-out-to-bottom-[48%]",
 				"sm:data-[state=closed]:zoom-out-95 sm:data-[state=closed]:slide-out-to-top-[48%]",
 				className,
 			)}
