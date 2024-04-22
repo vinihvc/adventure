@@ -1,4 +1,4 @@
-import { InvestorsDialog } from "@/components/dialog/investors";
+import { AllianceDialog } from "@/components/dialog/alliances";
 import { ManagersDialog } from "@/components/dialog/managers";
 import { StatisticsDialog } from "@/components/dialog/statistics";
 import { UpgradesDialog } from "@/components/dialog/upgrades";
@@ -14,7 +14,7 @@ export const Navigation = (props: NavigationProps) => {
 			<StatisticsDialog />
 			<UpgradesDialog />
 			<ManagersDialog />
-			<InvestorsDialog />
+			<AllianceDialog />
 		</nav>
 	);
 };
