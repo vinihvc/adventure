@@ -43,7 +43,7 @@ export const DialogContent = React.forwardRef<
 				"w-full sm:max-w-lg",
 				"gap-4 p-3 md:p-6",
 				"bg-white",
-				"shadow-lg border",
+				"shadow-lg border border-black",
 				"duration-200",
 				'sm:shadow-[-8px_8px_0_0] sm:shadow-black',
 				"data-[state=open]:animate-in data-[state=open]:slide-in-from-left-1/2",
@@ -59,7 +59,7 @@ export const DialogContent = React.forwardRef<
 			{children}
 
 			<RDialog.Close className="absolute right-4 top-4 opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:pointer-events-none">
-				<X className="size-5" />
+				<X className="size-6" />
 				<span className="sr-only">Close</span>
 			</RDialog.Close>
 		</RDialog.Content>

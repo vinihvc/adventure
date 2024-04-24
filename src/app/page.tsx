@@ -6,8 +6,11 @@ import { store } from "@/store";
 import { Footer } from "@/components/layout/footer";
 import { TailwindIndicator } from "@/components/debug/tailwind-indicator";
 import { Navigation } from "@/components/layout/navigation";
+import { useContextMenu } from "@/hooks/use-context-menu";
 
 export const HomePage = () => {
+	useContextMenu();
+
 	return (
 		<JotaiProvider store={store}>
 			<div
