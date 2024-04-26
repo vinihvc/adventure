@@ -29,7 +29,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
 			props;
 
 		return (
-			<div
+			<article
 				ref={ref}
 				data-auto={factory.isAuto}
 				className={cn("relative group h-auto block border-4 border-black p-0")}
@@ -69,7 +69,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
 						<Check className="size-5" />
 					</span>
 				</Button>
-			</div>
+			</article>
 		);
 	},
 );

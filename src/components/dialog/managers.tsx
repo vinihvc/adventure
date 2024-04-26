@@ -19,6 +19,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { useSound } from "@/hooks/use-sound";
 import autoSfx from "@/assets/sfx/auto.wav";
 import { Card } from "../ui/card";
+import { ScrollArea } from "../ui/scroll-area";
 
 export const ManagersDialog = () => {
 	const { play } = useSound(autoSfx);
@@ -53,22 +54,26 @@ export const ManagersDialog = () => {
 					</DialogDescription>
 				</DialogHeader>
 
-				<div className="grid grid-cols-3 gap-3">
-					{Object.entries(FACTORIES).map(([key]) => {
-						const factory = useFactory(key as FactoryType);
+				<ScrollArea className="flex flex-col">
+					<div className="flex-1 pr-3">
+						<div className="grid grid-cols-3 gap-3">
+							{Object.entries(FACTORIES).map(([key]) => {
+								const factory = useFactory(key as FactoryType);
 
-						return (
-							<Card
-								key={key}
-								factoryType={key}
-								factory={factory}
-								icon={UserRound}
-								image={`/images/managers/${key}.webp`}
-								onUpgrade={() => handleAutomatic(key as FactoryType)}
-							/>
-						);
-					})}
-				</div>
+								return (
+									<Card
+										key={key}
+										factoryType={key}
+										factory={factory}
+										icon={UserRound}
+										image={`/images/managers/${key}.webp`}
+										onUpgrade={() => handleAutomatic(key as FactoryType)}
+									/>
+								);
+							})}
+						</div>
+					</div>
+				</ScrollArea>
 
 				<DialogFooter>
 					<DialogClose asChild>

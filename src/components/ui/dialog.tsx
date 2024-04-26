@@ -53,9 +53,10 @@ export const DialogContent = React.forwardRef<
 				ref={ref}
 				className={cn(
 					"fixed grid z-50",
+					"flex flex-col",
 					"max-sm:bottom-0 max-sm:translate-y-0",
 					"left-[50%] sm:top-[50%] translate-x-[-50%] sm:translate-y-[-50%]",
-					"w-full sm:max-w-lg",
+					"w-full max-h-[60%] sm:max-w-lg sm:max-h-[70%]",
 					"gap-4 p-3 md:p-6",
 					"bg-white",
 					"shadow-lg border border-black",
