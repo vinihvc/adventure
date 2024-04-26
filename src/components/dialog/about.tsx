@@ -5,11 +5,11 @@ import {
 	DialogDescription,
 	DialogFooter,
 	DialogHeader,
+	DialogImage,
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
-import { Image } from "../ui/image";
 
 export const AboutDialog = () => {
 	return (
@@ -19,12 +19,7 @@ export const AboutDialog = () => {
 			</DialogTrigger>
 
 			<DialogContent>
-				<div className="absolute -top-28 md:left-2 max-sm:inset-x-0 max-sm:flex max-sm:justify-center">
-					<Image
-						src="/images/msc/about.webp"
-						className="size-40 rounded-full border-2 border-black drop-shadow-md aspect-square"
-					/>
-				</div>
+				<DialogImage src="/images/msc/about.webp" alt="About" />
 
 				<DialogHeader className="mt-12 sm:mt-10">
 					<DialogTitle>About this game</DialogTitle>
@@ -109,7 +104,7 @@ export const AboutDialog = () => {
 
 				<DialogFooter>
 					<DialogClose asChild>
-						<Button className="shadow-md">Close About</Button>
+						<Button>Close About</Button>
 					</DialogClose>
 				</DialogFooter>
 			</DialogContent>

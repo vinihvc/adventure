@@ -7,12 +7,12 @@ import {
 	DialogDescription,
 	DialogFooter,
 	DialogHeader,
+	DialogImage,
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { Handshake } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import { Image } from "../ui/image";
 
 export const AllianceDialog = () => {
 	return (
@@ -31,23 +31,19 @@ export const AllianceDialog = () => {
 			</Tooltip>
 
 			<DialogContent>
-				<div className="absolute -top-28 md:left-2 max-sm:inset-x-0 max-sm:flex max-sm:justify-center">
-					<Image
-						src="/images/alliances/alliance.webp"
-						className="size-40 rounded-full border-2 border-black drop-shadow-md aspect-square"
-					/>
-				</div>
+				<DialogImage src="/images/alliances/alliance.webp" alt="Alliances" />
 
 				<DialogHeader className="mt-12 sm:mt-10">
 					<DialogTitle>Alliances</DialogTitle>
 					<DialogDescription>
-						Create an alliance with other kingdoms to increase the trade partnership between you
+						Create an alliance with other kingdoms to increase the trade
+						partnership between you
 					</DialogDescription>
 				</DialogHeader>
 
 				<DialogFooter>
 					<DialogClose asChild>
-						<Button className="shadow-md">Close Alliances</Button>
+						<Button>Close Alliances</Button>
 					</DialogClose>
 				</DialogFooter>
 			</DialogContent>

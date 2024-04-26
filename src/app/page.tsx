@@ -8,6 +8,7 @@ import { TailwindIndicator } from "@/components/debug/tailwind-indicator";
 import { Navigation } from "@/components/layout/navigation";
 import { useContextMenu } from "@/hooks/use-context-menu";
 import { DailyGiftDialog } from "@/components/dialog/daily-gift";
+import { WelcomeDialog } from "@/components/dialog/welcome";
 
 export const HomePage = () => {
 	useContextMenu();
@@ -39,6 +40,8 @@ export const HomePage = () => {
 			</div>
 
 			<DailyGiftDialog />
+
+			<WelcomeDialog />
 
 			<Footer />
 

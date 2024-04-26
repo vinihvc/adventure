@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { cn } from "@/utils/cn";
 
-interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
+export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
 
 export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
 	(props, ref) => {

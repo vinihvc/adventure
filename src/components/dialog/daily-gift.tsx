@@ -9,14 +9,18 @@ import {
 	DialogDescription,
 	DialogFooter,
 	DialogHeader,
+	DialogImage,
 	DialogTitle,
 } from "../ui/dialog";
-import { Image } from "../ui/image";
 
-interface DailyGiftType {
-	claimed: boolean;
-	date: number;
+interface DailyGiftDialogStorage {
+	lastClaimed: Date | null;
+	version: number;
 }
+
+const DAILY_GIFT_VERSION = 1;
+
+const DISABLED = true;
 
 export const DailyGiftDialog = (
 	props: React.ComponentPropsWithoutRef<typeof Dialog>,
@@ -24,27 +28,34 @@ export const DailyGiftDialog = (
 	const { ...rest } = props;
 
 	const [claimedDailyGift, setClaimedDailyGift] =
-		useLocalStorage<DailyGiftType>("daily-gift", {
-			claimed: false,
-			date: new Date().getDate(),
+		useLocalStorage<DailyGiftDialogStorage>("daily-gift", {
+			lastClaimed: null,
+			version: DAILY_GIFT_VERSION,
 		});
 
 	const [isOpen, setIsOpen] = React.useState(false);
 
 	React.useEffect(() => {
 		setTimeout(() => {
-			const isNewDay = new Date().getDate() !== claimedDailyGift.date;
+			const isNewDay = claimedDailyGift.lastClaimed
+				? new Date().getDate() !==
+					new Date(claimedDailyGift.lastClaimed).getDate()
+				: true;
 
-			setIsOpen(claimedDailyGift.claimed === false || isNewDay);
+			setIsOpen(isNewDay);
 		}, 500);
 	}, [claimedDailyGift]);
 
 	const handleOnClaim = () => {
 		setClaimedDailyGift({
-			claimed: true,
-			date: new Date().getDate(),
+			...claimedDailyGift,
+			lastClaimed: new Date(),
 		});
 	};
+
+	if (DISABLED) {
+		return null;
+	}
 
 	return (
 		<Dialog open={isOpen} onOpenChange={setIsOpen} {...rest}>
@@ -53,13 +64,7 @@ export const DailyGiftDialog = (
 				onEscapeKeyDown={(e) => e.preventDefault()}
 				hasCloseButton={false}
 			>
-				<div className="absolute -top-28 md:left-2 max-sm:inset-x-0 max-sm:flex max-sm:justify-center">
-					<Image
-						src="/images/msc/gift.webp"
-						alt="Daily Gift"
-						className="size-40 rounded-full border-2 border-black drop-shadow-md aspect-square"
-					/>
-				</div>
+				<DialogImage src="/images/msc/gift.webp" alt="Daily Gift" />
 
 				<DialogHeader className="mt-12 sm:mt-10">
 					<DialogTitle className="text-xl">Daily Gift</DialogTitle>
@@ -70,9 +75,7 @@ export const DailyGiftDialog = (
 
 				<DialogFooter>
 					<DialogClose asChild>
-						<Button className="shadow-md" onClick={handleOnClaim}>
-							Claim Daily Gift
-						</Button>
+						<Button onClick={handleOnClaim}>Claim Daily Gift</Button>
 					</DialogClose>
 				</DialogFooter>
 			</DialogContent>

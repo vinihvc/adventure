@@ -4,6 +4,7 @@ import { Image } from "../image";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../tooltip";
 import { useSound } from "@/hooks/use-sound";
 import clickSfx from "@/assets/sfx/click.wav";
+import { capitalize } from "@/utils/formatters";
 
 interface FactoryProduceProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -60,7 +61,7 @@ export const FactoryProduce = (props: FactoryProduceProps) => {
 				</Button>
 			</TooltipTrigger>
 
-			<TooltipContent>{`Produce ${factoryType}`}</TooltipContent>
+			<TooltipContent>{`Produce ${capitalize(factoryType)}`}</TooltipContent>
 		</Tooltip>
 	);
 };

@@ -2,6 +2,8 @@ import * as RDialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 import * as React from "react";
 import { cn } from "@/utils/cn";
+import { Image, type ImageProps } from "./image";
+import { Slot } from "@radix-ui/react-slot";
 
 export const Dialog = RDialog.Root;
 
@@ -83,6 +85,28 @@ export const DialogContent = React.forwardRef<
 });
 
 DialogContent.displayName = RDialog.Content.displayName;
+
+interface DialogImageProps extends ImageProps {
+	asChild?: boolean;
+}
+
+export const DialogImage = (props: DialogImageProps) => {
+	const { asChild, className, ...rest } = props;
+
+	const Comp = asChild ? Slot : Image;
+
+	return (
+		<div className="absolute -top-28 md:left-2 max-sm:inset-x-0 max-sm:flex max-sm:justify-center">
+			<Comp
+				className={cn(
+					"size-40 rounded-full border-2 border-black drop-shadow-md aspect-square",
+					className,
+				)}
+				{...rest}
+			/>
+		</div>
+	);
+};
 
 export const DialogHeader = ({
 	className,

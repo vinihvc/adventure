@@ -8,6 +8,7 @@ import {
 	DialogDescription,
 	DialogFooter,
 	DialogHeader,
+	DialogImage,
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
@@ -18,7 +19,6 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { useSound } from "@/hooks/use-sound";
 import upgradeSfx from "@/assets/sfx/upgrade.wav";
 import { Card } from "../ui/card";
-import { Image } from "../ui/image";
 
 export const UpgradesDialog = () => {
 	const { play } = useSound(upgradeSfx);
@@ -44,12 +44,7 @@ export const UpgradesDialog = () => {
 			</Tooltip>
 
 			<DialogContent>
-				<div className="absolute -top-28 md:left-2 max-sm:inset-x-0 max-sm:flex max-sm:justify-center">
-					<Image
-						src="/images/upgrades/upgrade.webp"
-						className="size-40 rounded-full border-2 border-black drop-shadow-md aspect-square"
-					/>
-				</div>
+				<DialogImage src="/images/upgrades/upgrade.webp" alt="Upgrades" />
 
 				<DialogHeader className="mt-12 sm:mt-10">
 					<DialogTitle>Upgrades</DialogTitle>
@@ -77,7 +72,7 @@ export const UpgradesDialog = () => {
 
 				<DialogFooter>
 					<DialogClose asChild>
-						<Button className="shadow-md">Close Upgrades</Button>
+						<Button>Close Upgrades</Button>
 					</DialogClose>
 				</DialogFooter>
 			</DialogContent>

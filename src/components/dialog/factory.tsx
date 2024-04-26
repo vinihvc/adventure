@@ -7,11 +7,11 @@ import {
 	DialogDescription,
 	DialogFooter,
 	DialogHeader,
+	DialogImage,
 	DialogTitle,
 	DialogTrigger,
 } from "../ui/dialog";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import { Image } from "../ui/image";
 
 interface FactoryDialogProps {
 	factoryType: string;
@@ -38,13 +38,10 @@ export const FactoryDialog = (props: FactoryDialogProps) => {
 			</Tooltip>
 
 			<DialogContent>
-				<div className="absolute -top-28 md:left-2 max-sm:inset-x-0 max-sm:flex max-sm:justify-center">
-					<Image
-						src={`/images/factories/${factoryType}.webp`}
-						alt={`Factory of ${factory.name}`}
-						className="size-40 rounded-full border-2 border-black drop-shadow-md aspect-square"
-					/>
-				</div>
+				<DialogImage
+					src={`/images/factories/${factoryType}.webp`}
+					alt={`Factory of ${factory.name}`}
+				/>
 
 				<DialogHeader className="mt-12 sm:mt-10">
 					<DialogTitle className="text-xl">{factory.name}</DialogTitle>
@@ -72,7 +69,7 @@ export const FactoryDialog = (props: FactoryDialogProps) => {
 
 				<DialogFooter>
 					<DialogClose asChild>
-						<Button className="shadow-md">Close Info</Button>
+						<Button>Close Info</Button>
 					</DialogClose>
 				</DialogFooter>
 			</DialogContent>

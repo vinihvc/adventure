@@ -8,13 +8,13 @@ import {
 	DialogContent,
 	DialogFooter,
 	DialogHeader,
+	DialogImage,
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { amountFormatter } from "@/utils/formatters";
 import { PieChart } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import { Image } from "../ui/image";
 
 export const StatisticsDialog = () => {
 	const statistics = useStatistics();
@@ -35,12 +35,7 @@ export const StatisticsDialog = () => {
 			</Tooltip>
 
 			<DialogContent>
-				<div className="absolute -top-28 md:left-2 max-sm:inset-x-0 max-sm:flex max-sm:justify-center">
-					<Image
-						src="/images/msc/statistic.webp"
-						className="size-40 rounded-full border-2 border-black drop-shadow-md aspect-square"
-					/>
-				</div>
+				<DialogImage src="/images/msc/statistic.webp" alt="Statistics" />
 
 				<DialogHeader className="mt-12 sm:mt-10">
 					<DialogTitle>Statistics</DialogTitle>
@@ -71,7 +66,7 @@ export const StatisticsDialog = () => {
 
 				<DialogFooter>
 					<DialogClose asChild>
-						<Button className="shadow-md">Close Statistics</Button>
+						<Button>Close Statistics</Button>
 					</DialogClose>
 				</DialogFooter>
 			</DialogContent>

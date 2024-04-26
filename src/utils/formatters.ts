@@ -1,6 +1,6 @@
 const VALUE_RANGE = [
 	{ value: 1, symbol: "" },
-	{ value: 1e3, symbol: "k" },
+	{ value: 1e3, symbol: "K" },
 	{ value: 1e6, symbol: "M" },
 	{ value: 1e9, symbol: "B" },
 	{ value: 1e12, symbol: "T" },
@@ -43,6 +43,9 @@ const VALUE_RANGE = [
 	{ value: 1e123, symbol: "KKK" },
 ];
 
+/**
+ * Minify number to show as K, M, B, T
+ */
 export const amountFormatter = (amount: number) => {
 	const regex = /\.0+$|(\.[0-9]*[1-9])0+$/;
 
@@ -56,4 +59,14 @@ export const amountFormatter = (amount: number) => {
 	}
 
 	return "0";
+};
+
+/**
+ * Capitalizes the first letter of a string.
+ *
+ * @example
+ * capitalize("hello") // "Hello"
+ */
+export const capitalize = (str: string) => {
+	return str.charAt(0).toUpperCase() + str.slice(1);
 };
