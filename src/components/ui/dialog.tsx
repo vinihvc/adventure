@@ -27,44 +27,60 @@ export const DialogOverlay = React.forwardRef<
 
 DialogOverlay.displayName = RDialog.Overlay.displayName;
 
+interface DialogContentProps
+	extends React.ComponentPropsWithoutRef<typeof RDialog.Content> {
+	/**
+	 * If `true`, a close button will be rendered in the top-right corner.
+	 *
+	 * @default true
+	 */
+	hasCloseButton?: boolean;
+}
+
 export const DialogContent = React.forwardRef<
 	React.ElementRef<typeof RDialog.Content>,
-	React.ComponentPropsWithoutRef<typeof RDialog.Content>
->(({ className, children, ...props }, ref) => (
-	<DialogPortal>
-		<DialogOverlay />
+	DialogContentProps
+>((props, ref) => {
+	const { hasCloseButton = true, className, children, ...rest } = props;
 
-		<RDialog.Content
-			ref={ref}
-			className={cn(
-				"fixed grid z-50",
-				"max-sm:bottom-0 max-sm:translate-y-0",
-				"left-[50%] sm:top-[50%] translate-x-[-50%] sm:translate-y-[-50%]",
-				"w-full sm:max-w-lg",
-				"gap-4 p-3 md:p-6",
-				"bg-white",
-				"shadow-lg border border-black",
-				"duration-200",
-				'sm:shadow-[-8px_8px_0_0] sm:shadow-black',
-				"data-[state=open]:animate-in data-[state=open]:slide-in-from-left-1/2",
-				"max-sm:data-[state=open]:slide-in-from-bottom-full",
-				"sm:data-[state=open]:slide-in-from-top-[48%] sm:data-[state=open]:zoom-in-95",
-				"data-[state=closed]:animate-out data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:fade-out-0",
-				"max-sm:data-[state=closed]:slide-out-to-bottom-[48%]",
-				"sm:data-[state=closed]:zoom-out-95 sm:data-[state=closed]:slide-out-to-top-[48%]",
-				className,
-			)}
-			{...props}
-		>
-			{children}
+	return (
+		<DialogPortal>
+			<DialogOverlay />
 
-			<RDialog.Close className="absolute right-4 top-4 opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:pointer-events-none">
-				<X className="size-6" />
-				<span className="sr-only">Close</span>
-			</RDialog.Close>
-		</RDialog.Content>
-	</DialogPortal>
-));
+			<RDialog.Content
+				ref={ref}
+				className={cn(
+					"fixed grid z-50",
+					"max-sm:bottom-0 max-sm:translate-y-0",
+					"left-[50%] sm:top-[50%] translate-x-[-50%] sm:translate-y-[-50%]",
+					"w-full sm:max-w-lg",
+					"gap-4 p-3 md:p-6",
+					"bg-white",
+					"shadow-lg border border-black",
+					"duration-200",
+					"sm:shadow-[-8px_8px_0_0] sm:shadow-black",
+					"data-[state=open]:animate-in data-[state=open]:slide-in-from-left-1/2",
+					"max-sm:data-[state=open]:slide-in-from-bottom-full",
+					"sm:data-[state=open]:slide-in-from-top-[48%] sm:data-[state=open]:zoom-in-95",
+					"data-[state=closed]:animate-out data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:fade-out-0",
+					"max-sm:data-[state=closed]:slide-out-to-bottom-[48%]",
+					"sm:data-[state=closed]:zoom-out-95 sm:data-[state=closed]:slide-out-to-top-[48%]",
+					className,
+				)}
+				{...rest}
+			>
+				{children}
+
+				{hasCloseButton && (
+					<RDialog.Close className="absolute right-4 top-4 opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:pointer-events-none">
+						<X className="size-6" />
+						<span className="sr-only">Close</span>
+					</RDialog.Close>
+				)}
+			</RDialog.Content>
+		</DialogPortal>
+	);
+});
 
 DialogContent.displayName = RDialog.Content.displayName;
 
