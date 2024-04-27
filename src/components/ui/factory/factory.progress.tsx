@@ -32,9 +32,8 @@ export const FactoryProgress = (props: FactoryProgressProps) => {
 
 			<div className="absolute inset-0 flex items-center justify-between text-sm font-semibold text-black px-5">
 				<span className="w-40 text-xs">
-					{new Date(factory.time).toISOString().substring(14, 19)}
+					{new Date(factory.time * 1000).toISOString().substring(14, 19)}
 				</span>
-
 				<span>{amountFormatter(factory.amount * factory.value)}</span>
 			</div>
 		</div>
