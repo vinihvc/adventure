@@ -12,12 +12,8 @@ import { setStatistics } from "@/store/atoms/statistics";
 export const useCountdown = (factory: FactoryType) => {
 	const f = useFactory(factory);
 
-	const timeDuration = f.time / 1000;
-
-	const isAuto = f.isAuto;
-
-	const [seconds, setSeconds] = React.useState(timeDuration);
-	const [isRunning, setIsRunning] = React.useState(isAuto);
+	const [seconds, setSeconds] = React.useState(f.time);
+	const [isRunning, setIsRunning] = React.useState(f.isAuto);
 
 	const handleOnComplete = () => {
 		setMoney(factory);
@@ -30,18 +26,20 @@ export const useCountdown = (factory: FactoryType) => {
 				setSeconds(seconds - 1);
 			}
 
-			if (seconds === 0) {
-				setSeconds(timeDuration);
-				setIsRunning(isAuto);
+			console.log(
+				`Factory ${factory} is running: ${isRunning} and has ${seconds} seconds left`,
+			);
+
+			if (seconds < 1) {
+				console.log("Time is up!");
+
+				setSeconds(f.time);
+				setIsRunning(f.isAuto);
 				handleOnComplete();
 			}
 		},
 		isRunning && f.isUnlocked ? 1000 : undefined,
 	);
 
-	const onRun = () => {
-		setIsRunning(true);
-	};
-
-	return { seconds, isRunning, onRun };
+	return { seconds, isRunning };
 };

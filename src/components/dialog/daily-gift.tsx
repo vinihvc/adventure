@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 import { useLocalStorage } from "@/hooks/use-local-storage";
 import { Button } from "../ui/button";

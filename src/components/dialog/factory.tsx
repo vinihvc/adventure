@@ -53,7 +53,7 @@ export const FactoryDialog = (props: FactoryDialogProps) => {
 
 					<div className="flex justify-between">
 						<div>Production speed</div>
-						<div>{`${factory.time / 1000}x`}</div>
+						<div>{`${factory.time}x`}</div>
 					</div>
 
 					<div className="flex justify-between">

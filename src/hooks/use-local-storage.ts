@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 /**
  * Returns a stateful value, and a function to update it

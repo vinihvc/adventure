@@ -1,5 +1,5 @@
 import { cn } from "@/utils/cn";
-import { Progress } from "../progress";
+import { Progress } from "../progress/progress";
 import { amountFormatter } from "@/utils/formatters";
 import { useFactory } from "@/store/atoms/factories";
 import type { FactoryType } from "@/data/factories";
@@ -24,11 +24,11 @@ export const FactoryProgress = (props: FactoryProgressProps) => {
 
 	const factory = useFactory(type);
 
-	const progress = 100 - (seconds / (factory.time / 1000)) * 100;
+	const progress = 100 - (seconds / factory.time) * 100;
 
 	return (
 		<div className={cn("relative", className)} {...rest}>
-			<Progress value={progress} />
+			<Progress value={progress} duration={factory.time} />
 
 			<div className="absolute inset-0 flex items-center justify-between text-sm font-semibold text-black px-5">
 				<span className="w-40 text-xs">

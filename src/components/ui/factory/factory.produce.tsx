@@ -36,7 +36,7 @@ export const FactoryProduce = (props: FactoryProduceProps) => {
 				<Button
 					colorScheme="white"
 					className={cn(
-						"group relative shrink-0 size-16 rounded-full border-2 border-black data-[auto='true']:border-green-500 p-0 focus-visible:ring focus-visible:ring-offset-2 focus-visible:ring-black",
+						"group relative shrink-0 size-16 rounded-full border-2 border-black p-0 focus-visible:ring focus-visible:ring-offset-2 focus-visible:ring-black",
 						className,
 					)}
 					disabled={factory.amount === 0}
@@ -54,7 +54,7 @@ export const FactoryProduce = (props: FactoryProduceProps) => {
 					<span className="sr-only">{`Produce ${factory.type}`}</span>
 
 					<div className="absolute -bottom-3">
-						<div className="flex justify-center items-center text-white bg-red-500 rounded-full border-2 border-black w-14 h-6 group-data-[auto='true']:border-green-500">
+						<div className="flex justify-center items-center text-white bg-black rounded-full border-2 border-black w-14 h-6">
 							<div className="text-xs">{factory.amount || 0}</div>
 						</div>
 					</div>

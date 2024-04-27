@@ -37,16 +37,17 @@ export const Factory = (props: FactoryProps) => {
 	};
 
 	return (
-		<div
+		<article
 			tabIndex={factory.isUnlocked ? 0 : -1}
 			aria-label={`${type} section`}
 			className={cn(
 				"flex items-center gap-5",
 				"p-3 md:p-4",
+				"border shadow-xl",
 				"bg-white",
 				"outline-none",
-				"focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:ring-red-500",
-				"border shadow-xl",
+				"transition",
+				"focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:ring-black",
 				className,
 			)}
 			aria-disabled={!factory.isUnlocked}
@@ -71,6 +72,6 @@ export const Factory = (props: FactoryProps) => {
 					onBuyAmount={handleBuyAmount}
 				/>
 			</div>
-		</div>
+		</article>
 	);
 };

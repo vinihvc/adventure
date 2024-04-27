@@ -10,7 +10,7 @@ export const FACTORIES = {
 	potato: {
 		name: "Potato",
 		description: "Produces potatoes to feed your people.",
-		time: 2000, // 2 seconds
+		time: 2, // 2 seconds
 		value: 6,
 		buyCost: 6,
 		autoCost: 6_000,
@@ -19,7 +19,7 @@ export const FACTORIES = {
 	peasant: {
 		name: "Peasant",
 		description: "Peasant of the Kingdom start to harvesting food",
-		time: 4000, // 4 seconds
+		time: 4, // 4 seconds
 		value: 12,
 		buyCost: 12,
 		autoCost: 12_000,
@@ -28,7 +28,7 @@ export const FACTORIES = {
 	knight: {
 		name: "Knight",
 		description: "Knight are necessary to protect the kingdom",
-		time: 6000, // 6 seconds
+		time: 6, // 6 seconds
 		value: 24,
 		buyCost: 24,
 		autoCost: 24_000,
@@ -37,7 +37,7 @@ export const FACTORIES = {
 	archer: {
 		name: "Archer",
 		description: "Archer provide the escort on the walls of the kingdom",
-		time: 8000, // 8 seconds
+		time: 8, // 8 seconds
 		value: 32,
 		buyCost: 32,
 		autoCost: 32_000,
@@ -46,7 +46,7 @@ export const FACTORIES = {
 	engineer: {
 		name: "Engineer",
 		description: "Engineer repair and research new technologies",
-		time: 9000, // 9 seconds
+		time: 9, // 9 seconds
 		value: 40,
 		buyCost: 40,
 		autoCost: 40_000,
@@ -55,7 +55,7 @@ export const FACTORIES = {
 	mage: {
 		name: "Mage",
 		description: "Mage generate respect and power for the kingdom",
-		time: 10000, // 10 seconds
+		time: 10, // 10 seconds
 		value: 50,
 		buyCost: 50,
 		autoCost: 50_000,

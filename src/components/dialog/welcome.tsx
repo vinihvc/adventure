@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 import { useLocalStorage } from "@/hooks/use-local-storage";
 import { Button } from "../ui/button";
@@ -15,6 +15,8 @@ import {
 
 const WELCOME_VERSION = 1;
 
+const DISABLED = true;
+
 export const WelcomeDialog = (
 	props: React.ComponentPropsWithoutRef<typeof Dialog>,
 ) => {
@@ -25,6 +27,8 @@ export const WelcomeDialog = (
 	});
 
 	const [isOpen, setIsOpen] = React.useState(true);
+
+	if (DISABLED) return null;
 
 	return (
 		<Dialog open={isOpen} onOpenChange={setIsOpen} {...rest}>
