@@ -1,45 +1,45 @@
-import { useCallback, useEffect, useState } from 'react'
-import { useInterval } from './use-interval'
+import * as React from "react";
 
-type CountdownProps = {
-  seconds?: number
-  running?: boolean
-  onComplete?: () => void
-  interval?: number
-}
+import { useInterval } from "./use-interval";
+import type { FactoryType } from "@/data/factories";
+import { useFactory } from "@/store/atoms/factories";
+import { setMoney } from "@/store/atoms/wallet";
+import { setStatistics } from "@/store/atoms/statistics";
 
-const padLeft = (num: number) => {
-  return num < 10 ? `0${num}` : num
-}
+/**
+ * Emit a countdown timer for a factory
+ */
+export const useCountdown = (factory: FactoryType) => {
+	const f = useFactory(factory);
 
-export const useCountdown = ({
-  seconds: initialSeconds = 0,
-  running: initiallyRunning = false,
-  onComplete,
-  interval = 1000,
-}: CountdownProps) => {
-  const [seconds, setSeconds] = useState(initialSeconds)
-  const [isRunning, setIsRunning] = useState(initiallyRunning)
+	const [seconds, setSeconds] = React.useState(f.time);
+	const [isRunning, setIsRunning] = React.useState(f.isAuto);
 
-  useInterval(() => {
-    if (seconds > 0 && isRunning) {
-      setSeconds(seconds - 1)
-    }
+	const handleOnComplete = () => {
+		setMoney(factory);
+		setStatistics(factory);
+	};
 
-    if (seconds === 0) {
-      setSeconds(initialSeconds)
-      setIsRunning(false)
-      !!onComplete && onComplete()
-    }
-  }, interval)
+	useInterval(
+		() => {
+			if (seconds > 0 && isRunning) {
+				setSeconds(seconds - 1);
+			}
 
-  const formatted = `${padLeft(Math.floor(seconds / 60))}:${padLeft(
-    seconds % 60,
-  )}`
+			console.log(
+				`Factory ${factory} is running: ${isRunning} and has ${seconds} seconds left`,
+			);
 
-  const onStart = useCallback(() => {
-    setIsRunning(true)
-  }, [])
+			if (seconds < 1) {
+				console.log("Time is up!");
 
-  return { seconds, formatted, onStart, isRunning }
-}
+				setSeconds(f.time);
+				setIsRunning(f.isAuto);
+				handleOnComplete();
+			}
+		},
+		isRunning && f.isUnlocked ? 1000 : undefined,
+	);
+
+	return { seconds, isRunning };
+};
