@@ -20,7 +20,7 @@ export const Footer = (props: FooterProps) => {
 				</div>
 
 				<a
-					href="https://www.viniciusvicentini.com/"
+					href="https://vini.one"
 					target="_blank"
 					rel="noopener noreferrer nofollow"
 				>
