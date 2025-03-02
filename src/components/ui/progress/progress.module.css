@@ -1,0 +1,11 @@
+@keyframes progressbarStripes {
+  0% {
+    background-position-x: -1.5rem;
+  }
+}
+
+.animation {
+  animation: 0.5s linear infinite progressbarStripes;
+}
+
+
