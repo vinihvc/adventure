@@ -21,7 +21,7 @@ const DAILY_GIFT_VERSION = 1
 
 const DISABLED = true
 
-export const DailyGiftDialog = (props: React.ComponentProps<typeof Dialog>) => {
+const DailyGiftDialog = (props: React.ComponentProps<typeof Dialog>) => {
   const { ...rest } = props
 
   const [claimedDailyGift, setClaimedDailyGift] =
@@ -79,3 +79,5 @@ export const DailyGiftDialog = (props: React.ComponentProps<typeof Dialog>) => {
     </Dialog>
   )
 }
+
+export default DailyGiftDialog

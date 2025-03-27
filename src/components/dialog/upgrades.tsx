@@ -18,7 +18,7 @@ import { Card } from '../ui/card'
 import { ScrollArea } from '../ui/scroll-area'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
-export const UpgradesDialog = () => {
+const UpgradesDialog = () => {
   const { play } = useSound(upgradeSfx)
 
   const handleUpgrade = (type: FactoryType) => {
@@ -76,3 +76,5 @@ export const UpgradesDialog = () => {
     </Dialog>
   )
 }
+
+export default UpgradesDialog

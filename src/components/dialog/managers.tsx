@@ -19,7 +19,7 @@ import { Card } from '../ui/card'
 import { ScrollArea } from '../ui/scroll-area'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
-export const ManagersDialog = () => {
+const ManagersDialog = () => {
   const { play } = useSound(autoSfx)
 
   const handleAutomatic = (type: FactoryType) => {
@@ -80,3 +80,5 @@ export const ManagersDialog = () => {
     </Dialog>
   )
 }
+
+export default ManagersDialog

@@ -23,7 +23,7 @@ interface FactoryDialogProps {
   factory: any
 }
 
-export const FactoryDialog = (props: FactoryDialogProps) => {
+const FactoryDialog = (props: FactoryDialogProps) => {
   const { factoryType, factory } = props
 
   return (
@@ -80,3 +80,5 @@ export const FactoryDialog = (props: FactoryDialogProps) => {
     </Dialog>
   )
 }
+
+export default FactoryDialog

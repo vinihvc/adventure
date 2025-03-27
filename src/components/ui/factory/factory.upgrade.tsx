@@ -1,17 +1,18 @@
-import { Button } from '@/components/ui/button'
-import { type MscAtomProps, useMsc } from '@/store/atoms/msc'
-
 import coinSfx from '@/assets/sfx/coin.wav'
-import { FactoryDialog } from '@/components/dialog/factory'
-
+import { Button } from '@/components/ui/button'
+import type { FactoryType } from '@/data/factories'
 import { useSound } from '@/hooks/use-sound'
+import { useFactory } from '@/store/atoms/factories'
+import { type MscAtomProps, useMsc } from '@/store/atoms/msc'
 import { decreaseMoney, useWallet } from '@/store/atoms/wallet'
 import { amountFormatter } from '@/utils/formatters'
+import React from 'react'
+
+const FactoryDialog = React.lazy(() => import('@/components/dialog/factory'))
+
 interface FactoryUpgradeProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  factoryType: string
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  factory: any
+  factoryType: FactoryType
   totalMoney: number
   amountToBuy: MscAtomProps['amountToBuy']
   onUnlock: () => void
@@ -21,7 +22,6 @@ interface FactoryUpgradeProps
 export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
   const {
     factoryType,
-    factory,
     totalMoney,
     amountToBuy,
     className,
@@ -32,7 +32,7 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 
   const wallet = useWallet()
   const msc = useMsc()
-
+  const factory = useFactory(factoryType)
   const { play } = useSound(coinSfx)
 
   const handleBuy = () => {

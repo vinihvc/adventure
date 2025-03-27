@@ -1,10 +1,12 @@
-import { SettingDialog } from '@/components/dialog/settings'
 import { useWallet } from '@/store/atoms/wallet'
 import { amountFormatter } from '@/utils/formatters'
 import { CircleDollarSign } from 'lucide-react'
+import React from 'react'
 import { Navigation } from '../navigation'
 import { AmountToBuy } from './header.amount'
 import { HeaderItem } from './header.item'
+
+const SettingDialog = React.lazy(() => import('@/components/dialog/settings'))
 
 export const Header = () => {
   const wallet = useWallet()

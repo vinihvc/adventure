@@ -15,7 +15,7 @@ import { toggleMusic, toggleSfx, useSettings } from '@/store/atoms/settings'
 import { Cog } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
-export const SettingDialog = () => {
+const SettingDialog = () => {
   const settings = useSettings()
 
   return (
@@ -78,3 +78,5 @@ export const SettingDialog = () => {
     </Dialog>
   )
 }
+
+export default SettingDialog

@@ -54,7 +54,6 @@ export const Factory = (props: FactoryProps) => {
 
         <FactoryUpgrade
           factoryType={type}
-          factory={factory}
           totalMoney={wallet.money}
           amountToBuy={msc.amountToBuy}
           onUnlock={handleUnlock}

@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/tooltip'
 import { Handshake } from 'lucide-react'
 
-export const AllianceDialog = () => {
+const AllianceDialog = () => {
   return (
     <Dialog>
       <Tooltip>
@@ -53,3 +53,5 @@ export const AllianceDialog = () => {
     </Dialog>
   )
 }
+
+export default AllianceDialog

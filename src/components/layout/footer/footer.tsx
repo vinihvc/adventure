@@ -1,7 +1,9 @@
-import { AboutDialog } from '@/components/dialog/about'
 import { cn } from '@/utils/cn'
+import React from 'react'
 
 interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+const AboutDialog = React.lazy(() => import('@/components/dialog/about'))
 
 export const Footer = (props: FooterProps) => {
   const { className, ...rest } = props

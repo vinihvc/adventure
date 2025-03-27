@@ -16,7 +16,7 @@ import { DialogDescription } from '@radix-ui/react-dialog'
 import { PieChart } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
-export const StatisticsDialog = () => {
+const StatisticsDialog = () => {
   const statistics = useStatistics()
 
   return (
@@ -73,3 +73,5 @@ export const StatisticsDialog = () => {
     </Dialog>
   )
 }
+
+export default StatisticsDialog

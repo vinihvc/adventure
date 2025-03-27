@@ -16,7 +16,7 @@ const WELCOME_VERSION = 1
 
 const DISABLED = true
 
-export const WelcomeDialog = (props: React.ComponentProps<typeof Dialog>) => {
+const WelcomeDialog = (props: React.ComponentProps<typeof Dialog>) => {
   const { ...rest } = props
 
   useLocalStorage('welcome', {
@@ -53,3 +53,5 @@ export const WelcomeDialog = (props: React.ComponentProps<typeof Dialog>) => {
     </Dialog>
   )
 }
+
+export default WelcomeDialog

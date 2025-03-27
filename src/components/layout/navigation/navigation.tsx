@@ -1,8 +1,12 @@
-import { AllianceDialog } from '@/components/dialog/alliances'
-import { ManagersDialog } from '@/components/dialog/managers'
-import { StatisticsDialog } from '@/components/dialog/statistics'
-import { UpgradesDialog } from '@/components/dialog/upgrades'
 import { cn } from '@/utils/cn'
+import React from 'react'
+
+const AllianceDialog = React.lazy(() => import('@/components/dialog/alliances'))
+const ManagersDialog = React.lazy(() => import('@/components/dialog/managers'))
+const StatisticsDialog = React.lazy(
+  () => import('@/components/dialog/statistics'),
+)
+const UpgradesDialog = React.lazy(() => import('@/components/dialog/upgrades'))
 
 interface NavigationProps extends React.HTMLAttributes<HTMLDivElement> {}
 

@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 
-export const AboutDialog = () => {
+const AboutDialog = () => {
   return (
     <Dialog>
       <DialogTrigger className="underline-offset-4 outline-hidden hover:underline focus-visible:underline">
@@ -111,3 +111,5 @@ export const AboutDialog = () => {
     </Dialog>
   )
 }
+
+export default AboutDialog

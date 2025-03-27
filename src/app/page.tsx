@@ -1,6 +1,4 @@
 import { TailwindIndicator } from '@/components/debug/tailwind-indicator'
-import { DailyGiftDialog } from '@/components/dialog/daily-gift'
-import { WelcomeDialog } from '@/components/dialog/welcome'
 import { Background } from '@/components/layout/background'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
@@ -10,6 +8,12 @@ import { FACTORIES, type FactoryType } from '@/data/factories'
 import { useContextMenu } from '@/hooks/use-context-menu'
 import { store } from '@/store'
 import { Provider as JotaiProvider } from 'jotai'
+import React from 'react'
+
+const DailyGiftDialog = React.lazy(
+  () => import('@/components/dialog/daily-gift'),
+)
+const WelcomeDialog = React.lazy(() => import('@/components/dialog/welcome'))
 
 export const HomePage = () => {
   useContextMenu()
