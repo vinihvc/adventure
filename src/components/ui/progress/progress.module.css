@@ -1,11 +1,25 @@
-@keyframes progressbarStripes {
-  0% {
-    background-position-x: -1.5rem;
-  }
+@keyframes progress-stripes {
+	0% {
+		background-position-x: -1.5rem;
+	}
 }
 
-.animation {
-  animation: 0.5s linear infinite progressbarStripes;
+.stripes {
+	animation: 0.5s linear infinite progress-stripes;
 }
 
+@keyframes progress-fill {
+	from {
+		width: 0%;
+	}
+	to {
+		width: 100%;
+	}
+}
 
+.fill {
+	animation-name: progress-fill;
+	animation-fill-mode: forwards;
+	animation-timing-function: linear;
+	animation-direction: normal;
+}

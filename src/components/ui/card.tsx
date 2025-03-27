@@ -1,75 +1,83 @@
-import * as React from "react";
+import { Button } from '@/components/ui/button'
+import type { FactoryType } from '@/data/factories'
+import { useFactory } from '@/store/atoms/factories'
+import { cn } from '@/utils/cn'
+import { Image } from '@unpic/react'
+import { Check } from 'lucide-react'
+import React from 'react'
 
-import { cn } from "@/utils/cn";
-import { Image } from "./image";
-import { Check } from "lucide-react";
-import { Button } from "./button";
-
-interface CardProps extends React.ImgHTMLAttributes<HTMLDivElement> {
-	factoryType: string;
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	factory: any;
-	/**
-	 * Icon to display on the card
-	 */
-	icon: React.ElementType;
-	/**
-	 * Image to display on the card
-	 */
-	image: string;
-	/**
-	 * Triggered when the card is upgraded
-	 */
-	onUpgrade?: () => void;
+interface CardProps extends React.ComponentProps<'div'> {
+  /**
+   * The factory type
+   */
+  factoryType: FactoryType
+  /**
+   * Icon to display on the card
+   */
+  icon: React.ElementType
+  /**
+   * Image to display on the card
+   */
+  image: string
+  /**
+   * Triggered when the card is upgraded
+   */
+  onUpgrade?: () => void
 }
 
-export const Card = React.forwardRef<HTMLDivElement, CardProps>(
-	(props, ref) => {
-		const { factoryType, factory, icon, image, className, onUpgrade, ...rest } =
-			props;
+export const Card = (props: CardProps) => {
+  const { factoryType, icon, image, className, onUpgrade, ...rest } = props
 
-		return (
-			<article
-				ref={ref}
-				data-auto={factory.isAuto}
-				className={cn("relative group h-auto block border-4 border-black p-0")}
-				{...rest}
-			>
-				<div className="border-2 border-white">
-					<Image src={image} alt={factoryType} className="aspect-square" />
-				</div>
+  const factory = useFactory(factoryType)
 
-				<div className="absolute top-1 right-1">
-					<div className="bg-black text-white size-7 flex items-center justify-center">
-						{React.createElement(icon, { className: "size-5" })}
-					</div>
-				</div>
+  return (
+    <article
+      data-auto={factory.isAuto}
+      className={cn('group relative block h-auto border-4 border-black p-0')}
+      {...rest}
+    >
+      <div className="border-2 border-white">
+        <Image
+          src={image}
+          alt={factoryType}
+          width={200}
+          height={200}
+          className="aspect-square"
+          layout="constrained"
+        />
+      </div>
 
-				<div className="absolute top-1 left-1">
-					<div className="bg-black text-white size-7 p-0.5 flex items-center justify-center">
-						<Image
-							src={`/images/factories/${factoryType}.webp`}
-							className="size-7 object-contain aspect-square"
-						/>
-					</div>
-				</div>
+      <div className="absolute top-1 right-1">
+        <div className="flex size-7 items-center justify-center bg-foreground text-white">
+          {React.createElement(icon, { className: 'size-5' })}
+        </div>
+      </div>
 
-				<Button
-					type="button"
-					size="xs"
-					colorScheme="black"
-					disabled={factory.isAuto}
-					className="text-xs uppercase border-2 border-t-0"
-					isFullWidth
-					onClick={onUpgrade}
-				>
-					<span className="group-data-[auto='true']:opacity-0">Research</span>
+      <div className="absolute top-1 left-1">
+        <div className="flex size-7 items-center justify-center bg-foreground p-0.5 text-white">
+          <Image
+            src={`/images/factories/${factoryType}.webp`}
+            className="aspect-square size-7 object-contain"
+            layout="constrained"
+            width={28}
+            height={28}
+          />
+        </div>
+      </div>
 
-					<span className="absolute group-data-[auto='false']:hidden">
-						<Check className="size-5" />
-					</span>
-				</Button>
-			</article>
-		);
-	},
-);
+      <Button
+        type="button"
+        size="xs"
+        disabled={factory.isAuto || !factory.isUnlocked}
+        className="w-full border-2 border-t-0 text-xs uppercase"
+        onClick={onUpgrade}
+      >
+        <span className="group-data-[auto='true']:opacity-0">Research</span>
+
+        <span className="absolute group-data-[auto='false']:hidden">
+          <Check />
+        </span>
+      </Button>
+    </article>
+  )
+}

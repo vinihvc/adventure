@@ -1,7 +1,14 @@
 {
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "biomejs.biome",
+	"editor.codeActionsOnSave": {
+		"source.organizeImports.biome": "explicit",
+		"source.fixAll.biome": "explicit",
+		"quickfix.biome": "explicit"
+	},
 	"tailwindCSS.experimental.classRegex": [
-		["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+		["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+		["tw\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+		["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
 	]
 }

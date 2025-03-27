@@ -1,70 +1,77 @@
-import type { MscAtomProps } from "@/store/atoms/msc";
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button'
+import { type MscAtomProps, useMsc } from '@/store/atoms/msc'
 
-import { FactoryDialog } from "@/components/dialog/factory";
-import coinSfx from "@/assets/sfx/coin.wav";
+import coinSfx from '@/assets/sfx/coin.wav'
+import { FactoryDialog } from '@/components/dialog/factory'
 
-import { useSound } from "@/hooks/use-sound";
+import { useSound } from '@/hooks/use-sound'
+import { decreaseMoney, useWallet } from '@/store/atoms/wallet'
+import { amountFormatter } from '@/utils/formatters'
 interface FactoryUpgradeProps
-	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-	factoryType: string;
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	factory: any;
-	totalMoney: number;
-	amountToBuy: MscAtomProps["amountToBuy"];
-	onUnlock: () => void;
-	onBuyAmount: () => void;
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  factoryType: string
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  factory: any
+  totalMoney: number
+  amountToBuy: MscAtomProps['amountToBuy']
+  onUnlock: () => void
+  onBuyAmount: () => void
 }
 
 export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
-	const {
-		factoryType,
-		factory,
-		totalMoney,
-		amountToBuy,
-		className,
-		onUnlock,
-		onBuyAmount,
-		...rest
-	} = props;
+  const {
+    factoryType,
+    factory,
+    totalMoney,
+    amountToBuy,
+    className,
+    onUnlock,
+    onBuyAmount,
+    ...rest
+  } = props
 
-	const { play } = useSound(coinSfx);
+  const wallet = useWallet()
+  const msc = useMsc()
 
-	const handleBuy = () => {
-		!factory.isUnlocked ? onUnlock() : onBuyAmount();
+  const { play } = useSound(coinSfx)
 
-		play();
-	};
+  const handleBuy = () => {
+    !factory.isUnlocked ? onUnlock() : onBuyAmount()
 
-	return (
-		<div className="flex items-center space-x-2">
-			<Button
-				className="text-xs uppercase font-bold"
-				disabled={totalMoney < factory.moneyToUnlock}
-				isFullWidth
-				onClick={handleBuy}
-				{...rest}
-			>
-				{factory.isUnlocked && (
-					<span className="space-x-1">
-						<span>Buy</span>
-						<span>
-							<span className="text-xs normal-case">x</span>
-							<span>{amountToBuy}</span>
-						</span>
-					</span>
-				)}
+    decreaseMoney(factory.buyCost * msc.amountToBuy)
 
-				{!factory.isUnlocked && totalMoney >= factory.moneyToUnlock && (
-					<span>Acquire</span>
-				)}
+    play()
+  }
 
-				{!factory.isUnlocked && totalMoney < factory.moneyToUnlock && (
-					<span>Money not enough</span>
-				)}
-			</Button>
+  const canBuy = wallet.money >= factory.buyCost * msc.amountToBuy
 
-			<FactoryDialog factory={factory} factoryType={factoryType} />
-		</div>
-	);
-};
+  return (
+    <div className="flex items-center gap-2">
+      <Button
+        className="w-full font-bold text-xs uppercase"
+        disabled={!canBuy}
+        onClick={handleBuy}
+        {...rest}
+      >
+        {factory.isUnlocked && (
+          <span className="flex items-center gap-1">
+            Buy
+            <span>
+              <span className="text-xs normal-case">x</span>
+              <span>{amountToBuy}</span>
+              <span className="pl-1 text-xs">
+                ({amountFormatter(factory.buyCost * msc.amountToBuy)})
+              </span>
+            </span>
+          </span>
+        )}
+
+        {!factory.isUnlocked && canBuy && <span>Acquire</span>}
+
+        {!factory.isUnlocked && !canBuy && <span>Money not enough</span>}
+      </Button>
+
+      <FactoryDialog factory={factory} factoryType={factoryType} />
+    </div>
+  )
+}

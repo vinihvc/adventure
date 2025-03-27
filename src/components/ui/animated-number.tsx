@@ -2,27 +2,43 @@
 
 import React from 'react'
 
-import { motion, useSpring, useTransform } from 'framer-motion'
-
-interface AnimatedNumberProps extends React.ComponentPropsWithoutRef<typeof motion.span> {
+interface AnimatedNumberProps extends React.HTMLAttributes<HTMLSpanElement> {
   value: number
 }
 
 export const AnimatedNumber = (props: AnimatedNumberProps) => {
   const { value, className, ...rest } = props
-
-  const spring = useSpring(value, { mass: 0.8, stiffness: 75, damping: 15 })
-  const display = useTransform(spring, (current) =>
-    Math.max(Math.round(current), 0).toLocaleString(),
-  )
+  const [displayValue, setDisplayValue] = React.useState(value)
+  const previousValue = React.useRef(value)
 
   React.useEffect(() => {
-    spring.set(value)
-  }, [spring, value])
+    if (previousValue.current === value) return
+
+    let startTimestamp: number | null = null
+    const duration = 400 // Animation duration in milliseconds
+
+    const startValue = previousValue.current
+    const endValue = value
+
+    const animate = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1)
+
+      const current = startValue + (endValue - startValue) * progress
+      setDisplayValue(current)
+
+      if (progress < 1) {
+        requestAnimationFrame(animate)
+      }
+    }
+
+    requestAnimationFrame(animate)
+    previousValue.current = value
+  }, [value])
 
   return (
-    <motion.span className={className} {...rest}>
-      {display}
-    </motion.span>
+    <span className={className} {...rest}>
+      {Math.max(Math.round(displayValue), 0).toLocaleString()}
+    </span>
   )
 }

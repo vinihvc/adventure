@@ -1,169 +1,164 @@
-import * as RDialog from "@radix-ui/react-dialog";
-import { X } from "lucide-react";
-import * as React from "react";
-import { cn } from "@/utils/cn";
-import { Image, type ImageProps } from "./image";
-import { Slot } from "@radix-ui/react-slot";
+import { cn } from '@/utils/cn'
+import * as RDialog from '@radix-ui/react-dialog'
+import { Image } from '@unpic/react'
+import { X } from 'lucide-react'
+import type * as React from 'react'
 
-export const Dialog = RDialog.Root;
+export const Dialog = RDialog.Root
 
-export const DialogTrigger = RDialog.Trigger;
+export const DialogTrigger = RDialog.Trigger
 
-export const DialogPortal = RDialog.Portal;
+export const DialogPortal = RDialog.Portal
 
-export const DialogClose = RDialog.Close;
+export const DialogClose = RDialog.Close
 
-export const DialogOverlay = React.forwardRef<
-	React.ElementRef<typeof RDialog.Overlay>,
-	React.ComponentPropsWithoutRef<typeof RDialog.Overlay>
->(({ className, ...props }, ref) => (
-	<RDialog.Overlay
-		ref={ref}
-		className={cn(
-			"fixed inset-0 z-50 bg-black/40 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-			className,
-		)}
-		{...props}
-	/>
-));
+export const DialogOverlay = (
+  props: React.ComponentProps<typeof RDialog.Overlay>,
+) => {
+  const { className, ...rest } = props
 
-DialogOverlay.displayName = RDialog.Overlay.displayName;
-
-interface DialogContentProps
-	extends React.ComponentPropsWithoutRef<typeof RDialog.Content> {
-	/**
-	 * If `true`, a close button will be rendered in the top-right corner.
-	 *
-	 * @default true
-	 */
-	hasCloseButton?: boolean;
+  return (
+    <RDialog.Overlay
+      className={cn(
+        'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-foreground/40 backdrop-blur-xs data-[state=closed]:animate-out data-[state=open]:animate-in',
+        className,
+      )}
+      {...rest}
+    />
+  )
 }
 
-export const DialogContent = React.forwardRef<
-	React.ElementRef<typeof RDialog.Content>,
-	DialogContentProps
->((props, ref) => {
-	const { hasCloseButton = true, className, children, ...rest } = props;
+DialogOverlay.displayName = RDialog.Overlay.displayName
 
-	return (
-		<DialogPortal>
-			<DialogOverlay />
+interface DialogContentProps
+  extends React.ComponentProps<typeof RDialog.Content> {
+  /**
+   * If `true`, a close button will be rendered in the top-right corner.
+   *
+   * @default true
+   */
+  hasCloseButton?: boolean
+}
 
-			<RDialog.Content
-				ref={ref}
-				className={cn(
-					"fixed grid z-50",
-					"flex flex-col",
-					"max-sm:bottom-0 max-sm:translate-y-0",
-					"left-[50%] sm:top-[50%] translate-x-[-50%] sm:translate-y-[-50%]",
-					"w-full max-h-[60%] sm:max-w-lg sm:max-h-[70%]",
-					"gap-4 p-3 md:p-6",
-					"bg-white",
-					"shadow-lg border border-black",
-					"duration-200",
-					"sm:shadow-[-8px_8px_0_0] sm:shadow-black",
-					"data-[state=open]:animate-in data-[state=open]:slide-in-from-left-1/2",
-					"max-sm:data-[state=open]:slide-in-from-bottom-full",
-					"sm:data-[state=open]:slide-in-from-top-[48%] sm:data-[state=open]:zoom-in-95",
-					"data-[state=closed]:animate-out data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:fade-out-0",
-					"max-sm:data-[state=closed]:slide-out-to-bottom-[48%]",
-					"sm:data-[state=closed]:zoom-out-95 sm:data-[state=closed]:slide-out-to-top-[48%]",
-					className,
-				)}
-				{...rest}
-			>
-				{children}
+export const DialogContent = (props: DialogContentProps) => {
+  const { hasCloseButton = true, className, children, ...rest } = props
 
-				{hasCloseButton && (
-					<RDialog.Close className="absolute right-4 top-4 opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:pointer-events-none">
-						<X className="size-6" />
-						<span className="sr-only">Close</span>
-					</RDialog.Close>
-				)}
-			</RDialog.Content>
-		</DialogPortal>
-	);
-});
+  return (
+    <DialogPortal>
+      <DialogOverlay />
 
-DialogContent.displayName = RDialog.Content.displayName;
+      <RDialog.Content
+        className={cn(
+          'fixed z-50 grid',
+          'flex flex-col',
+          'max-sm:bottom-0 max-sm:translate-y-0',
+          '-translate-x-1/2 sm:-translate-y-1/2 left-1/2 sm:top-1/2',
+          'max-h-[80%] w-full sm:max-h-[70%] sm:max-w-lg',
+          'gap-4 p-3 md:p-6',
+          'bg-background',
+          'border border-black shadow-lg',
+          'duration-200',
+          'sm:shadow-[-8px_8px_0_0] sm:shadow-black',
+          'data-[state=closed]:animate-out data-[state=open]:animate-in',
+          'max-sm:data-[state=open]:slide-in-from-bottom-1/2 max-sm:data-[state=closed]:slide-out-to-bottom-1/2',
+          'data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0',
+          'sm:data-[state=open]:zoom-in-95 sm:data-[state=closed]:zoom-out-95',
+          className,
+        )}
+        {...rest}
+      >
+        {children}
 
-interface DialogImageProps extends ImageProps {
-	asChild?: boolean;
+        {hasCloseButton && (
+          <RDialog.Close className="absolute top-4 right-4 opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:pointer-events-none">
+            <X className="size-6" />
+            <span className="sr-only">Close</span>
+          </RDialog.Close>
+        )}
+      </RDialog.Content>
+    </DialogPortal>
+  )
+}
+
+DialogContent.displayName = RDialog.Content.displayName
+
+interface DialogImageProps {
+  src: string
+  alt: string
+  className?: string
 }
 
 export const DialogImage = (props: DialogImageProps) => {
-	const { asChild, className, ...rest } = props;
+  const { className, ...rest } = props
 
-	const Comp = asChild ? Slot : Image;
-
-	return (
-		<div className="absolute -top-28 md:left-2 max-sm:inset-x-0 max-sm:flex max-sm:justify-center">
-			<Comp
-				className={cn(
-					"size-40 rounded-full border-2 border-black drop-shadow-md aspect-square",
-					className,
-				)}
-				{...rest}
-			/>
-		</div>
-	);
-};
+  return (
+    <div className="-top-28 max-md:-translate-x-1/2 absolute left-1/2 inline-flex md:left-2">
+      <Image
+        layout="constrained"
+        width={200}
+        height={200}
+        className={cn(
+          'aspect-square size-40 rounded-full border-2 border-black drop-shadow-md',
+          className,
+        )}
+        {...rest}
+      />
+    </div>
+  )
+}
 
 export const DialogHeader = ({
-	className,
-	...props
+  className,
+  ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-	<div
-		className={cn(
-			"flex flex-col space-y-1.5 text-center sm:text-left",
-			className,
-		)}
-		{...props}
-	/>
-);
+  <div
+    className={cn('flex flex-col gap-2 text-center sm:text-left', className)}
+    {...props}
+  />
+)
 
-DialogHeader.displayName = "DialogHeader";
+DialogHeader.displayName = 'DialogHeader'
 
 export const DialogFooter = ({
-	className,
-	...props
+  className,
+  ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-	<div
-		className={cn(
-			"flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
-			className,
-		)}
-		{...props}
-	/>
-);
+  <div
+    className={cn(
+      'mt-5 flex flex-col-reverse sm:flex-row sm:justify-end sm:gap-2',
+      className,
+    )}
+    {...props}
+  />
+)
 
-DialogFooter.displayName = "DialogFooter";
+DialogFooter.displayName = 'DialogFooter'
 
-export const DialogTitle = React.forwardRef<
-	React.ElementRef<typeof RDialog.Title>,
-	React.ComponentPropsWithoutRef<typeof RDialog.Title>
->(({ className, ...props }, ref) => (
-	<RDialog.Title
-		ref={ref}
-		className={cn(
-			"text-lg font-semibold leading-none tracking-tight",
-			className,
-		)}
-		{...props}
-	/>
-));
+export const DialogTitle = (
+  props: React.ComponentProps<typeof RDialog.Title>,
+) => {
+  const { className, ...rest } = props
 
-DialogTitle.displayName = RDialog.Title.displayName;
+  return (
+    <RDialog.Title
+      className={cn(
+        'font-semibold text-lg leading-none tracking-tight',
+        className,
+      )}
+      {...rest}
+    />
+  )
+}
 
-export const DialogDescription = React.forwardRef<
-	React.ElementRef<typeof RDialog.Description>,
-	React.ComponentPropsWithoutRef<typeof RDialog.Description>
->(({ className, ...props }, ref) => (
-	<RDialog.Description
-		ref={ref}
-		className={cn("text-sm opacity-80", className)}
-		{...props}
-	/>
-));
+export const DialogDescription = (
+  props: React.ComponentProps<typeof RDialog.Description>,
+) => {
+  const { className, ...rest } = props
 
-DialogDescription.displayName = RDialog.Description.displayName;
+  return (
+    <RDialog.Description
+      className={cn('text-sm opacity-80', className)}
+      {...rest}
+    />
+  )
+}

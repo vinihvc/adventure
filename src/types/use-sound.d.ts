@@ -1,1 +1,1 @@
-declare module "use-sound";
+declare module 'use-sound'

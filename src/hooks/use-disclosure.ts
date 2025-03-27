@@ -1,8 +1,8 @@
-import * as React from "react";
+import React from 'react'
 
 export type UseDisclosureProps = {
-	defaultIsOpen?: boolean;
-};
+  defaultIsOpen?: boolean
+}
 
 /**
  * Custom hook used to help handle common open, close, or toggle scenarios.
@@ -13,24 +13,24 @@ export type UseDisclosureProps = {
  * ```
  */
 export const useDisclosure = (props: UseDisclosureProps = {}) => {
-	const [isOpenState, setIsOpen] = React.useState(props.defaultIsOpen || false);
+  const [isOpenState, setIsOpen] = React.useState(props.defaultIsOpen || false)
 
-	const onClose = React.useCallback(() => {
-		setIsOpen(false);
-	}, []);
+  const onClose = React.useCallback(() => {
+    setIsOpen(false)
+  }, [])
 
-	const onOpen = React.useCallback(() => {
-		setIsOpen(true);
-	}, []);
+  const onOpen = React.useCallback(() => {
+    setIsOpen(true)
+  }, [])
 
-	const onToggle = React.useCallback(() => {
-		setIsOpen((e) => !e);
-	}, []);
+  const onToggle = React.useCallback(() => {
+    setIsOpen((e) => !e)
+  }, [])
 
-	return {
-		isOpen: !!isOpenState,
-		onOpen,
-		onClose,
-		onToggle,
-	};
-};
+  return {
+    isOpen: !!isOpenState,
+    onOpen,
+    onClose,
+    onToggle,
+  }
+}

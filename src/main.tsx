@@ -1,11 +1,11 @@
-import * as React from "react";
+import { HomePage } from '@/app/page'
+import '@/styles/globals.css'
+import React from 'react'
+import { createRoot } from 'react-dom/client'
 
-import ReactDOM from "react-dom/client";
-import { HomePage } from "./app/page";
-
-// biome-ignore lint/style/noNonNullAssertion: <explanation>
-ReactDOM.createRoot(document.getElementById("root")!).render(
-	<React.StrictMode>
-		<HomePage />
-	</React.StrictMode>,
-);
+// biome-ignore lint/style/noNonNullAssertion: always exists
+createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <HomePage />
+  </React.StrictMode>,
+)
