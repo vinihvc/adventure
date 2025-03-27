@@ -7,7 +7,7 @@ export const Background = () => {
   return (
     <Image
       data-loaded={loaded}
-      className="absolute inset-0 h-screen w-screen scale-110 object-cover blur-sm transition-all duration-300 "
+      className="pointer-events-none absolute inset-0 h-screen w-screen scale-110 object-cover blur-sm duration-300"
       src="/images/bg.webp"
       aria-hidden
       onLoad={() => setLoaded(true)}
