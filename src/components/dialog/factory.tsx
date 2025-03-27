@@ -31,7 +31,7 @@ const FactoryDialog = (props: FactoryDialogProps) => {
       <Tooltip>
         <TooltipTrigger asChild>
           <DialogTrigger asChild>
-            <Button className="w-12 shrink-0 p-0" variant="outline">
+            <Button className="shrink-0" variant="outline" size="icon">
               <span className="sr-only">{`${factory.name}'s Info`}</span>
               <Info />
             </Button>

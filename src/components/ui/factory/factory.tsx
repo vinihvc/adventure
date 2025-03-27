@@ -37,7 +37,7 @@ export const Factory = (props: FactoryProps) => {
       className={cn(
         'flex items-center gap-5',
         'p-3 md:p-4',
-        'border shadow-xl',
+        'rounded-lg border shadow-xl',
         'bg-background',
         'outline-hidden',
         'transition',

@@ -22,7 +22,7 @@ export const HomePage = () => {
     <JotaiProvider store={store}>
       <Background />
 
-      <div className="container relative max-w-6xl border-2 bg-background pb-16">
+      <div className="container relative max-w-6xl overflow-hidden border-2 bg-background/60 backdrop-blur-lg max-sm:pb-16 sm:rounded-xl">
         <Header />
 
         <div className="flex w-full items-center">
