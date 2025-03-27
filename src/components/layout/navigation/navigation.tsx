@@ -10,13 +10,7 @@ export const Navigation = (props: NavigationProps) => {
   const { className, ...rest } = props
 
   return (
-    <nav
-      className={cn(
-        'fixed inset-x-0 bottom-0 z-10 flex h-14 items-center gap-2 border-neutral-700 border-t bg-foreground sm:hidden',
-        className,
-      )}
-      {...rest}
-    >
+    <nav className={cn('z-10 flex items-center gap-2', className)} {...rest}>
       <StatisticsDialog />
 
       <UpgradesDialog />

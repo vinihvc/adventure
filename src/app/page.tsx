@@ -36,7 +36,7 @@ export const HomePage = () => {
 
       <Footer />
 
-      <Navigation />
+      <Navigation className="fixed inset-x-0 bottom-0 h-14 border-neutral-700 border-t bg-foreground sm:hidden" />
 
       <TailwindIndicator />
     </JotaiProvider>
