@@ -13,7 +13,7 @@ import { AmountToBuy } from './header.amount'
 const SettingDialog = React.lazy(() => import('@/components/dialog/settings'))
 
 export const Header = () => {
-  const wallet = useWallet()
+  const { money } = useWallet()
 
   return (
     <header className="sticky top-0 z-10 flex items-center justify-between bg-gradient-to-b from-background/50 to-transparent p-2 md:p-5">
@@ -26,7 +26,7 @@ export const Header = () => {
             />
 
             <span className="font-bold text-lg">
-              <AnimatedNumber value={wallet.money} />
+              {<AnimatedNumber value={money} />}
             </span>
           </div>
         </TooltipTrigger>

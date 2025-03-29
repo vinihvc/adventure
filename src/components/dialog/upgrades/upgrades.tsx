@@ -12,8 +12,8 @@ import {
 } from '@/components/ui/dialog'
 import { FACTORIES, type FactoryType } from '@/content/factories'
 import { ArrowBigUpDash } from 'lucide-react'
-import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
-import { UpgradeCard } from '../ui/upgrade-card'
+import { Tooltip, TooltipContent, TooltipTrigger } from '../../ui/tooltip'
+import { UpgradesCard } from './upgrades.card'
 
 const UpgradesDialog = () => {
   return (
@@ -43,13 +43,7 @@ const UpgradesDialog = () => {
 
         <div className="grid grid-cols-3 gap-3">
           {Object.entries(FACTORIES).map(([key]) => (
-            <UpgradeCard
-              key={key}
-              type="upgrade"
-              factoryType={key as FactoryType}
-              icon={ArrowBigUpDash}
-              image={`/images/upgrades/${key}.webp`}
-            />
+            <UpgradesCard key={key} factoryType={key as FactoryType} />
           ))}
         </div>
 

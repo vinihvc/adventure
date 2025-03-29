@@ -2,131 +2,136 @@ import { Button } from '@/components/ui/button'
 import type { FactoryType } from '@/content/factories'
 import { cn } from '@/lib/cn'
 import { useFactory } from '@/store/atoms/factories'
-import { useWallet } from '@/store/atoms/wallet'
-import { amountFormatter } from '@/utils/formatters'
 import { Image } from '@unpic/react'
-import { Check } from 'lucide-react'
+import { ArrowBigUpDash, UserSearch } from 'lucide-react'
 import React from 'react'
 import { Tooltip, TooltipContent, TooltipTrigger } from './tooltip'
 
-interface UpgradeCardProps extends React.ComponentProps<'div'> {
+type UpgradeCardType = 'upgrade' | 'manager'
+
+interface UpgradeCardContextType {
   /**
-   * The type of card
+   * Whether the card is enabled
    */
-  type: 'upgrade' | 'manager'
+  isEnabled: boolean
+}
+
+const UpgradeCardContext = React.createContext({} as UpgradeCardContextType)
+
+interface UpgradeCardProps extends React.ComponentProps<'div'> {
   /**
    * The factory type
    */
   factoryType: FactoryType
   /**
-   * Icon to display on the card
+   * The type of card
    */
-  icon: React.ElementType
+  type: UpgradeCardType
   /**
    * Image to display on the card
    */
   image: string
   /**
-   * Triggered when the card is upgraded
+   * Whether the card is enabled
    */
-  onUpgrade?: () => void
+  isEnabled: boolean
+}
+
+const ICON_MAP = {
+  upgrade: { tooltip: 'Upgrade', icon: ArrowBigUpDash },
+  manager: { tooltip: 'Manager', icon: UserSearch },
 }
 
 export const UpgradeCard = (props: UpgradeCardProps) => {
-  const { type, factoryType, icon, image, className, onUpgrade, ...rest } =
+  const { factoryType, type, image, isEnabled, className, children, ...rest } =
     props
 
-  const factory = useFactory(factoryType)
-  const wallet = useWallet()
+  const { name } = useFactory(factoryType)
 
-  const canBuy = wallet.money >= factory.autoCost
+  const { tooltip, icon: Icon } = ICON_MAP[type]
 
   return (
-    <article
-      // biome-ignore lint/a11y/noNoninteractiveTabindex: <explanation>
-      tabIndex={0}
-      aria-label={`Buy ${type} for ${factory.name}`}
-      aria-disabled={!factory.isUnlocked || factory.isAuto || !canBuy}
-      data-buyable={canBuy}
-      data-unlocked={factory.isUnlocked}
-      data-auto={factory.isAuto}
-      className={cn(
-        'group relative',
-        'border-2 border-black',
-        'rounded-md',
-        'data-[auto="true"]:border-green-500',
-        'outline-0 focus-visible:border-black focus-visible:ring-[3px] focus-visible:ring-black/50',
-        className,
-      )}
-      {...rest}
-    >
-      <div className="rounded-t-md border-inherit border-b-2">
-        <Image
-          src={image}
-          alt={factoryType}
-          width={200}
-          height={200}
-          className="aspect-square rounded-t-sm"
-          layout="constrained"
-        />
-      </div>
-
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <div className="absolute top-1 right-1">
-            <div className="flex size-7 items-center justify-center rounded-lg border-2 border-black bg-background text-foreground">
-              {React.createElement(icon, { className: 'size-4' })}
-            </div>
-          </div>
-        </TooltipTrigger>
-
-        <TooltipContent>
-          {type === 'manager' ? 'Manager' : 'Upgrade'}
-        </TooltipContent>
-      </Tooltip>
-
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <div className="absolute top-1 left-1">
-            <Image
-              src={`/images/factories/${factoryType}.webp`}
-              className="aspect-square size-7 rounded-lg border-2 border-black object-contain"
-              layout="constrained"
-              width={28}
-              height={28}
-            />
-          </div>
-        </TooltipTrigger>
-
-        <TooltipContent>{factory.name}</TooltipContent>
-      </Tooltip>
-
-      <Button
-        type="button"
-        size="xs"
-        variant={factory.isAuto ? 'success' : 'black'}
-        aria-disabled={!factory.isUnlocked || factory.isAuto || !canBuy}
-        disabled={!factory.isUnlocked || factory.isAuto || !canBuy}
-        className="relative w-full rounded-t-none rounded-b-xs font-medium text-xs uppercase"
-        onClick={onUpgrade}
+    <UpgradeCardContext.Provider value={{ isEnabled }}>
+      <article
+        data-enabled={isEnabled}
+        className={cn(
+          'group relative',
+          'border-2 border-black',
+          'bg-foreground',
+          'rounded-md',
+          'transition-all',
+          'data-[enabled="true"]:border-success data-[enabled="true"]:bg-success',
+          'outline-0 focus-visible:border-black focus-visible:ring-[3px] focus-visible:ring-black/50',
+          className,
+        )}
+        {...rest}
       >
-        &nbsp;
-        <span className="absolute group-data-[buyable='true']:hidden group-data-[unlocked='false']:hidden">
-          Cost {amountFormatter(factory.autoCost)}
-        </span>
-        {/* Show "Research" when unlocked is true but auto is false */}
-        <span className="absolute group-data-[auto='true']:hidden group-data-[buyable='false']:hidden group-data-[unlocked='false']:hidden">
-          Research ({amountFormatter(factory.autoCost)})
-        </span>
-        {/* Show "Unlock first" when unlocked is false and auto is false */}
-        <span className="absolute group-data-[unlocked='true']:hidden">
-          Unlock first
-        </span>
-        {/* Show check icon when unlocked is true and auto is true */}
-        <span className="absolute group-data-[auto='false']:hidden group-data-[unlocked='false']:hidden">
-          <Check />
-        </span>
-      </Button>
-    </article>
+        <div className="rounded-t-md border-inherit border-b-2">
+          <Image
+            src={image}
+            alt={factoryType}
+            width={200}
+            height={200}
+            className="pointer-events-none aspect-square rounded-t-sm"
+            layout="constrained"
+          />
+        </div>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="absolute top-1 right-1">
+              <div className="flex size-7 items-center justify-center rounded-lg border-2 border-black bg-background text-foreground">
+                <Icon className="size-4" />
+              </div>
+            </div>
+          </TooltipTrigger>
+
+          <TooltipContent>{tooltip}</TooltipContent>
+        </Tooltip>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="absolute top-1 left-1">
+              <Image
+                src={`/images/factories/${factoryType}.webp`}
+                className="pointer-events-none aspect-square size-7 rounded-lg border-2 border-black object-contain"
+                layout="constrained"
+                width={28}
+                height={28}
+              />
+            </div>
+          </TooltipTrigger>
+
+          <TooltipContent>{name}</TooltipContent>
+        </Tooltip>
+
+        {children}
+      </article>
+    </UpgradeCardContext.Provider>
   )
+}
+
+export const UpgradeCardTrigger = (
+  props: React.ComponentProps<typeof Button>,
+) => {
+  const { isEnabled } = useUpgradeCard()
+
+  return (
+    <Button
+      type="button"
+      variant={isEnabled ? 'success' : 'black'}
+      className="relative w-full rounded-t-none rounded-b-sm font-medium text-xs uppercase group-data-[enabled='false']:disabled:opacity-50"
+      {...props}
+    />
+  )
+}
+
+const useUpgradeCard = () => {
+  const context = React.useContext(UpgradeCardContext)
+
+  if (!context) {
+    throw new Error('UpgradeCard must be used within a UpgradeCardContext')
+  }
+
+  return context
 }

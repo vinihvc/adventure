@@ -2,13 +2,17 @@ import { cn } from '@/lib/cn'
 import React from 'react'
 
 const AllianceDialog = React.lazy(() => import('@/components/dialog/alliances'))
-const ManagersDialog = React.lazy(() => import('@/components/dialog/managers'))
+const ManagersDialog = React.lazy(
+  () => import('@/components/dialog/managers/managers'),
+)
 const StatisticsDialog = React.lazy(
   () => import('@/components/dialog/statistics'),
 )
-const UpgradesDialog = React.lazy(() => import('@/components/dialog/upgrades'))
+const UpgradesDialog = React.lazy(
+  () => import('@/components/dialog/upgrades/upgrades'),
+)
 
-interface NavigationProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface NavigationProps extends React.ComponentProps<'nav'> {}
 
 export const Navigation = (props: NavigationProps) => {
   const { className, ...rest } = props

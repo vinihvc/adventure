@@ -82,3 +82,16 @@ export const suffixAmountFormatter = (amount: number) => {
 export const capitalize = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
+
+/**
+ * Format seconds to minutes and seconds
+ *
+ * @example
+ * timeFormatter(120) // "2:00"
+ */
+export const timeFormatter = (seconds: number) => {
+  const minutes = Math.floor(seconds / 60)
+  const remainingSeconds = seconds % 60
+
+  return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
+}

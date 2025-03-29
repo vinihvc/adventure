@@ -17,3 +17,9 @@ export const toggleAmountToBuy = () => {
     amountToBuy: prev.amountToBuy === 1 ? 10 : prev.amountToBuy === 10 ? 50 : 1,
   }))
 }
+
+export const amountToBuy = () => {
+  const { amountToBuy } = store.get(mscAtom)
+
+  return amountToBuy
+}

@@ -10,16 +10,16 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { FACTORIES, type FactoryType } from '@/content/factories'
-import { useStatistics } from '@/store/atoms/statistics'
-import { amountFormatter } from '@/utils/formatters'
+import {
+  moneyEarnedByFactory,
+  totalMoneyEarned,
+} from '@/store/atoms/statistics'
 import { DialogDescription } from '@radix-ui/react-dialog'
 import { PieChart } from 'lucide-react'
 import { AnimatedNumber } from '../ui/animated-number'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
 const StatisticsDialog = () => {
-  const statistics = useStatistics()
-
   return (
     <Dialog>
       <Tooltip>
@@ -49,7 +49,7 @@ const StatisticsDialog = () => {
           <div className="flex items-center justify-between">
             <span className="font-semibold capitalize">Total</span>
 
-            <span>{amountFormatter(statistics.moneyEarned)}</span>
+            <AnimatedNumber value={totalMoneyEarned()} />
           </div>
 
           {Object.entries(FACTORIES).map(([key]) => (
@@ -57,7 +57,7 @@ const StatisticsDialog = () => {
               <span className="font-semibold capitalize">{key}</span>
 
               <AnimatedNumber
-                value={statistics.factories[key as FactoryType].moneyEarned}
+                value={moneyEarnedByFactory(key as FactoryType)}
               />
             </div>
           ))}

@@ -1,7 +1,7 @@
 import { FACTORIES, type FactoryType } from '@/content/factories'
 import { atom, useAtomValue } from 'jotai'
 import { store } from '..'
-import { factoriesAtom } from './factories'
+import { getFactory } from './factories'
 
 const initialStatistics = Object.fromEntries(
   Object.keys(FACTORIES).map((factory) => [
@@ -18,18 +18,48 @@ export const statisticsAtom = atom({
 
 export const useStatistics = () => useAtomValue(statisticsAtom)
 
+/**
+ * Set the statistics for a factory
+ *
+ * @param factory - The factory to set the statistics for
+ */
 export const setStatistics = (factory: FactoryType) => {
-  const f = { ...FACTORIES[factory], ...store.get(factoriesAtom)[factory] }
+  const { amount, productionValue, isUpgraded } = getFactory(factory)
 
   store.set(statisticsAtom, (prev) => ({
     ...prev,
-    moneyEarned: prev.moneyEarned + f.amount * f.value,
+    moneyEarned:
+      prev.moneyEarned + amount * productionValue * (isUpgraded ? 2 : 1),
     factories: {
       ...prev.factories,
       [factory]: {
         ...prev.factories[factory],
-        moneyEarned: prev.factories[factory].moneyEarned + f.amount * f.value,
+        moneyEarned:
+          prev.factories[factory].moneyEarned +
+          amount * productionValue * (isUpgraded ? 2 : 1),
       },
     },
   }))
+}
+
+/**
+ * Get the total money earned
+ *
+ * @returns The total money earned
+ */
+export const totalMoneyEarned = () => {
+  const { moneyEarned } = store.get(statisticsAtom)
+
+  return moneyEarned
+}
+
+/**
+ * Get the total money spent
+ *
+ * @returns The total money spent
+ */
+export const moneyEarnedByFactory = (factory: FactoryType) => {
+  const { factories } = store.get(statisticsAtom)
+
+  return factories[factory].moneyEarned
 }

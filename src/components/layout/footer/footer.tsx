@@ -1,7 +1,7 @@
 import { cn } from '@/lib/cn'
 import React from 'react'
 
-interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface FooterProps extends React.ComponentProps<'footer'> {}
 
 const AboutDialog = React.lazy(() => import('@/components/dialog/about'))
 

@@ -16,7 +16,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import type { FactoryType } from '@/content/factories'
-import { useFactory, useStatistics } from '@/store'
+import { moneyEarnedByFactory, useFactory } from '@/store'
 import { Info } from 'lucide-react'
 import { AnimatedNumber } from '../ui/animated-number'
 
@@ -30,7 +30,6 @@ interface FactoryDialogProps {
 const FactoryDialog = (props: FactoryDialogProps) => {
   const { factoryType } = props
 
-  const statistics = useStatistics()
   const factory = useFactory(factoryType)
 
   return (
@@ -68,24 +67,22 @@ const FactoryDialog = (props: FactoryDialogProps) => {
 
           <div className="flex justify-between">
             <div>Production speed</div>
-            <div>{`${factory.time}x`}</div>
+            <div>{`${factory.productionTime}x`}</div>
           </div>
 
           <div className="flex justify-between">
             <div>Production per click</div>
-            <div>{factory.value}</div>
+            <div>{factory.productionValue}</div>
           </div>
 
           <div className="flex justify-between">
             <div>Production per hour</div>
-            <div>{factory.value * 3600}</div>
+            <div>{factory.productionValue * 3600}</div>
           </div>
 
           <div className="flex justify-between">
             <div>Total produced</div>
-            <AnimatedNumber
-              value={statistics.factories[factoryType].moneyEarned}
-            />
+            <AnimatedNumber value={moneyEarnedByFactory(factoryType)} />
           </div>
         </div>
 

@@ -11,10 +11,9 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { FACTORIES, type FactoryType } from '@/content/factories'
-import { upgradeAuto } from '@/store/atoms/factories'
 import { UserSearch } from 'lucide-react'
-import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
-import { UpgradeCard } from '../ui/upgrade-card'
+import { Tooltip, TooltipContent, TooltipTrigger } from '../../ui/tooltip'
+import { ManagersCard } from './managers.card'
 
 const ManagersDialog = () => {
   return (
@@ -45,14 +44,7 @@ const ManagersDialog = () => {
 
         <div className="grid grid-cols-3 gap-3">
           {Object.entries(FACTORIES).map(([key]) => (
-            <UpgradeCard
-              key={key}
-              type="manager"
-              factoryType={key as FactoryType}
-              icon={UserSearch}
-              image={`/images/managers/${key}.webp`}
-              onUpgrade={() => upgradeAuto(key as FactoryType)}
-            />
+            <ManagersCard key={key} factoryType={key as FactoryType} />
           ))}
         </div>
 

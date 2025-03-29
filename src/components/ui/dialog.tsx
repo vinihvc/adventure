@@ -115,30 +115,32 @@ export const DialogImage = (props: DialogImageProps) => {
   )
 }
 
-export const DialogHeader = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn('flex flex-col gap-2 text-center sm:text-left', className)}
-    {...props}
-  />
-)
+export const DialogHeader = (props: React.ComponentProps<'div'>) => {
+  const { className, ...rest } = props
+
+  return (
+    <div
+      className={cn('flex flex-col gap-2 text-center sm:text-left', className)}
+      {...rest}
+    />
+  )
+}
 
 DialogHeader.displayName = 'DialogHeader'
 
-export const DialogFooter = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn(
-      'mt-2 flex flex-col-reverse sm:flex-row sm:justify-end sm:gap-2',
-      className,
-    )}
-    {...props}
-  />
-)
+export const DialogFooter = (props: React.ComponentProps<'div'>) => {
+  const { className, ...rest } = props
+
+  return (
+    <div
+      className={cn(
+        'mt-2 flex flex-col-reverse sm:flex-row sm:justify-end sm:gap-2',
+        className,
+      )}
+      {...rest}
+    />
+  )
+}
 
 DialogFooter.displayName = 'DialogFooter'
 
