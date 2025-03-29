@@ -21,7 +21,7 @@ const AboutDialog = () => {
       <DialogContent>
         <DialogImage src="/images/msc/about.webp" alt="About" />
 
-        <DialogHeader className="mt-12 sm:mt-10">
+        <DialogHeader>
           <DialogTitle>About this game</DialogTitle>
 
           <DialogDescription>

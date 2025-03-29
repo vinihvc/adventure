@@ -55,8 +55,8 @@ export const DialogContent = (props: DialogContentProps) => {
           'rounded-xl max-sm:rounded-b-none',
           'max-sm:bottom-0 max-sm:translate-y-0',
           '-translate-x-1/2 sm:-translate-y-1/2 left-1/2 sm:top-1/2',
-          'max-h-[80%] w-full sm:max-h-[70%] sm:max-w-lg',
-          'gap-4 p-3 md:p-6',
+          'max-h-[80dvh] w-full sm:max-h-[70dvh] sm:max-w-lg',
+          'gap-4 p-3 sm:p-6',
           'bg-background',
           'border border-black shadow-lg',
           'duration-200',
@@ -99,13 +99,13 @@ export const DialogImage = (props: DialogImageProps) => {
   const { className, ...rest } = props
 
   return (
-    <div className="-top-28 max-md:-translate-x-1/2 absolute left-1/2 inline-flex rounded-full md:left-2">
+    <div className="-top-28 max-md:-translate-x-1/2 absolute left-1/2 inline-flex rounded-full border-6 border-black md:left-2">
       <Image
         layout="constrained"
         width={200}
         height={200}
         className={cn(
-          'pointer-events-none aspect-square size-40 rounded-full border-4 border-black bg-foreground text-foreground drop-shadow-lg [image-rendering:pixelated]',
+          'pointer-events-none aspect-square size-40 rounded-full border-4 border-white bg-foreground text-foreground drop-shadow-lg [image-rendering:pixelated]',
           className,
         )}
         aria-hidden
@@ -120,7 +120,10 @@ export const DialogHeader = (props: React.ComponentProps<'div'>) => {
 
   return (
     <div
-      className={cn('flex flex-col gap-2 text-center sm:text-left', className)}
+      className={cn(
+        'mt-16 flex flex-col gap-2 text-center sm:mt-16 sm:text-left',
+        className,
+      )}
       {...rest}
     />
   )

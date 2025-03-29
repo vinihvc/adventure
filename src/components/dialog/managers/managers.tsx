@@ -34,7 +34,7 @@ const ManagersDialog = () => {
       <DialogContent>
         <DialogImage src="/images/managers/manager.webp" alt="Manager" />
 
-        <DialogHeader className="mt-12 sm:mt-10">
+        <DialogHeader>
           <DialogTitle>Managers</DialogTitle>
 
           <DialogDescription>

@@ -36,8 +36,9 @@ const SettingDialog = () => {
       <DialogContent>
         <DialogImage src="/images/msc/setting.webp" alt="Settings" />
 
-        <DialogHeader className="mt-12 sm:mt-10">
+        <DialogHeader>
           <DialogTitle>Settings</DialogTitle>
+
           <DialogDescription>
             Change the game settings to fit your preferences.
           </DialogDescription>

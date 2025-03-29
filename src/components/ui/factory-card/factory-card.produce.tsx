@@ -28,7 +28,7 @@ export const FactoryCardProduce = (props: FactoryCardProduceProps) => {
           tabIndex={isProducing || !isUnlocked || isAutomated ? -1 : 0}
           className={cn(
             'group relative',
-            'size-16',
+            'size-20',
             'shrink-0 p-0',
             'rounded-full border-2 border-black',
             'data-[producing=true]:border-blue-600',
@@ -42,7 +42,7 @@ export const FactoryCardProduce = (props: FactoryCardProduceProps) => {
           onClick={() => startProducing(factoryType)}
           {...rest}
         >
-          <div className="relative rounded-full bg-background/20">
+          <div className="relative rounded-full bg-background/20 p-1">
             <Image
               src={`/images/factories/${factoryType}.webp`}
               alt={`Produce ${factoryType}`}

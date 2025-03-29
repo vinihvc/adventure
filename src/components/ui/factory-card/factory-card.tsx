@@ -33,10 +33,10 @@ export const FactoryCard = (props: FactoryCardProps) => {
       aria-disabled={!isUnlocked}
       {...rest}
     >
-      <div className="grid h-14 w-full rounded-r-lg border border-foreground/50 bg-background/50 py-1 pr-2 pl-8 shadow-xl">
+      <div className="grid h-20 w-full gap-1 rounded-r-lg border border-foreground/50 bg-background/50 py-2 pr-2 pl-12 shadow-xl">
         <Progress value={seconds} isUnlocked={isRunning} factoryType={type} />
 
-        <FactoryCardUpgrade className="translate-y-2" factoryType={type} />
+        <FactoryCardUpgrade factoryType={type} />
       </div>
 
       <FactoryCardProduce

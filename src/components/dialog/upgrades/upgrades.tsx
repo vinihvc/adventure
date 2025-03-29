@@ -34,8 +34,9 @@ const UpgradesDialog = () => {
       <DialogContent>
         <DialogImage src="/images/upgrades/upgrade.webp" alt="Upgrades" />
 
-        <DialogHeader className="mt-12 sm:mt-10">
+        <DialogHeader>
           <DialogTitle>Upgrades</DialogTitle>
+
           <DialogDescription>
             Upgrade your factories to increase your income.
           </DialogDescription>

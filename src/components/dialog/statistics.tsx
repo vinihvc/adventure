@@ -38,8 +38,9 @@ const StatisticsDialog = () => {
       <DialogContent>
         <DialogImage src="/images/msc/statistic.webp" alt="Statistics" />
 
-        <DialogHeader className="mt-12 sm:mt-10">
+        <DialogHeader>
           <DialogTitle>Statistics</DialogTitle>
+
           <DialogDescription>
             Check your statistics and see how you are doing.
           </DialogDescription>

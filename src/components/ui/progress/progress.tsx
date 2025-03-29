@@ -43,7 +43,7 @@ export const Progress = (props: ProgressProps) => {
     <RProgress.Root
       data-auto={isAutomated}
       className={cn(
-        'group relative h-6 w-full overflow-hidden rounded-full border border-neutral-300 bg-background',
+        'group relative h-6 w-full overflow-hidden rounded-full border border-neutral-400 bg-background',
         className,
       )}
       {...rest}

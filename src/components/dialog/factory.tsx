@@ -53,8 +53,9 @@ const FactoryDialog = (props: FactoryDialogProps) => {
           alt={`Factory of ${factory.name}`}
         />
 
-        <DialogHeader className="mt-12 sm:mt-10">
-          <DialogTitle className="text-xl">{factory.name}</DialogTitle>
+        <DialogHeader>
+          <DialogTitle>{factory.name}</DialogTitle>
+
           <DialogDescription>{factory.description}</DialogDescription>
         </DialogHeader>
 

@@ -19,7 +19,7 @@ export const HomePage = () => {
         <Header />
 
         <div className="flex w-full items-center max-sm:mt-4">
-          <div className="grid w-full gap-8 p-2 sm:gap-7 md:grid-cols-2 md:px-5 md:pt-4 md:pb-8">
+          <div className="grid w-full gap-6 p-2 sm:gap-7 md:grid-cols-2 md:p-5">
             {Object.keys(FACTORIES).map((factory) => (
               <FactoryCard key={factory} type={factory as FactoryType} />
             ))}

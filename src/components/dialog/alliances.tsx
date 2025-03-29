@@ -37,8 +37,9 @@ const AllianceDialog = () => {
       <DialogContent>
         <DialogImage src="/images/alliances/alliance.webp" alt="Alliances" />
 
-        <DialogHeader className="mt-12 sm:mt-10">
+        <DialogHeader>
           <DialogTitle>Alliances</DialogTitle>
+
           <DialogDescription>
             Create an alliance with other kingdoms to increase the trade
             partnership between you.
