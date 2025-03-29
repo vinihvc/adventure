@@ -16,9 +16,11 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
+		"@number-flow/react": "^0.5.8",
 		"@radix-ui/react-dialog": "^1.1.6",
 		"@radix-ui/react-progress": "^1.1.2",
 		"@radix-ui/react-scroll-area": "^1.2.3",
+		"@radix-ui/react-slider": "^1.2.3",
 		"@radix-ui/react-slot": "^1.1.2",
 		"@radix-ui/react-switch": "^1.1.3",
 		"@radix-ui/react-tooltip": "^1.1.8",
@@ -31,7 +33,8 @@
 		"react-dom": "^19.0.0",
 		"tailwind-merge": "^3.0.2",
 		"tailwind-variants": "^1.0.0",
-		"use-sound": "^5.0.0"
+		"use-sound": "^5.0.0",
+		"vaul": "^1.1.2"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",

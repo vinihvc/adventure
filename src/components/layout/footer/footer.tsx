@@ -1,4 +1,4 @@
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/cn'
 import React from 'react'
 
 interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {}
@@ -16,7 +16,7 @@ export const Footer = (props: FooterProps) => {
       )}
       {...rest}
     >
-      <div className="flex justify-center gap-5 text-sm md:justify-end">
+      <div className="flex justify-center gap-5 md:justify-end">
         <div>
           <AboutDialog />
         </div>

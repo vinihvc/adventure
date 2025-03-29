@@ -1,43 +1,19 @@
-import { store } from '..'
-import { type FactoryType, FACTORIES } from '@/data/factories'
+import { FACTORIES, type FactoryType } from '@/content/factories'
 import { atom, useAtomValue } from 'jotai'
+import { store } from '..'
 import { factoriesAtom } from './factories'
+
+const initialStatistics = Object.fromEntries(
+  Object.keys(FACTORIES).map((factory) => [
+    factory,
+    { quantity: 0, moneySpent: 0, moneyEarned: 0 },
+  ]),
+)
 
 export const statisticsAtom = atom({
   moneyEarned: 0,
   moneySpent: 0,
-  factories: {
-    potato: {
-      quantity: 0,
-      moneySpent: 0,
-      moneyEarned: 0,
-    },
-    peasant: {
-      quantity: 0,
-      moneySpent: 0,
-      moneyEarned: 0,
-    },
-    knight: {
-      quantity: 0,
-      moneySpent: 0,
-      moneyEarned: 0,
-    },
-    archer: {
-      quantity: 0,
-      moneySpent: 0,
-      moneyEarned: 0,
-    },
-    engineer: {
-      quantity: 0,
-      moneySpent: 0,
-      moneyEarned: 0,
-    },
-    mage: {
-      quantity: 0,
-      moneySpent: 0,
-      moneyEarned: 0,
-    },
-  },
+  factories: initialStatistics,
 })
 
 export const useStatistics = () => useAtomValue(statisticsAtom)

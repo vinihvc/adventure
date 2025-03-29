@@ -1,9 +1,9 @@
-import type { FactoryType } from '@/data/factories'
+import type { FactoryType } from '@/content/factories'
 import { useCountdown } from '@/hooks/use-countdown'
+import { cn } from '@/lib/cn'
 import { setAmount, upgradeUnlock, useFactory } from '@/store/atoms/factories'
 import { useMsc } from '@/store/atoms/msc'
 import { useWallet } from '@/store/atoms/wallet'
-import { cn } from '@/utils/cn'
 import { FactoryProduce } from './factory.produce'
 import { FactoryProgress } from './factory.progress'
 import { FactoryUpgrade } from './factory.upgrade'
@@ -32,13 +32,11 @@ export const Factory = (props: FactoryProps) => {
 
   return (
     <article
-      tabIndex={factory.isUnlocked ? 0 : -1}
-      aria-label={`${type} section`}
       className={cn(
         'flex items-center gap-5',
         'p-3 md:p-4',
-        'rounded-lg border shadow-xl',
-        'bg-background',
+        'rounded-lg border border-background shadow-xl',
+        'bg-background/60',
         'outline-hidden',
         'transition',
         'focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white',

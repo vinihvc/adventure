@@ -9,11 +9,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import { FACTORIES, type FactoryType } from '@/data/factories'
+import { FACTORIES, type FactoryType } from '@/content/factories'
 import { useStatistics } from '@/store/atoms/statistics'
 import { amountFormatter } from '@/utils/formatters'
 import { DialogDescription } from '@radix-ui/react-dialog'
 import { PieChart } from 'lucide-react'
+import { AnimatedNumber } from '../ui/animated-number'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
 const StatisticsDialog = () => {
@@ -24,7 +25,7 @@ const StatisticsDialog = () => {
       <Tooltip>
         <TooltipTrigger asChild>
           <DialogTrigger asChild>
-            <Button size="icon" className="max-sm:w-full">
+            <Button className="max-sm:w-full" variant="white" size="icon">
               <span className="sr-only">Open Statistics</span>
               <PieChart />
             </Button>
@@ -55,18 +56,16 @@ const StatisticsDialog = () => {
             <div key={key} className="flex items-center justify-between">
               <span className="font-semibold capitalize">{key}</span>
 
-              <span>
-                {new Intl.NumberFormat().format(
-                  statistics.factories[key as FactoryType].moneyEarned,
-                )}
-              </span>
+              <AnimatedNumber
+                value={statistics.factories[key as FactoryType].moneyEarned}
+              />
             </div>
           ))}
         </div>
 
         <DialogFooter>
           <DialogClose asChild>
-            <Button>Close Statistics</Button>
+            <Button size="xl">Close Statistics</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

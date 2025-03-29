@@ -29,6 +29,9 @@
 	--destructive: oklch(0.577 0.245 27.325);
 	--destructive-foreground: oklch(0.577 0.245 27.325);
 
+	--success: oklch(0.627 0.194 149.214);
+	--success-foreground: oklch(0.627 0.194 149.214);
+
 	--border: oklch(0.922 0 0);
 
 	--input: oklch(0.922 0 0);
@@ -65,6 +68,9 @@
 	--color-destructive: var(--destructive);
 	--color-destructive-foreground: var(--destructive-foreground);
 
+	--color-success: var(--success);
+	--color-success-foreground: var(--success-foreground);
+
 	--color-border: var(--border);
 
 	--color-input: var(--input);
@@ -86,6 +92,6 @@
 	}
 
 	#root {
-		@apply relative h-full min-h-screen flex items-center justify-center sm:px-5 overflow-hidden;
+		@apply relative h-full min-h-screen flex flex-col items-center justify-center sm:px-5 overflow-hidden;
 	}
 }

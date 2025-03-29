@@ -1,9 +1,7 @@
-import clickSfx from '@/assets/sfx/click.wav'
 import { Button } from '@/components/ui/button'
-import type { FactoryType } from '@/data/factories'
-import { useSound } from '@/hooks/use-sound'
-import { setProducing, useFactory } from '@/store/atoms/factories'
-import { cn } from '@/utils/cn'
+import type { FactoryType } from '@/content/factories'
+import { cn } from '@/lib/cn'
+import { startProducing, useFactory } from '@/store/atoms/factories'
 import { capitalize } from '@/utils/formatters'
 import { Image } from '@unpic/react'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../tooltip'
@@ -19,34 +17,38 @@ interface FactoryProduceProps
 export const FactoryProduce = (props: FactoryProduceProps) => {
   const { factoryType, className, ...rest } = props
 
-  const { play } = useSound(clickSfx)
-
   const factory = useFactory(factoryType)
-
-  const handleProduce = () => {
-    play()
-
-    setProducing(factoryType, true)
-  }
 
   return (
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
+          tabIndex={
+            factory.isProducing || !factory.isUnlocked || factory.isAuto
+              ? -1
+              : 0
+          }
           className={cn(
-            'group relative size-16 shrink-0 rounded-full border-2 border-black p-0 focus-visible:ring-3 focus-visible:ring-black focus-visible:ring-offset-2',
+            'group relative',
+            'size-16',
+            'shrink-0 p-0',
+            'rounded-full border-2 border-black',
+            'data-[producing=true]:border-blue-600',
+            'data-[producing=true]:focus-visible:border-blue-600 data-[producing=true]:focus-visible:ring-blue-600/50',
+            'data-[unlocked=false]:pointer-events-none',
+            'data-[auto=true]:pointer-events-none',
             className,
           )}
-          disabled={!factory.isUnlocked || factory.isProducing}
           data-auto={factory.isAuto}
+          data-producing={factory.isProducing}
           data-unlocked={factory.isUnlocked}
-          onClick={handleProduce}
+          onClick={() => startProducing(factoryType)}
           {...rest}
         >
           <Image
             src={`/images/factories/${factoryType}.webp`}
             alt={`Produce ${factoryType}`}
-            className="aspect-square rounded-full group-data-[unlocked=false]:grayscale"
+            className="pointer-events-none aspect-square rounded-full bg-foreground text-foreground [image-rendering:pixelated] group-data-[unlocked=false]:grayscale"
             layout="constrained"
             width={100}
             height={100}
@@ -54,11 +56,13 @@ export const FactoryProduce = (props: FactoryProduceProps) => {
 
           <span className="sr-only">{`Produce ${factory.name}`}</span>
 
-          <div className="-bottom-3 absolute">
-            <div className="flex h-6 w-14 items-center justify-center rounded-full border-2 border-black bg-foreground text-white">
-              <div className="text-xs">{factory.amount || 0}</div>
+          {factory.isUnlocked && (
+            <div className="-bottom-2 absolute">
+              <span className="fade-in-50 slide-in-from-bottom-1 flex h-5 w-14 animate-in items-center justify-center rounded-full bg-foreground text-background text-xs group-data-[producing=true]:bg-blue-600 group-data-[unlocked=false]:bg-neutral-500">
+                {factory.amount}
+              </span>
             </div>
-          </div>
+          )}
         </Button>
       </TooltipTrigger>
 

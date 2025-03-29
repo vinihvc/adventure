@@ -1,4 +1,4 @@
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/cn'
 import React from 'react'
 
 const AllianceDialog = React.lazy(() => import('@/components/dialog/alliances'))
@@ -14,7 +14,13 @@ export const Navigation = (props: NavigationProps) => {
   const { className, ...rest } = props
 
   return (
-    <nav className={cn('z-10 flex items-center gap-2', className)} {...rest}>
+    <nav
+      className={cn(
+        'z-10 flex items-center gap-2 max-sm:[&>button]:border-transparent max-sm:[&>button]:bg-transparent max-sm:[&>button]:shadow-none',
+        className,
+      )}
+      {...rest}
+    >
       <StatisticsDialog />
 
       <UpgradesDialog />

@@ -1,8 +1,9 @@
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/cn'
 import * as RDialog from '@radix-ui/react-dialog'
 import { Image } from '@unpic/react'
 import { X } from 'lucide-react'
 import type * as React from 'react'
+import { Button } from './button'
 
 export const Dialog = RDialog.Root
 
@@ -51,6 +52,7 @@ export const DialogContent = (props: DialogContentProps) => {
         className={cn(
           'fixed z-50 grid',
           'flex flex-col',
+          'rounded-xl',
           'max-sm:bottom-0 max-sm:translate-y-0',
           '-translate-x-1/2 sm:-translate-y-1/2 left-1/2 sm:top-1/2',
           'max-h-[80%] w-full sm:max-h-[70%] sm:max-w-lg',
@@ -58,7 +60,7 @@ export const DialogContent = (props: DialogContentProps) => {
           'bg-background',
           'border border-black shadow-lg',
           'duration-200',
-          'sm:shadow-[-8px_8px_0_0] sm:shadow-black',
+          'sm:shadow-[-6px_6px_0_0] sm:shadow-black',
           'data-[state=closed]:animate-out data-[state=open]:animate-in',
           'max-sm:data-[state=open]:slide-in-from-bottom-1/2 max-sm:data-[state=closed]:slide-out-to-bottom-1/2',
           'data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0',
@@ -70,9 +72,14 @@ export const DialogContent = (props: DialogContentProps) => {
         {children}
 
         {hasCloseButton && (
-          <RDialog.Close className="absolute top-4 right-4 opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:pointer-events-none">
-            <X className="size-6" />
-            <span className="sr-only">Close</span>
+          <RDialog.Close
+            className="-top-4 -right-4 absolute max-sm:hidden"
+            asChild
+          >
+            <Button className="drop-shadow-lg" variant="black" size="icon">
+              <X />
+              <span className="sr-only">Close</span>
+            </Button>
           </RDialog.Close>
         )}
       </RDialog.Content>
@@ -92,15 +99,16 @@ export const DialogImage = (props: DialogImageProps) => {
   const { className, ...rest } = props
 
   return (
-    <div className="-top-28 max-md:-translate-x-1/2 absolute left-1/2 inline-flex md:left-2">
+    <div className="-top-28 max-md:-translate-x-1/2 absolute left-1/2 inline-flex rounded-full md:left-2">
       <Image
         layout="constrained"
         width={200}
         height={200}
         className={cn(
-          'aspect-square size-40 rounded-full border-2 border-black drop-shadow-md',
+          'pointer-events-none aspect-square size-40 rounded-full border-4 border-black bg-foreground text-foreground drop-shadow-lg [image-rendering:pixelated]',
           className,
         )}
+        aria-hidden
         {...rest}
       />
     </div>
@@ -125,7 +133,7 @@ export const DialogFooter = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'mt-5 flex flex-col-reverse sm:flex-row sm:justify-end sm:gap-2',
+      'mt-2 flex flex-col-reverse sm:flex-row sm:justify-end sm:gap-2',
       className,
     )}
     {...props}
@@ -140,13 +148,7 @@ export const DialogTitle = (
   const { className, ...rest } = props
 
   return (
-    <RDialog.Title
-      className={cn(
-        'font-semibold text-lg leading-none tracking-tight',
-        className,
-      )}
-      {...rest}
-    />
+    <RDialog.Title className={cn('font-bold text-2xl', className)} {...rest} />
   )
 }
 
@@ -157,7 +159,7 @@ export const DialogDescription = (
 
   return (
     <RDialog.Description
-      className={cn('text-sm opacity-80', className)}
+      className={cn('text-base opacity-80', className)}
       {...rest}
     />
   )

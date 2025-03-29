@@ -1,4 +1,4 @@
-import { FACTORIES, type FactoryType } from '@/data/factories'
+import { FACTORIES, type FactoryType } from '@/content/factories'
 import { atom, useAtomValue } from 'jotai'
 import { store } from '..'
 import { factoriesAtom } from './factories'

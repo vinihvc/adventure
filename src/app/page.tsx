@@ -4,29 +4,22 @@ import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { Navigation } from '@/components/layout/navigation'
 import { Factory } from '@/components/ui/factory'
-import { FACTORIES, type FactoryType } from '@/data/factories'
+import { FACTORIES, type FactoryType } from '@/content/factories'
 import { useContextMenu } from '@/hooks/use-context-menu'
-import { store } from '@/store'
-import { Provider as JotaiProvider } from 'jotai'
-import React from 'react'
-
-const DailyGiftDialog = React.lazy(
-  () => import('@/components/dialog/daily-gift'),
-)
-const WelcomeDialog = React.lazy(() => import('@/components/dialog/welcome'))
+import { Providers } from './providers'
 
 export const HomePage = () => {
   useContextMenu()
 
   return (
-    <JotaiProvider store={store}>
+    <Providers>
       <Background />
 
-      <div className="container relative max-w-6xl overflow-hidden border-2 bg-background/60 backdrop-blur-lg max-sm:pb-16 sm:rounded-xl">
+      <div className="container relative max-w-5xl border bg-background/40 backdrop-blur-lg max-sm:flex-1 max-sm:pb-16 sm:rounded-xl">
         <Header />
 
         <div className="flex w-full items-center">
-          <div className="grid w-full gap-5 p-2 md:grid-cols-2 md:p-5">
+          <div className="grid w-full gap-2 p-2 md:grid-cols-2 md:p-5">
             {Object.keys(FACTORIES).map((factory) => (
               <Factory key={factory} type={factory as FactoryType} />
             ))}
@@ -34,15 +27,11 @@ export const HomePage = () => {
         </div>
       </div>
 
-      <DailyGiftDialog />
-
-      <WelcomeDialog />
-
       <Footer />
 
-      <Navigation className="fixed inset-x-0 bottom-0 h-14 border-neutral-700 border-t bg-foreground sm:hidden" />
+      <Navigation className="fixed inset-x-0 bottom-0 h-14 border-t bg-background/80 px-2 backdrop-blur-lg sm:hidden" />
 
       <TailwindIndicator />
-    </JotaiProvider>
+    </Providers>
   )
 }

@@ -61,6 +61,18 @@ export const amountFormatter = (amount: number) => {
   return '0'
 }
 
+export const suffixAmountFormatter = (amount: number) => {
+  const item = VALUE_RANGE.slice()
+    .reverse()
+    .find((item) => amount >= item.value)
+
+  if (item) {
+    return `${item.symbol}`
+  }
+
+  return ''
+}
+
 /**
  * Capitalizes the first letter of a string.
  *

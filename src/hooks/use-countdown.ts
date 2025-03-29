@@ -1,7 +1,7 @@
 import React from 'react'
 
-import type { FactoryType } from '@/data/factories'
-import { setProducing, useFactory } from '@/store/atoms/factories'
+import type { FactoryType } from '@/content/factories'
+import { stopProducing, useFactory } from '@/store/atoms/factories'
 import { setStatistics } from '@/store/atoms/statistics'
 import { setMoney } from '@/store/atoms/wallet'
 import { useInterval } from './use-interval'
@@ -22,7 +22,7 @@ export const useCountdown = (factory: FactoryType) => {
   const handleOnComplete = () => {
     setMoney(factory)
     setStatistics(factory)
-    setProducing(factory, false)
+    stopProducing(factory)
   }
 
   useInterval(
@@ -31,13 +31,7 @@ export const useCountdown = (factory: FactoryType) => {
         setSeconds(seconds - 1)
       }
 
-      console.log(
-        `Factory ${factory} is running: ${isRunning} and has ${seconds} seconds left`,
-      )
-
       if (seconds < 1) {
-        console.log('Time is up!')
-
         setSeconds(f.time)
         setIsRunning(f.isAuto)
         handleOnComplete()

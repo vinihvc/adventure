@@ -1,4 +1,3 @@
-import autoSfx from '@/assets/sfx/auto.wav'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -11,21 +10,18 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import { FACTORIES, type FactoryType } from '@/data/factories'
-import { useSound } from '@/hooks/use-sound'
+import { FACTORIES, type FactoryType } from '@/content/factories'
 import { isUnlocked, upgradeAuto } from '@/store/atoms/factories'
-import { UserRound } from 'lucide-react'
-import { Card } from '../ui/card'
-import { ScrollArea } from '../ui/scroll-area'
+import { UserSearch } from 'lucide-react'
+import { sound } from '../ui/sound'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
+import { UpgradeCard } from '../ui/upgrade-card'
 
 const ManagersDialog = () => {
-  const { play } = useSound(autoSfx)
-
   const handleAutomatic = (type: FactoryType) => {
     if (!isUnlocked(type)) return
 
-    play()
+    sound.play('auto')
 
     upgradeAuto(type)
   }
@@ -35,9 +31,9 @@ const ManagersDialog = () => {
       <Tooltip>
         <TooltipTrigger asChild>
           <DialogTrigger asChild>
-            <Button size="icon" className="max-sm:w-full">
+            <Button className="max-sm:w-full" variant="white" size="icon">
               <span className="sr-only">Open Managers</span>
-              <UserRound />
+              <UserSearch />
             </Button>
           </DialogTrigger>
         </TooltipTrigger>
@@ -50,30 +46,28 @@ const ManagersDialog = () => {
 
         <DialogHeader className="mt-12 sm:mt-10">
           <DialogTitle>Managers</DialogTitle>
+
           <DialogDescription>
             Hire managers to automate your factories.
           </DialogDescription>
         </DialogHeader>
 
-        <ScrollArea className="flex flex-col">
-          <div className="flex-1 pr-3">
-            <div className="grid grid-cols-3 gap-3">
-              {Object.entries(FACTORIES).map(([key]) => (
-                <Card
-                  key={key}
-                  factoryType={key as FactoryType}
-                  icon={UserRound}
-                  image={`/images/managers/${key}.webp`}
-                  onUpgrade={() => handleAutomatic(key as FactoryType)}
-                />
-              ))}
-            </div>
-          </div>
-        </ScrollArea>
+        <div className="grid grid-cols-3 gap-3">
+          {Object.entries(FACTORIES).map(([key]) => (
+            <UpgradeCard
+              key={key}
+              type="manager"
+              factoryType={key as FactoryType}
+              icon={UserSearch}
+              image={`/images/managers/${key}.webp`}
+              onUpgrade={() => handleAutomatic(key as FactoryType)}
+            />
+          ))}
+        </div>
 
         <DialogFooter>
           <DialogClose asChild>
-            <Button>Close Managers</Button>
+            <Button size="xl">Close Managers</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

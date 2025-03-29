@@ -23,13 +23,14 @@ const AboutDialog = () => {
 
         <DialogHeader className="mt-12 sm:mt-10">
           <DialogTitle>About this game</DialogTitle>
+
           <DialogDescription>
-            Adventure game is a idle game where you can build your own town,
-            generate resources and upgrade your buildings.
+            Idleval (Idle + Medieval) is a idle game where you can build your
+            own town, generate resources and upgrade your buildings.
           </DialogDescription>
         </DialogHeader>
 
-        <div className="grid gap-2 text-sm">
+        <div className="grid gap-2">
           <p className="font-semibold">Tecnologies</p>
 
           <ul className="list-disc pl-4">
@@ -37,7 +38,7 @@ const AboutDialog = () => {
               Made with{' '}
               <a
                 href="https://react.dev/"
-                className="underline hover:text-red-500"
+                className="font-medium underline hover:text-blue-500"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
               >
@@ -48,7 +49,7 @@ const AboutDialog = () => {
               Styling with{' '}
               <a
                 href="https://tailwindcss.com/"
-                className="underline hover:text-red-500"
+                className="font-medium underline hover:text-blue-500"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
               >
@@ -59,7 +60,7 @@ const AboutDialog = () => {
               Components with{' '}
               <a
                 href="https://www.radix-ui.com/"
-                className="underline hover:text-red-500"
+                className="font-medium underline hover:text-blue-500"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
               >
@@ -70,7 +71,7 @@ const AboutDialog = () => {
               Icons by{' '}
               <a
                 href="https://lucide.dev/"
-                className="underline hover:text-red-500"
+                className="font-medium underline hover:text-blue-500"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
               >
@@ -81,7 +82,7 @@ const AboutDialog = () => {
               State management with{' '}
               <a
                 href="https://jotai.org/"
-                className="underline hover:text-red-500"
+                className="font-medium underline hover:text-blue-500"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
               >
@@ -91,12 +92,12 @@ const AboutDialog = () => {
             <li>
               Images by{' '}
               <a
-                href="https://www.adobe.com/products/firefly.html"
-                className="underline hover:text-red-500"
+                href="https://chatgpt.com"
+                className="font-medium underline hover:text-blue-500"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
               >
-                Adobe Firefly
+                ChatGPT
               </a>{' '}
             </li>
           </ul>
@@ -104,7 +105,7 @@ const AboutDialog = () => {
 
         <DialogFooter>
           <DialogClose asChild>
-            <Button>Close About</Button>
+            <Button size="xl">Close About</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

@@ -8,10 +8,15 @@ export const AmountToBuy = () => {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button size="icon" onClick={toggleAmountToBuy}>
+        <Button
+          className="w-11"
+          variant="white"
+          size="icon"
+          onClick={toggleAmountToBuy}
+        >
           <span>
-            <span className="text-xs">x</span>
-            <span>{msc.amountToBuy}</span>
+            <span className="font-light text-sm">x</span>
+            <span className="font-semibold text-base">{msc.amountToBuy}</span>
           </span>
 
           <span className="sr-only">

@@ -1,4 +1,4 @@
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/cn'
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area'
 import type * as React from 'react'
 import { type VariantProps, tv } from 'tailwind-variants'
@@ -9,10 +9,7 @@ export const ScrollArea = (
   const { className, children, ...rest } = props
 
   return (
-    <ScrollAreaPrimitive.Root
-      className={cn('relative overflow-hidden', className)}
-      {...rest}
-    >
+    <ScrollAreaPrimitive.Root className={cn('relative', className)} {...rest}>
       <ScrollAreaPrimitive.Viewport className="h-full w-full rounded-[inherit]">
         {children}
       </ScrollAreaPrimitive.Viewport>

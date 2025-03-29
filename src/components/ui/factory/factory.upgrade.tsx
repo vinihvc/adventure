@@ -1,12 +1,11 @@
-import coinSfx from '@/assets/sfx/coin.wav'
 import { Button } from '@/components/ui/button'
-import type { FactoryType } from '@/data/factories'
-import { useSound } from '@/hooks/use-sound'
+import type { FactoryType } from '@/content/factories'
 import { useFactory } from '@/store/atoms/factories'
 import { type MscAtomProps, useMsc } from '@/store/atoms/msc'
 import { decreaseMoney, useWallet } from '@/store/atoms/wallet'
 import { amountFormatter } from '@/utils/formatters'
 import React from 'react'
+import { sound } from '../sound'
 
 const FactoryDialog = React.lazy(() => import('@/components/dialog/factory'))
 
@@ -33,27 +32,33 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
   const wallet = useWallet()
   const msc = useMsc()
   const factory = useFactory(factoryType)
-  const { play } = useSound(coinSfx)
 
   const handleBuy = () => {
     !factory.isUnlocked ? onUnlock() : onBuyAmount()
 
     decreaseMoney(factory.buyCost * msc.amountToBuy)
 
-    play()
+    sound.play('coin')
   }
 
   const canBuy = wallet.money >= factory.buyCost * msc.amountToBuy
+
+  const buttonVariant = () => {
+    if (factory.isUnlocked && canBuy) return 'success'
+    if (!factory.isUnlocked && !canBuy) return 'white'
+    if (!factory.isUnlocked && canBuy) return 'black'
+  }
 
   return (
     <div className="flex items-center gap-2">
       <Button
         className="w-full font-bold text-xs uppercase"
+        variant={buttonVariant()}
         disabled={!canBuy}
         onClick={handleBuy}
         {...rest}
       >
-        {factory.isUnlocked && (
+        {factory.isUnlocked && canBuy && (
           <span className="flex items-center gap-1">
             Buy
             <span>
@@ -68,7 +73,9 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 
         {!factory.isUnlocked && canBuy && <span>Acquire</span>}
 
-        {!factory.isUnlocked && !canBuy && <span>Money not enough</span>}
+        {factory.isUnlocked && !canBuy && <span>Money not enough</span>}
+
+        {!factory.isUnlocked && !canBuy && <span>Locked</span>}
       </Button>
 
       <FactoryDialog factory={factory} factoryType={factoryType} />

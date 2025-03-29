@@ -1,55 +1,35 @@
-import { FACTORIES, type FactoryType } from '@/data/factories'
+import { FACTORIES, type FactoryType } from '@/content/factories'
 import { atom, useAtomValue } from 'jotai'
 
+import { sound } from '@/components/ui/sound'
 import { store } from '@/store'
 import { mscAtom } from './msc'
 
-export const factoriesAtom = atom({
-  potato: {
-    amount: 1,
-    isProducing: false,
-    isAuto: false,
-    isUnlocked: true,
-  },
-  peasant: {
-    amount: 0,
-    isProducing: false,
-    isAuto: false,
-    isUnlocked: false,
-  },
-  knight: {
-    amount: 0,
-    isProducing: false,
-    isAuto: false,
-    isUnlocked: false,
-  },
-  archer: {
-    amount: 0,
-    isProducing: false,
-    isAuto: false,
-    isUnlocked: false,
-  },
-  engineer: {
-    amount: 0,
-    isProducing: false,
-    isAuto: false,
-    isUnlocked: false,
-  },
-  mage: {
-    amount: 0,
-    isProducing: false,
-    isAuto: false,
-    isUnlocked: false,
-  },
-})
+const initialFactories = Object.fromEntries(
+  Object.keys(FACTORIES).map((factory) => [
+    factory,
+    {
+      amount: factory === 'potato' ? 1 : 0,
+      isProducing: false,
+      isAuto: false,
+      isUnlocked: factory === 'potato',
+      ...FACTORIES[factory as FactoryType],
+    },
+  ]),
+)
+
+export const factoriesAtom = atom(initialFactories)
 
 export const useFactory = (factory: FactoryType) => {
   const factories = useAtomValue(factoriesAtom)
 
-  return {
-    ...FACTORIES[factory],
-    ...factories[factory],
-  }
+  return factories[factory]
+}
+
+export const getFactory = (factory: FactoryType) => {
+  const factories = store.get(factoriesAtom)
+
+  return factories[factory]
 }
 
 export const setAmount = (factory: FactoryType) => {
@@ -68,12 +48,28 @@ export const getAmount = (factory: FactoryType) => {
   return factories[factory].amount
 }
 
-export const setProducing = (factory: FactoryType, isProducing: boolean) => {
+export const startProducing = (factory: FactoryType) => {
+  const { isAuto, isProducing, isUnlocked } = store.get(factoriesAtom)[factory]
+
+  if (isProducing || isAuto || !isUnlocked) return
+
+  sound.play('click')
+
   store.set(factoriesAtom, (prev) => ({
     ...prev,
     [factory]: {
       ...prev[factory],
-      isProducing,
+      isProducing: true,
+    },
+  }))
+}
+
+export const stopProducing = (factory: FactoryType) => {
+  store.set(factoriesAtom, (prev) => ({
+    ...prev,
+    [factory]: {
+      ...prev[factory],
+      isProducing: false,
     },
   }))
 }

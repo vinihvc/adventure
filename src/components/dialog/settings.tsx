@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/dialog'
 import { Switch } from '@/components/ui/switch'
 import { toggleMusic, toggleSfx, useSettings } from '@/store/atoms/settings'
-import { Cog } from 'lucide-react'
+import { Menu } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
 const SettingDialog = () => {
@@ -23,9 +23,9 @@ const SettingDialog = () => {
       <Tooltip>
         <TooltipTrigger asChild>
           <DialogTrigger asChild>
-            <Button size="icon">
+            <Button variant="white" size="icon">
               <span className="sr-only">Open Settings</span>
-              <Cog />
+              <Menu />
             </Button>
           </DialogTrigger>
         </TooltipTrigger>
@@ -39,7 +39,7 @@ const SettingDialog = () => {
         <DialogHeader className="mt-12 sm:mt-10">
           <DialogTitle>Settings</DialogTitle>
           <DialogDescription>
-            Change your settings to fit your preferences.
+            Change the game settings to fit your preferences.
           </DialogDescription>
         </DialogHeader>
 
@@ -71,7 +71,7 @@ const SettingDialog = () => {
 
         <DialogFooter>
           <DialogClose asChild>
-            <Button>Close Settings</Button>
+            <Button size="xl">Close Settings</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

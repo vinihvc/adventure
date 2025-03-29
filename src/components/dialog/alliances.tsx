@@ -1,4 +1,12 @@
 import { Button } from '@/components/ui/button'
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
+import { Handshake } from 'lucide-react'
+import { DialogImage } from '../ui/dialog'
 import {
   Dialog,
   DialogClose,
@@ -6,16 +14,9 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogImage,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
-import { Handshake } from 'lucide-react'
+} from '../ui/dialog'
 
 const AllianceDialog = () => {
   return (
@@ -23,7 +24,7 @@ const AllianceDialog = () => {
       <Tooltip>
         <TooltipTrigger asChild>
           <DialogTrigger asChild>
-            <Button size="icon" className="max-sm:w-full">
+            <Button className="max-sm:w-full" variant="white" size="icon">
               <span className="sr-only">Open Alliances</span>
               <Handshake />
             </Button>
@@ -40,13 +41,13 @@ const AllianceDialog = () => {
           <DialogTitle>Alliances</DialogTitle>
           <DialogDescription>
             Create an alliance with other kingdoms to increase the trade
-            partnership between you
+            partnership between you.
           </DialogDescription>
         </DialogHeader>
 
         <DialogFooter>
           <DialogClose asChild>
-            <Button>Close Alliances</Button>
+            <Button size="xl">Close Alliances</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>
