@@ -31,10 +31,9 @@ export const FactoryCardProduce = (props: FactoryCardProduceProps) => {
             'rounded-full border-2 border-black',
             'data-[producing=true]:border-blue-600',
             'data-[producing=true]:focus-visible:border-blue-600 data-[producing=true]:focus-visible:ring-blue-600/50',
-            'data-[unlocked=false]:pointer-events-none',
-            'data-[auto=true]:pointer-events-none',
             className,
           )}
+          disabled={isProducing || !isUnlocked || isAutomated}
           data-auto={isAutomated}
           data-producing={isProducing}
           data-unlocked={isUnlocked}
