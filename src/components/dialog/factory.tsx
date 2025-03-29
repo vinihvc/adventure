@@ -21,6 +21,9 @@ import { Info } from 'lucide-react'
 import { AnimatedNumber } from '../ui/animated-number'
 
 interface FactoryDialogProps {
+  /**
+   * The factory type
+   */
   factoryType: FactoryType
 }
 

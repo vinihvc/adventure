@@ -73,12 +73,16 @@ export const FactoryUpgrade = (props: FactoryUpgradeProps) => {
 
         {!factory.isUnlocked && canBuy && <span>Acquire</span>}
 
-        {factory.isUnlocked && !canBuy && <span>Money not enough</span>}
+        {factory.isUnlocked && !canBuy && (
+          <span>Money not enough ({amountFormatter(factory.buyCost)})</span>
+        )}
 
-        {!factory.isUnlocked && !canBuy && <span>Locked</span>}
+        {!factory.isUnlocked && !canBuy && (
+          <span>Locked ({amountFormatter(factory.moneyToUnlock)})</span>
+        )}
       </Button>
 
-      <FactoryDialog factory={factory} factoryType={factoryType} />
+      <FactoryDialog factoryType={factoryType} />
     </div>
   )
 }

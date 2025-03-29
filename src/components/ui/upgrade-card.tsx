@@ -2,6 +2,8 @@ import { Button } from '@/components/ui/button'
 import type { FactoryType } from '@/content/factories'
 import { cn } from '@/lib/cn'
 import { useFactory } from '@/store/atoms/factories'
+import { useWallet } from '@/store/atoms/wallet'
+import { amountFormatter } from '@/utils/formatters'
 import { Image } from '@unpic/react'
 import { Check } from 'lucide-react'
 import React from 'react'
@@ -35,13 +37,17 @@ export const UpgradeCard = (props: UpgradeCardProps) => {
     props
 
   const factory = useFactory(factoryType)
+  const wallet = useWallet()
+
+  const canBuy = wallet.money >= factory.autoCost
 
   return (
     <article
       // biome-ignore lint/a11y/noNoninteractiveTabindex: <explanation>
       tabIndex={0}
       aria-label={`Buy ${type} for ${factory.name}`}
-      aria-disabled={!factory.isUnlocked || factory.isAuto}
+      aria-disabled={!factory.isUnlocked || factory.isAuto || !canBuy}
+      data-buyable={canBuy}
       data-unlocked={factory.isUnlocked}
       data-auto={factory.isAuto}
       className={cn(
@@ -99,14 +105,18 @@ export const UpgradeCard = (props: UpgradeCardProps) => {
         type="button"
         size="xs"
         variant={factory.isAuto ? 'success' : 'black'}
-        aria-disabled={!factory.isUnlocked || factory.isAuto}
-        disabled={!factory.isUnlocked}
-        className="relative w-full rounded-t-none rounded-b-xs text-xs uppercase"
+        aria-disabled={!factory.isUnlocked || factory.isAuto || !canBuy}
+        disabled={!factory.isUnlocked || factory.isAuto || !canBuy}
+        className="relative w-full rounded-t-none rounded-b-xs font-medium text-xs uppercase"
         onClick={onUpgrade}
       >
-        &nbsp;{/* Show "Research" when unlocked is true but auto is false */}
-        <span className="absolute group-data-[auto='true']:hidden group-data-[unlocked='false']:hidden">
-          Research
+        &nbsp;
+        <span className="absolute group-data-[buyable='true']:hidden group-data-[unlocked='false']:hidden">
+          Cost {amountFormatter(factory.autoCost)}
+        </span>
+        {/* Show "Research" when unlocked is true but auto is false */}
+        <span className="absolute group-data-[auto='true']:hidden group-data-[buyable='false']:hidden group-data-[unlocked='false']:hidden">
+          Research ({amountFormatter(factory.autoCost)})
         </span>
         {/* Show "Unlock first" when unlocked is false and auto is false */}
         <span className="absolute group-data-[unlocked='true']:hidden">

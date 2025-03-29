@@ -2,7 +2,7 @@ import { FACTORIES, type FactoryType } from '@/content/factories'
 import { atom, useAtomValue } from 'jotai'
 
 import { sound } from '@/components/ui/sound'
-import { store } from '@/store'
+import { store, walletAtom } from '@/store'
 import { mscAtom } from './msc'
 
 const initialFactories = Object.fromEntries(
@@ -84,8 +84,12 @@ export const isUnlocked = (factory: FactoryType) => {
 
 export const upgradeAuto = (factory: FactoryType) => {
   const isUnlocked = store.get(factoriesAtom)[factory].isUnlocked
+  const canUpgrade =
+    store.get(walletAtom).money >= store.get(factoriesAtom)[factory].autoCost
 
-  if (!isUnlocked) return
+  if (!isUnlocked || !canUpgrade) return
+
+  sound.play('auto')
 
   store.set(factoriesAtom, (prev) => ({
     ...prev,

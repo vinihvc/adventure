@@ -5,54 +5,54 @@ export const FACTORIES = {
     name: 'Potato',
     description: 'Produces potatoes to feed your people.',
     time: 2, // 2 seconds
-    value: 6,
-    buyCost: 6,
-    autoCost: 6_000,
+    value: 25,
+    buyCost: 50,
+    autoCost: 5_000,
     moneyToUnlock: 0,
   },
   peasant: {
     name: 'Peasant',
     description: 'Peasant of the Kingdom start to harvesting food',
-    time: 4, // 4 seconds
-    value: 12,
-    buyCost: 12,
-    autoCost: 12_000,
-    moneyToUnlock: 12_000,
+    time: 3, // 3 seconds
+    value: 125,
+    buyCost: 250,
+    autoCost: 25_000,
+    moneyToUnlock: 5_000,
   },
   knight: {
     name: 'Knight',
-    description: 'Knight are necessary to protect the kingdom',
-    time: 6, // 6 seconds
-    value: 24,
-    buyCost: 24,
-    autoCost: 24_000,
-    moneyToUnlock: 24_000,
+    description: 'Knight are necessary to protect the kingdom.',
+    time: 4, // 4 seconds
+    value: 600,
+    buyCost: 1_200,
+    autoCost: 120_000,
+    moneyToUnlock: 25_000,
   },
   archer: {
     name: 'Archer',
-    description: 'Archer provide the escort on the walls of the kingdom',
-    time: 8, // 8 seconds
-    value: 32,
-    buyCost: 32,
-    autoCost: 32_000,
-    moneyToUnlock: 32_000,
+    description: 'Archer provide the escort on the walls of the kingdom.',
+    time: 5, // 5 seconds
+    value: 3_000,
+    buyCost: 6_000,
+    autoCost: 600_000,
+    moneyToUnlock: 120_000,
   },
   engineer: {
     name: 'Engineer',
-    description: 'Engineer repair and research new technologies',
-    time: 9, // 9 seconds
-    value: 40,
-    buyCost: 40,
-    autoCost: 40_000,
-    moneyToUnlock: 40_000,
+    description: 'Engineer repair and research new technologies.',
+    time: 6, // 6 seconds
+    value: 15_000,
+    buyCost: 30_000,
+    autoCost: 3_000_000,
+    moneyToUnlock: 600_000,
   },
   mage: {
     name: 'Mage',
-    description: 'Mage generate respect and power for the kingdom',
-    time: 10, // 10 seconds
-    value: 50,
-    buyCost: 50,
-    autoCost: 50_000,
-    moneyToUnlock: 50_000,
+    description: 'Mage generate respect and power for the kingdom.',
+    time: 7, // 7 seconds
+    value: 75_000,
+    buyCost: 150_000,
+    autoCost: 15_000_000,
+    moneyToUnlock: 3_000_000,
   },
 }

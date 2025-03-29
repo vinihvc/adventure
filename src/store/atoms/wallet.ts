@@ -3,7 +3,7 @@ import { atom, useAtomValue } from 'jotai'
 import { store } from '..'
 import { factoriesAtom } from './factories'
 
-const walletAtom = atom({
+export const walletAtom = atom({
   money: 0,
 })
 

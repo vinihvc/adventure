@@ -11,21 +11,12 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { FACTORIES, type FactoryType } from '@/content/factories'
-import { isUnlocked, upgradeAuto } from '@/store/atoms/factories'
+import { upgradeAuto } from '@/store/atoms/factories'
 import { UserSearch } from 'lucide-react'
-import { sound } from '../ui/sound'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 import { UpgradeCard } from '../ui/upgrade-card'
 
 const ManagersDialog = () => {
-  const handleAutomatic = (type: FactoryType) => {
-    if (!isUnlocked(type)) return
-
-    sound.play('auto')
-
-    upgradeAuto(type)
-  }
-
   return (
     <Dialog>
       <Tooltip>
@@ -60,7 +51,7 @@ const ManagersDialog = () => {
               factoryType={key as FactoryType}
               icon={UserSearch}
               image={`/images/managers/${key}.webp`}
-              onUpgrade={() => handleAutomatic(key as FactoryType)}
+              onUpgrade={() => upgradeAuto(key as FactoryType)}
             />
           ))}
         </div>

@@ -12,16 +12,10 @@ import {
 } from '@/components/ui/dialog'
 import { FACTORIES, type FactoryType } from '@/content/factories'
 import { ArrowBigUpDash } from 'lucide-react'
-import { sound } from '../ui/sound'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 import { UpgradeCard } from '../ui/upgrade-card'
 
 const UpgradesDialog = () => {
-  const handleUpgrade = (type: FactoryType) => {
-    sound.play('upgrade')
-    console.log(type)
-  }
-
   return (
     <Dialog>
       <Tooltip>
@@ -55,14 +49,13 @@ const UpgradesDialog = () => {
               factoryType={key as FactoryType}
               icon={ArrowBigUpDash}
               image={`/images/upgrades/${key}.webp`}
-              onUpgrade={() => handleUpgrade(key as FactoryType)}
             />
           ))}
         </div>
 
         <DialogFooter>
           <DialogClose asChild>
-            <Button size='lg'>Close Upgrades</Button>
+            <Button size="lg">Close Upgrades</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>
