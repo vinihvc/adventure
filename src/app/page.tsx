@@ -15,11 +15,11 @@ export const HomePage = () => {
     <Providers>
       <Background />
 
-      <div className="container relative max-w-5xl border backdrop-blur-xs max-sm:flex-1 max-sm:pb-16 sm:rounded-xl sm:bg-background/40 sm:backdrop-blur-md">
+      <div className="container relative max-w-4xl overflow-hidden border backdrop-blur-xs max-sm:flex-1 max-sm:pb-16 sm:rounded-xl sm:bg-background/40 sm:backdrop-blur-md">
         <Header />
 
-        <div className="flex w-full items-center">
-          <div className="grid w-full gap-2 p-2 md:grid-cols-2 md:p-5">
+        <div className="flex w-full items-center max-sm:mt-4">
+          <div className="grid w-full gap-8 p-2 sm:gap-7 md:grid-cols-2 md:px-5 md:pt-4 md:pb-8">
             {Object.keys(FACTORIES).map((factory) => (
               <FactoryCard key={factory} type={factory as FactoryType} />
             ))}

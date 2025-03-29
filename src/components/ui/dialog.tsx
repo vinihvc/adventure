@@ -52,7 +52,7 @@ export const DialogContent = (props: DialogContentProps) => {
         className={cn(
           'fixed z-50 grid',
           'flex flex-col',
-          'rounded-xl',
+          'rounded-xl max-sm:rounded-b-none',
           'max-sm:bottom-0 max-sm:translate-y-0',
           '-translate-x-1/2 sm:-translate-y-1/2 left-1/2 sm:top-1/2',
           'max-h-[80%] w-full sm:max-h-[70%] sm:max-w-lg',

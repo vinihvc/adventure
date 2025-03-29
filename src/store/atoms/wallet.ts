@@ -4,7 +4,7 @@ import { setStatistics, store } from '..'
 import { getFactory } from './factories'
 
 export const walletAtom = atom({
-  money: 0,
+  money: 5000,
 })
 
 export const useWallet = () => useAtomValue(walletAtom)

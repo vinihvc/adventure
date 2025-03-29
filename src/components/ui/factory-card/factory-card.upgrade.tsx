@@ -36,15 +36,16 @@ export const FactoryCardUpgrade = (props: FactoryCardUpgradeProps) => {
   const canUnlock = hasMoneyToBuy(unlockPrice)
 
   const buttonVariant = () => {
-    if (isUnlocked && canBuyAmount) return 'success'
+    if (isUnlocked && canBuyAmount) return 'green'
     if (!isUnlocked && canUnlock) return 'black'
-    return 'white'
+    return 'gray'
   }
 
   return (
-    <div className={cn('flex items-center gap-2', className)} {...rest}>
+    <div className={cn('flex items-center gap-1', className)} {...rest}>
       <Button
-        className="w-full font-bold text-xs uppercase"
+        className="w-full border font-bold text-xs uppercase drop-shadow-xl"
+        size="sm"
         variant={buttonVariant()}
         disabled={isUnlocked ? !canBuyAmount : !canUnlock}
         onClick={handleBuy}

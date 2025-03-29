@@ -60,7 +60,7 @@ export const UpgradeCard = (props: UpgradeCardProps) => {
           'bg-foreground',
           'rounded-md',
           'transition-all',
-          'data-[enabled="true"]:border-success data-[enabled="true"]:bg-success',
+          'data-[enabled="true"]:border-green-600 data-[enabled="true"]:bg-green-600',
           'outline-0 focus-visible:border-black focus-visible:ring-[3px] focus-visible:ring-black/50',
           className,
         )}
@@ -119,7 +119,7 @@ export const UpgradeCardTrigger = (
   return (
     <Button
       type="button"
-      variant={isEnabled ? 'success' : 'black'}
+      variant={isEnabled ? 'green' : 'black'}
       className="relative w-full rounded-t-none rounded-b-sm font-medium text-xs uppercase group-data-[enabled='false']:disabled:opacity-50"
       {...props}
     />

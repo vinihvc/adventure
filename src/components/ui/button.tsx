@@ -4,6 +4,7 @@ import { Slot } from '@radix-ui/react-slot'
 import type * as React from 'react'
 import { type VariantProps, tv } from 'tailwind-variants'
 import { type SoundsType, sound } from './sound'
+import { borderedText } from './text-border'
 
 const buttonVariants = tv({
   base: [
@@ -25,45 +26,32 @@ const buttonVariants = tv({
       black: [
         'bg-foreground',
         'text-background',
-        'border border-black',
-        'active:bg-foreground/90',
+        'border border-neutral-700',
+        'active:bg-neutral-950',
         'focus-visible:ring-foreground/50 focus-visible:border-foreground',
-        'shadow-lg hover:bg-foreground/90',
+        'hover:bg-neutral-950',
       ],
       white: [
         'bg-background',
         'text-foreground',
-        'border border-white',
-        'active:bg-background/90',
-        'hover:bg-background/90',
+        'border border-neutral-400',
+        'active:bg-neutral-100',
+        'hover:bg-neutral-100',
       ],
-      destructive: [
-        'bg-destructive',
+      gray: [
+        'bg-neutral-600',
         'text-white',
-        'active:bg-destructive/90',
-        'shadow-lg hover:bg-destructive/90 focus-visible:ring-destructive/20',
+        'active:bg-neutral-800',
+        'border-neutral-800',
+        'hover:bg-neutral-800 focus-visible:ring-neutral-800/20',
       ],
-      success: [
-        'bg-success',
+      green: [
+        'bg-green-600',
         'text-white',
-        'active:bg-success/90',
-        'hover:bg-success/90 focus-visible:ring-success/20',
+        'active:bg-green-700',
+        'border-green-800',
+        'hover:bg-green-700 focus-visible:ring-green-800/20',
       ],
-      outline: [
-        'border',
-        'bg-background',
-        'active:bg-accent',
-        'hover:bg-accent',
-        'hover:text-accent-foreground',
-      ],
-      secondary: [
-        'bg-secondary',
-        'text-secondary-foreground',
-        'active:bg-secondary/80',
-        'hover:bg-secondary/80',
-      ],
-      ghost: ['hover:bg-accent', 'hover:text-accent-foreground'],
-      link: ['text-primary', 'underline-offset-4', 'hover:underline'],
     },
     size: {
       xs: 'h-7 px-2',
@@ -129,7 +117,10 @@ export const Button = (props: ButtonProps) => {
     <Comp
       data-slot="button"
       type={type}
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(
+        buttonVariants({ variant, size, className }),
+        borderedText({ variant }),
+      )}
       {...rest}
       onClick={handleClick}
     />

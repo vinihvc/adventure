@@ -1,4 +1,5 @@
 import { AnimatedNumber } from '@/components/ui/animated-number'
+import { borderedText } from '@/components/ui/text-border'
 import {
   Tooltip,
   TooltipContent,
@@ -26,7 +27,12 @@ export const Header = () => {
             />
 
             <span className="font-bold text-lg">
-              {<AnimatedNumber value={money} />}
+              {
+                <AnimatedNumber
+                  value={money}
+                  className={borderedText({ variant: 'white' })}
+                />
+              }
             </span>
           </div>
         </TooltipTrigger>

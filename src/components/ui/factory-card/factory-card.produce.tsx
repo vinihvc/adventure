@@ -4,6 +4,8 @@ import { cn } from '@/lib/cn'
 import { startProducing, useFactory } from '@/store/atoms/factories'
 import { capitalize } from '@/utils/formatters'
 import { Image } from '@unpic/react'
+import { LockKeyhole } from 'lucide-react'
+import { borderedText } from '../text-border'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../tooltip'
 
 interface FactoryCardProduceProps extends React.ComponentProps<typeof Button> {
@@ -40,14 +42,17 @@ export const FactoryCardProduce = (props: FactoryCardProduceProps) => {
           onClick={() => startProducing(factoryType)}
           {...rest}
         >
-          <div className="relative">
+          <div className="relative rounded-full bg-background/20">
             <Image
               src={`/images/factories/${factoryType}.webp`}
               alt={`Produce ${factoryType}`}
-              className="pointer-events-none aspect-square rounded-full bg-foreground text-foreground [image-rendering:pixelated] group-data-[unlocked=false]:grayscale"
+              className={cn(
+                'pointer-events-none aspect-square rounded-full border-2 border-black bg-foreground text-foreground [image-rendering:pixelated] group-data-[unlocked=false]:grayscale',
+                'group-data-[producing=true]:border-blue-600',
+              )}
               layout="constrained"
-              width={100}
-              height={100}
+              width={80}
+              height={80}
             />
 
             {isUpgraded && (
@@ -61,9 +66,22 @@ export const FactoryCardProduce = (props: FactoryCardProduceProps) => {
 
           {isUnlocked && (
             <div className="-bottom-2 absolute">
-              <span className="fade-in-50 slide-in-from-bottom-1 flex h-5 w-14 animate-in items-center justify-center rounded-full bg-foreground text-background text-xs group-data-[producing=true]:bg-blue-600 group-data-[unlocked=false]:bg-neutral-500">
+              <span
+                className={cn(
+                  'fade-in-50 slide-in-from-bottom-1 flex h-5 w-14 animate-in items-center justify-center rounded-full bg-foreground text-background text-xs',
+                  'group-data-[producing=true]:bg-blue-600',
+                  'group-data-[unlocked=false]:bg-neutral-500 group-data-[unlocked=false]:text-neutral-500',
+                  borderedText({ variant: 'black' }),
+                )}
+              >
                 {amount}
               </span>
+            </div>
+          )}
+
+          {!isUnlocked && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <LockKeyhole className="size-5" />
             </div>
           )}
         </Button>

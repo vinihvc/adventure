@@ -23,25 +23,26 @@ export const FactoryCard = (props: FactoryCardProps) => {
   return (
     <article
       className={cn(
-        'flex items-center gap-5',
-        'p-3 md:p-4',
-        'rounded-lg border border-background shadow-xl',
-        'bg-background/60',
-        'outline-hidden',
+        'relative',
+        'flex items-center',
+
+        'pl-10',
         'transition',
-        'focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white',
         className,
       )}
       aria-disabled={!isUnlocked}
       {...rest}
     >
-      <FactoryCardProduce className="-top-1 relative" factoryType={type} />
-
-      <div className="grid w-full gap-2">
+      <div className="grid h-14 w-full rounded-r-lg border border-foreground/50 bg-background/50 py-1 pr-2 pl-8 shadow-xl">
         <Progress value={seconds} isUnlocked={isRunning} factoryType={type} />
 
-        <FactoryCardUpgrade factoryType={type} />
+        <FactoryCardUpgrade className="translate-y-2" factoryType={type} />
       </div>
+
+      <FactoryCardProduce
+        className="-translate-y-1/2 absolute top-1/2 left-0"
+        factoryType={type}
+      />
     </article>
   )
 }
