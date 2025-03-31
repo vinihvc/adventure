@@ -1,6 +1,7 @@
 import { FACTORIES, type FactoryType } from '@/content/factories'
 import { decreaseMoney, hasMoneyToBuy, increaseMoney, store } from '@/store'
-import { atom, useAtomValue } from 'jotai'
+import { useAtomValue } from 'jotai'
+import { atomWithStorage } from 'jotai/utils'
 import { amountToBuy } from './msc'
 
 const INITIAL_FACTORY = 'potato'
@@ -14,17 +15,19 @@ const initialFactories = Object.fromEntries(
       isUpgraded: false,
       isAutomated: false,
       isUnlocked: factory === INITIAL_FACTORY,
-      ...FACTORIES[factory as FactoryType],
     },
   ]),
 )
 
-export const factoriesAtom = atom(initialFactories)
+export const factoriesAtom = atomWithStorage('factories', initialFactories)
 
 export const useFactory = (factory: FactoryType) => {
   const factories = useAtomValue(factoriesAtom)
 
-  return factories[factory]
+  return {
+    ...factories[factory],
+    ...FACTORIES[factory as FactoryType],
+  }
 }
 
 /**
@@ -34,7 +37,10 @@ export const useFactory = (factory: FactoryType) => {
  * @returns The factory
  */
 export const getFactory = (factory: FactoryType) => {
-  return store.get(factoriesAtom)[factory]
+  return {
+    ...store.get(factoriesAtom)[factory],
+    ...FACTORIES[factory as FactoryType],
+  }
 }
 
 /**

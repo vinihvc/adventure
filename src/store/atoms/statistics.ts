@@ -1,5 +1,6 @@
 import { FACTORIES, type FactoryType } from '@/content/factories'
-import { atom, useAtomValue } from 'jotai'
+import { useAtomValue } from 'jotai'
+import { atomWithStorage } from 'jotai/utils'
 import { store } from '..'
 import { getFactory } from './factories'
 
@@ -10,7 +11,7 @@ const initialStatistics = Object.fromEntries(
   ]),
 )
 
-export const statisticsAtom = atom({
+export const statisticsAtom = atomWithStorage('statistics', {
   moneyEarned: 0,
   moneySpent: 0,
   factories: initialStatistics,

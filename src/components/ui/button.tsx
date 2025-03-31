@@ -26,7 +26,7 @@ const buttonVariants = tv({
       black: [
         'bg-foreground',
         'text-background',
-        'border-neutral-700',
+        'border-background/20',
         'active:bg-neutral-950',
         'hover:bg-neutral-950',
         'focus-visible:ring-foreground/50',

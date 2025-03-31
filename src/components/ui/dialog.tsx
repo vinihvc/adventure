@@ -121,7 +121,7 @@ export const DialogHeader = (props: React.ComponentProps<'div'>) => {
   return (
     <div
       className={cn(
-        'mt-8 flex flex-col gap-2 text-center sm:mt-16 sm:text-left',
+        'mt-8 flex flex-col gap-2 text-center sm:mt-12 sm:text-left',
         className,
       )}
       {...rest}

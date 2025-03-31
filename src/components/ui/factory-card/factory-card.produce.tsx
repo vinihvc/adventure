@@ -45,25 +45,28 @@ export const FactoryCardProduce = (props: FactoryCardProduceProps) => {
           onClick={() => startProducing(factoryType)}
           {...rest}
         >
-          <Image
-            src={`/images/factories/${factoryType}.webp`}
-            alt={`Produce ${factoryType}`}
-            className={cn(
-              'rounded-full',
-              '[image-rendering:pixelated]',
-              'pointer-events-none',
-              'group-data-[unlocked=false]:grayscale',
-            )}
-            layout="constrained"
-            width={80}
-            height={80}
-          />
+          <div className="relative rounded-full border border-background/50 p-1 group-data-[producing=true]:border-blue-600">
+            <Image
+              src={`/images/factories/${factoryType}.webp`}
+              alt={`Produce ${factoryType}`}
+              className={cn(
+                'rounded-full',
+                'bg-background p-1',
+                '[image-rendering:pixelated]',
+                'pointer-events-none',
+                'group-data-[unlocked=false]:grayscale',
+              )}
+              layout="constrained"
+              width={80}
+              height={80}
+            />
 
-          {isUpgraded && (
-            <div className="-top-0.5 -right-0.5 absolute flex h-5 w-5 items-center justify-center rounded-full bg-foreground">
-              <span className="font-bold text-[10px]">2x</span>
-            </div>
-          )}
+            {isUpgraded && (
+              <div className="-top-0.5 -right-0.5 absolute flex h-5 w-5 items-center justify-center rounded-full border border-background/20 bg-foreground">
+                <span className="font-bold text-[10px]">2x</span>
+              </div>
+            )}
+          </div>
 
           <span className="sr-only">{`Produce ${name}`}</span>
 

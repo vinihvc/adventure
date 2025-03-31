@@ -1,10 +1,11 @@
 import type { FactoryType } from '@/content/factories'
-import { atom, useAtomValue } from 'jotai'
+import { useAtomValue } from 'jotai'
+import { atomWithStorage } from 'jotai/utils'
 import { setStatistics, store } from '..'
 import { getFactory } from './factories'
 
-export const walletAtom = atom({
-  money: 9999999,
+export const walletAtom = atomWithStorage('wallet', {
+  money: 0,
 })
 
 export const useWallet = () => useAtomValue(walletAtom)

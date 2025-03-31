@@ -23,7 +23,7 @@ export const Header = (props: HeaderProps) => {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-10 flex items-center justify-between bg-foreground/50 p-4 backdrop-blur-sm',
+        'fixed inset-x-0 top-0 z-10 flex items-center justify-between bg-foreground/50 p-4 backdrop-blur-sm sm:sticky',
         className,
       )}
       {...rest}
