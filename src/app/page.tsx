@@ -6,8 +6,10 @@ import { Header } from '@/components/layout/header'
 import { Navigation } from '@/components/layout/navigation'
 import { FactoryCard } from '@/components/ui/factory-card'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { IS_DEV } from '@/config/envs'
 import { FACTORIES, type FactoryType } from '@/content/factories'
 import { useContextMenu } from '@/hooks/use-context-menu'
+import { cn } from '@/lib/cn'
 import { Providers } from './providers'
 
 export const HomePage = () => {
@@ -17,7 +19,7 @@ export const HomePage = () => {
     <Providers>
       <Background />
 
-      <Game>
+      <Game className={cn({ 'select-none': !IS_DEV })}>
         <Header />
 
         <ScrollArea className="flex-1">

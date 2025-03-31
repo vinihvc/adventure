@@ -1,3 +1,4 @@
+import { IS_DEV } from '@/config/envs'
 import React from 'react'
 
 interface ContextMenuProps {
@@ -17,8 +18,7 @@ export const useContextMenu = (props: ContextMenuProps = {}) => {
 
   React.useEffect(() => {
     const handleContextmenu = (e: MouseEvent) => {
-      if (defaultIsDisabled || process.env.NODE_ENV === 'production')
-        e.preventDefault()
+      if (defaultIsDisabled || !IS_DEV) e.preventDefault()
     }
 
     document.addEventListener('contextmenu', handleContextmenu)
