@@ -64,25 +64,26 @@ export const FactoryCardUpgrade = (props: FactoryCardUpgradeProps) => {
         )}
 
         {!isUnlocked && canUnlock && (
-          <span>
+          <span className="flex items-center gap-1">
             <span>Unlock </span>
-            <span className="absolute right-4 text-xs normal-case">
+
+            <span className="absolute right-4 normal-case max-sm:text-[10px]">
               {amountFormatter(unlockPrice)}
             </span>
           </span>
         )}
 
         {isUnlocked && !canBuyAmount && (
-          <span>
+          <span className="flex items-center gap-1">
             <span>No money</span>
-            <span className="absolute right-4 text-xs normal-case">
+            <span className="absolute right-4 normal-case max-sm:text-[10px]">
               {amountFormatter(buyCost * amountToBuy)}
             </span>
           </span>
         )}
 
         {!isUnlocked && !canUnlock && (
-          <span>
+          <span className="flex items-center gap-1">
             Locked
             <span className="absolute right-4 text-xs normal-case">
               {amountFormatter(unlockPrice)}
