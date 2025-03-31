@@ -37,7 +37,7 @@ const FactoryDialog = (props: FactoryDialogProps) => {
       <Tooltip>
         <TooltipTrigger asChild>
           <DialogTrigger asChild>
-            <Button className="size-8 shrink-0" variant="white" size="icon">
+            <Button className="shrink-0" variant="blue" size="icon">
               <span className="sr-only">{`${factory.name}'s Info`}</span>
               <Info className="size-4" />
             </Button>
@@ -64,17 +64,17 @@ const FactoryDialog = (props: FactoryDialogProps) => {
 
           <div className="flex justify-between">
             <div>Production speed</div>
-            <div>{`${factory.productionTime}x`}</div>
+            <AnimatedNumber value={factory.productionTime} suffix="x" />
           </div>
 
           <div className="flex justify-between">
             <div>Production per click</div>
-            <div>{factory.productionValue}</div>
+            <AnimatedNumber value={factory.productionValue} />
           </div>
 
           <div className="flex justify-between">
             <div>Production per hour</div>
-            <div>{factory.productionValue * 3600}</div>
+            <AnimatedNumber value={factory.productionValue * 3600} />
           </div>
 
           <div className="flex justify-between">

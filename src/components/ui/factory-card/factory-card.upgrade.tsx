@@ -24,7 +24,7 @@ export const FactoryCardUpgrade = (props: FactoryCardUpgradeProps) => {
   const { factoryType, className, ...rest } = props
 
   const { amountToBuy } = useMsc()
-  const { isUnlocked, buyCost, unlockPrice } = useFactory(factoryType)
+  const { isUnlocked, buyCost, unlockPrice, name } = useFactory(factoryType)
 
   const handleBuy = () => {
     isUnlocked
@@ -44,8 +44,7 @@ export const FactoryCardUpgrade = (props: FactoryCardUpgradeProps) => {
   return (
     <div className={cn('flex items-center gap-1', className)} {...rest}>
       <Button
-        className="w-full border font-bold text-xs uppercase drop-shadow-xl"
-        size="sm"
+        className="w-full font-bold text-xs uppercase max-sm:justify-between"
         variant={buttonVariant()}
         disabled={isUnlocked ? !canBuyAmount : !canUnlock}
         onClick={handleBuy}
@@ -54,22 +53,31 @@ export const FactoryCardUpgrade = (props: FactoryCardUpgradeProps) => {
           <span className="flex items-center gap-1">
             Buy
             <span>
-              <span className="text-xs normal-case">x</span>
+              <span className="text-[10px] normal-case">x</span>
               <span>{amountToBuy}</span>
-              <span className="pl-1 text-xs">
-                ({amountFormatter(buyCost * amountToBuy)})
-              </span>
+            </span>
+            <span className="max-sm:text-[10px]">{name}</span>
+            <span className="absolute right-4 normal-case max-sm:text-[10px]">
+              {amountFormatter(buyCost * amountToBuy)}
             </span>
           </span>
         )}
 
         {!isUnlocked && canUnlock && (
-          <span>Acquire ({amountFormatter(unlockPrice)})</span>
+          <span>
+            <span>Unlock </span>
+            <span className="absolute right-4 text-xs normal-case">
+              {amountFormatter(unlockPrice)}
+            </span>
+          </span>
         )}
 
         {isUnlocked && !canBuyAmount && (
           <span>
-            Money not enough ({amountFormatter(buyCost * amountToBuy)})
+            <span>Money not enough</span>
+            <span className="absolute right-4 text-xs normal-case">
+              {amountFormatter(buyCost * amountToBuy)}
+            </span>
           </span>
         )}
 

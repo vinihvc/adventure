@@ -10,12 +10,13 @@ const buttonVariants = tv({
   base: [
     'relative',
     'inline-flex items-center justify-center gap-2',
-    'font-medium text-sm',
-    'rounded-lg shadow-lg',
+    'font-medium text-sm tracking-wide',
+    'rounded-lg shadow-sm',
+    'border',
     'cursor-pointer whitespace-nowrap',
     'transition-all',
     'active:scale-95',
-    'outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50',
+    'outline-none focus-visible:ring-[3px]',
     'disabled:pointer-events-none aria-disabled:pointer-events-none',
     'aria-invalid:border-destructive aria-invalid:ring-destructive/20',
     "[&_svg:not([class*='size-'])]:size-5 [&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -25,23 +26,24 @@ const buttonVariants = tv({
       black: [
         'bg-foreground',
         'text-background',
-        'border border-neutral-700',
+        'border-neutral-700',
         'active:bg-neutral-950',
-        'focus-visible:ring-foreground/50 focus-visible:border-foreground',
         'hover:bg-neutral-950',
+        'focus-visible:ring-foreground/50',
       ],
       white: [
         'bg-background',
         'text-foreground',
-        'border border-neutral-400',
+        'border-foreground',
         'active:bg-neutral-100',
         'hover:bg-neutral-100',
+        'focus-visible:ring-foreground/50',
       ],
       gray: [
         'bg-neutral-600',
         'text-white',
         'active:bg-neutral-800',
-        'border-neutral-800',
+        'border-foreground',
         'hover:bg-neutral-800 focus-visible:ring-neutral-800/20',
       ],
       green: [
@@ -50,6 +52,14 @@ const buttonVariants = tv({
         'active:bg-green-700',
         'border-green-800',
         'hover:bg-green-700 focus-visible:ring-green-800/20',
+        'focus-visible:ring-green-800/50',
+      ],
+      blue: [
+        'bg-blue-600',
+        'text-white',
+        'active:bg-blue-700',
+        'border-blue-800',
+        'hover:bg-blue-700 focus-visible:ring-blue-800/20',
       ],
     },
     size: {
@@ -60,12 +70,8 @@ const buttonVariants = tv({
       xl: 'h-11 px-6 has-[>svg]:px-6',
       icon: 'size-9',
     },
-    pressable: {
-      true: 'shadow-[0_5px_0] active:shadow-none active:translate-y-1',
-    },
   },
   defaultVariants: {
-    pressable: false,
     variant: 'black',
     size: 'md',
   },
@@ -118,7 +124,7 @@ export const Button = (props: ButtonProps) => {
       type={type}
       className={cn(
         buttonVariants({ variant, size, className }),
-        borderedText({ variant }),
+        borderedText({ variant, size: 'lg' }),
       )}
       {...rest}
       onClick={handleClick}

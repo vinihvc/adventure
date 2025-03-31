@@ -4,6 +4,7 @@ import { totalToEarnAfterProduce, useFactory } from '@/store'
 import { amountFormatter, timeFormatter } from '@/utils/formatters'
 import * as RProgress from '@radix-ui/react-progress'
 import type * as React from 'react'
+import { borderedText } from '../text-border'
 import classes from './progress.module.css'
 
 interface ProgressProps extends React.ComponentProps<typeof RProgress.Root> {
@@ -43,7 +44,7 @@ export const Progress = (props: ProgressProps) => {
     <RProgress.Root
       data-auto={isAutomated}
       className={cn(
-        'group relative h-6 w-full overflow-hidden rounded-full border border-neutral-400 bg-background',
+        'group relative h-6 w-full overflow-hidden rounded-full border border-foreground/50 bg-background',
         className,
       )}
       {...rest}
@@ -51,14 +52,15 @@ export const Progress = (props: ProgressProps) => {
       <RProgress.Indicator
         style={{ animationDuration }}
         className={cn(
-          'h-full w-0 flex-1 bg-blue-500',
+          'h-full w-0 flex-1 bg-blue-600',
           isUnlocked && classes.fill,
         )}
       />
 
       <div
         className={cn(
-          'absolute inset-0 flex items-center justify-between px-3 font-semibold text-sm text-white',
+          'absolute inset-0 flex items-center justify-between px-3 font-semibold text-background text-sm tracking-wide',
+          borderedText({ variant: 'blue' }),
         )}
       >
         <span className="w-40 text-xs">{timeFormatter(productionTime)}</span>
@@ -68,7 +70,8 @@ export const Progress = (props: ProgressProps) => {
       <div
         style={{ animationDuration }}
         className={cn(
-          'absolute inset-0 flex items-center justify-between px-3 font-semibold text-black text-sm',
+          'absolute inset-0 flex items-center justify-between px-3 font-semibold text-foreground text-sm tracking-wide',
+          borderedText({ variant: 'white' }),
           isUnlocked && classes.clip,
         )}
       >

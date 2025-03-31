@@ -38,7 +38,7 @@ const AboutDialog = () => {
               Made with{' '}
               <a
                 href="https://react.dev/"
-                className="font-medium underline hover:text-blue-500"
+                className="font-medium underline hover:text-blue-600"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
               >
@@ -49,7 +49,7 @@ const AboutDialog = () => {
               Styling with{' '}
               <a
                 href="https://tailwindcss.com/"
-                className="font-medium underline hover:text-blue-500"
+                className="font-medium underline hover:text-blue-600"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
               >
@@ -60,7 +60,7 @@ const AboutDialog = () => {
               Components with{' '}
               <a
                 href="https://www.radix-ui.com/"
-                className="font-medium underline hover:text-blue-500"
+                className="font-medium underline hover:text-blue-600"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
               >
@@ -71,7 +71,7 @@ const AboutDialog = () => {
               Icons by{' '}
               <a
                 href="https://lucide.dev/"
-                className="font-medium underline hover:text-blue-500"
+                className="font-medium underline hover:text-blue-600"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
               >
@@ -82,7 +82,7 @@ const AboutDialog = () => {
               State management with{' '}
               <a
                 href="https://jotai.org/"
-                className="font-medium underline hover:text-blue-500"
+                className="font-medium underline hover:text-blue-600"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
               >
@@ -93,7 +93,7 @@ const AboutDialog = () => {
               Images by{' '}
               <a
                 href="https://chatgpt.com"
-                className="font-medium underline hover:text-blue-500"
+                className="font-medium underline hover:text-blue-600"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
               >

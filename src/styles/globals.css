@@ -83,6 +83,6 @@
 	}
 
 	#root {
-		@apply relative h-full min-h-screen flex flex-col items-center justify-center sm:px-5 overflow-hidden;
+		@apply relative h-full min-h-dvh flex flex-col items-center justify-center sm:px-5 overflow-hidden;
 	}
 }

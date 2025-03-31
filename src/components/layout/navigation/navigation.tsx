@@ -20,7 +20,7 @@ export const Navigation = (props: NavigationProps) => {
   return (
     <nav
       className={cn(
-        'z-10 flex items-center gap-2 max-sm:[&>button]:border-transparent max-sm:[&>button]:bg-transparent max-sm:[&>button]:shadow-none',
+        'z-10 flex items-center gap-2 max-sm:[&>button]:border-transparent max-sm:[&>button]:bg-transparent max-sm:[&>button]:text-background max-sm:[&>button]:shadow-none max-sm:[&>button]:hover:bg-transparent',
         className,
       )}
       {...rest}

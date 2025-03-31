@@ -5,6 +5,7 @@ import { startProducing, useFactory } from '@/store/atoms/factories'
 import { capitalize } from '@/utils/formatters'
 import { Image } from '@unpic/react'
 import { LockKeyhole } from 'lucide-react'
+import { AnimatedNumber } from '../animated-number'
 import { borderedText } from '../text-border'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../tooltip'
 
@@ -25,16 +26,18 @@ export const FactoryCardProduce = (props: FactoryCardProduceProps) => {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
-          tabIndex={isProducing || !isUnlocked || isAutomated ? -1 : 0}
           className={cn(
             'group relative',
-            'size-20',
-            'shrink-0 p-0',
-            'rounded-full border-2 border-black',
-            'data-[producing=true]:border-blue-600',
+            'size-22',
+            'text-background',
+            'border-2',
+            'shrink-0',
+            'rounded-full border-foreground',
             'data-[producing=true]:focus-visible:border-blue-600 data-[producing=true]:focus-visible:ring-blue-600/50',
+            'data-[producing=true]:border-blue-600',
             className,
           )}
+          size="icon"
           disabled={isProducing || !isUnlocked || isAutomated}
           data-auto={isAutomated}
           data-producing={isProducing}
@@ -42,25 +45,25 @@ export const FactoryCardProduce = (props: FactoryCardProduceProps) => {
           onClick={() => startProducing(factoryType)}
           {...rest}
         >
-          <div className="relative rounded-full bg-background/20 p-1">
-            <Image
-              src={`/images/factories/${factoryType}.webp`}
-              alt={`Produce ${factoryType}`}
-              className={cn(
-                'pointer-events-none aspect-square rounded-full border-2 border-black bg-foreground text-foreground [image-rendering:pixelated] group-data-[unlocked=false]:grayscale',
-                'group-data-[producing=true]:border-blue-600',
-              )}
-              layout="constrained"
-              width={80}
-              height={80}
-            />
-
-            {isUpgraded && (
-              <div className="-top-0.5 -right-0.5 absolute flex h-5 w-5 items-center justify-center rounded-full bg-foreground">
-                <span className="font-bold text-[10px]">2x</span>
-              </div>
+          <Image
+            src={`/images/factories/${factoryType}.webp`}
+            alt={`Produce ${factoryType}`}
+            className={cn(
+              'rounded-full',
+              '[image-rendering:pixelated]',
+              'pointer-events-none',
+              'group-data-[unlocked=false]:grayscale',
             )}
-          </div>
+            layout="constrained"
+            width={80}
+            height={80}
+          />
+
+          {isUpgraded && (
+            <div className="-top-0.5 -right-0.5 absolute flex h-5 w-5 items-center justify-center rounded-full bg-foreground">
+              <span className="font-bold text-[10px]">2x</span>
+            </div>
+          )}
 
           <span className="sr-only">{`Produce ${name}`}</span>
 
@@ -68,13 +71,12 @@ export const FactoryCardProduce = (props: FactoryCardProduceProps) => {
             <div className="-bottom-2 absolute">
               <span
                 className={cn(
-                  'fade-in-50 slide-in-from-bottom-1 flex h-5 w-14 animate-in items-center justify-center rounded-full bg-foreground text-background text-xs',
-                  'group-data-[producing=true]:bg-blue-600',
-                  'group-data-[unlocked=false]:bg-neutral-500 group-data-[unlocked=false]:text-neutral-500',
-                  borderedText({ variant: 'black' }),
+                  'fade-in-50 slide-in-from-bottom-1 flex h-6 w-16 animate-in items-center justify-center rounded-lg border border-background/20 bg-foreground text-background text-xs',
+                  'group-data-[producing=true]:border-blue-800 group-data-[producing=true]:bg-blue-600',
+                  borderedText({ variant: isProducing ? 'blue' : 'black' }),
                 )}
               >
-                {amount}
+                <AnimatedNumber value={amount} suffix="" />
               </span>
             </div>
           )}

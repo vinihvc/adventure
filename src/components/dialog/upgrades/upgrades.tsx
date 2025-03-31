@@ -10,6 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { FACTORIES, type FactoryType } from '@/content/factories'
 import { ArrowBigUpDash } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../../ui/tooltip'
@@ -42,11 +43,13 @@ const UpgradesDialog = () => {
           </DialogDescription>
         </DialogHeader>
 
-        <div className="grid grid-cols-3 gap-3">
-          {Object.entries(FACTORIES).map(([key]) => (
-            <UpgradesCard key={key} factoryType={key as FactoryType} />
-          ))}
-        </div>
+        <ScrollArea className="flex flex-col">
+          <div className="grid grid-cols-3 gap-2">
+            {Object.entries(FACTORIES).map(([key]) => (
+              <UpgradesCard key={key} factoryType={key as FactoryType} />
+            ))}
+          </div>
+        </ScrollArea>
 
         <DialogFooter>
           <DialogClose asChild>

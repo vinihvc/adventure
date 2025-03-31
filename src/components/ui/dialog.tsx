@@ -55,12 +55,12 @@ export const DialogContent = (props: DialogContentProps) => {
           'rounded-xl max-sm:rounded-b-none',
           'max-sm:bottom-0 max-sm:translate-y-0',
           '-translate-x-1/2 sm:-translate-y-1/2 left-1/2 sm:top-1/2',
-          'max-h-[80dvh] w-full sm:max-h-[70dvh] sm:max-w-lg',
+          'max-h-[90dvh] w-full sm:max-h-[70dvh] sm:max-w-lg',
           'gap-4 p-3 sm:p-6',
           'bg-background',
-          'border border-black shadow-lg',
+          'border border-foreground shadow-lg',
           'duration-200',
-          'sm:shadow-[-6px_6px_0_0] sm:shadow-black',
+          'sm:shadow-[-6px_6px_0_0] sm:shadow-foreground',
           'data-[state=closed]:animate-out data-[state=open]:animate-in',
           'max-sm:data-[state=open]:slide-in-from-bottom-1/2 max-sm:data-[state=closed]:slide-out-to-bottom-1/2',
           'data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0',
@@ -99,13 +99,13 @@ export const DialogImage = (props: DialogImageProps) => {
   const { className, ...rest } = props
 
   return (
-    <div className="-top-28 max-md:-translate-x-1/2 absolute left-1/2 inline-flex rounded-full border-6 border-black md:left-2">
+    <div className="-top-12 sm:-top-28 max-md:-translate-x-1/2 absolute left-1/2 inline-flex rounded-full border-4 border-foreground sm:border-6 md:left-2">
       <Image
         layout="constrained"
         width={200}
         height={200}
         className={cn(
-          'pointer-events-none aspect-square size-40 rounded-full border-4 border-white bg-foreground text-foreground drop-shadow-lg [image-rendering:pixelated]',
+          'pointer-events-none aspect-square size-20 rounded-full border-2 border-white bg-foreground text-foreground drop-shadow-lg [image-rendering:pixelated] sm:size-40 sm:border-4',
           className,
         )}
         aria-hidden
@@ -121,7 +121,7 @@ export const DialogHeader = (props: React.ComponentProps<'div'>) => {
   return (
     <div
       className={cn(
-        'mt-16 flex flex-col gap-2 text-center sm:mt-16 sm:text-left',
+        'mt-8 flex flex-col gap-2 text-center sm:mt-16 sm:text-left',
         className,
       )}
       {...rest}
@@ -137,7 +137,7 @@ export const DialogFooter = (props: React.ComponentProps<'div'>) => {
   return (
     <div
       className={cn(
-        'mt-2 flex flex-col-reverse sm:flex-row sm:justify-end sm:gap-2',
+        'flex flex-col-reverse sm:flex-row sm:justify-end sm:gap-2',
         className,
       )}
       {...rest}

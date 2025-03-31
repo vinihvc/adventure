@@ -56,12 +56,12 @@ export const UpgradeCard = (props: UpgradeCardProps) => {
         data-enabled={isEnabled}
         className={cn(
           'group relative',
-          'border-2 border-black',
+          'border-2 border-foreground',
           'bg-foreground',
           'rounded-md',
           'transition-all',
           'data-[enabled="true"]:border-green-600 data-[enabled="true"]:bg-green-600',
-          'outline-0 focus-visible:border-black focus-visible:ring-[3px] focus-visible:ring-black/50',
+          'outline-0 focus-visible:border-foreground focus-visible:ring-[3px] focus-visible:ring-foreground/50',
           className,
         )}
         {...rest}
@@ -80,7 +80,7 @@ export const UpgradeCard = (props: UpgradeCardProps) => {
         <Tooltip>
           <TooltipTrigger asChild>
             <div className="absolute top-1 right-1">
-              <div className="flex size-7 items-center justify-center rounded-lg border-2 border-black bg-background text-foreground">
+              <div className="flex size-7 items-center justify-center rounded-lg border-2 border-foreground bg-background text-foreground">
                 <Icon className="size-4" />
               </div>
             </div>
@@ -94,7 +94,7 @@ export const UpgradeCard = (props: UpgradeCardProps) => {
             <div className="absolute top-1 left-1">
               <Image
                 src={`/images/factories/${factoryType}.webp`}
-                className="pointer-events-none aspect-square size-7 rounded-lg border-2 border-black object-contain"
+                className="pointer-events-none aspect-square size-7 rounded-lg border-2 border-foreground object-contain"
                 layout="constrained"
                 width={28}
                 height={28}
@@ -120,7 +120,7 @@ export const UpgradeCardTrigger = (
     <Button
       type="button"
       variant={isEnabled ? 'green' : 'black'}
-      className="relative w-full rounded-t-none rounded-b-sm font-medium text-xs uppercase group-data-[enabled='false']:disabled:opacity-50"
+      className="relative w-full rounded-t-none rounded-b-sm border-0 font-medium text-[10px] uppercase group-data-[enabled='false']:disabled:opacity-50"
       {...props}
     />
   )
