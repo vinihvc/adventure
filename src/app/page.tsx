@@ -21,7 +21,7 @@ export const HomePage = () => {
         <Header />
 
         <ScrollArea className="flex-1">
-          <div className="grid w-full gap-8 p-4 sm:gap-7 md:grid-cols-2">
+          <div className="grid w-full gap-6 p-4 md:grid-cols-2">
             {Object.keys(FACTORIES).map((factory) => (
               <FactoryCard key={factory} type={factory as FactoryType} />
             ))}
@@ -31,7 +31,7 @@ export const HomePage = () => {
 
       <Footer />
 
-      <Navigation className="fixed inset-x-0 bottom-0 h-14 w-full border-background/20 border-t bg-foreground/80 px-2 backdrop-blur-lg sm:hidden" />
+      <Navigation className="fixed inset-x-0 bottom-0 h-14 w-full border-background/20 border-t bg-foreground/80 px-2 backdrop-blur-lg sm:hidden [&>button]:size-full [&>button]:hover:bg-foreground/90" />
 
       <TailwindIndicator />
     </Providers>
