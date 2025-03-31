@@ -24,7 +24,7 @@ const UpgradesDialog = () => {
           <DialogTrigger asChild>
             <Button variant="white" size="icon">
               <span className="sr-only">Open Upgrades</span>
-              <ArrowBigUpDash className="max-sm:size-6" />
+              <ArrowBigUpDash />
             </Button>
           </DialogTrigger>
         </TooltipTrigger>

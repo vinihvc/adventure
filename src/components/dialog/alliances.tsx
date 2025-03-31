@@ -5,7 +5,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { Handshake } from 'lucide-react'
+import { CircleOff, Handshake } from 'lucide-react'
 import { DialogImage } from '../ui/dialog'
 import {
   Dialog,
@@ -26,7 +26,7 @@ const AllianceDialog = () => {
           <DialogTrigger asChild>
             <Button variant="white" size="icon">
               <span className="sr-only">Open Alliances</span>
-              <Handshake className="max-sm:size-6" />
+              <Handshake />
             </Button>
           </DialogTrigger>
         </TooltipTrigger>
@@ -45,6 +45,11 @@ const AllianceDialog = () => {
             partnership between you.
           </DialogDescription>
         </DialogHeader>
+
+        <div className="flex flex-col items-center justify-center gap-2 py-6 font-medium">
+          <CircleOff className="size-8" />
+          <p>There's no alliances available right now.</p>
+        </div>
 
         <DialogFooter>
           <DialogClose asChild>

@@ -24,7 +24,7 @@ const ManagersDialog = () => {
           <DialogTrigger asChild>
             <Button variant="white" size="icon">
               <span className="sr-only">Open Managers</span>
-              <UserSearch className="max-sm:size-6" />
+              <UserSearch />
             </Button>
           </DialogTrigger>
         </TooltipTrigger>

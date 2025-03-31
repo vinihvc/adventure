@@ -25,13 +25,13 @@ export const Navigation = (props: NavigationProps) => {
       )}
       {...rest}
     >
-      <StatisticsDialog />
-
       <UpgradesDialog />
 
       <ManagersDialog />
 
       <AllianceDialog />
+
+      <StatisticsDialog />
     </nav>
   )
 }

@@ -33,7 +33,16 @@ export const HomePage = () => {
 
       <Footer />
 
-      <Navigation className="fixed inset-x-0 bottom-0 h-14 w-full border-background/20 border-t bg-foreground/80 px-2 backdrop-blur-lg sm:hidden [&>button]:size-full [&>button]:hover:bg-foreground/90" />
+      <Navigation
+        className={cn(
+          'fixed inset-x-0 bottom-0',
+          'h-14 w-full',
+          'border-background/20 border-t',
+          'bg-foreground/80 backdrop-blur-lg',
+          'px-2 sm:hidden',
+          '[&>button]:size-full [&>button]:hover:bg-foreground/90 [&>button]:active:bg-foreground/90',
+        )}
+      />
 
       <TailwindIndicator />
     </Providers>

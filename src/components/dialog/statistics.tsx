@@ -27,7 +27,7 @@ const StatisticsDialog = () => {
           <DialogTrigger asChild>
             <Button variant="white" size="icon">
               <span className="sr-only">Open Statistics</span>
-              <PieChart className="max-sm:size-6" />
+              <PieChart />
             </Button>
           </DialogTrigger>
         </TooltipTrigger>
