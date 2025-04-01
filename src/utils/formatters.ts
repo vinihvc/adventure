@@ -54,6 +54,10 @@ export const amountFormatter = (amount: number) => {
   return '0'
 }
 
+export const amountFormatterWithDolarSign = (amount: number) => {
+  return `$${amountFormatter(amount)}`
+}
+
 export const suffixAmountFormatter = (amount: number) => {
   const item = VALUE_RANGE.slice()
     .reverse()

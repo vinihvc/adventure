@@ -12,7 +12,10 @@ import {
   useMsc,
 } from '@/store/atoms/msc'
 import { hasMoneyToBuy } from '@/store/atoms/wallet'
-import { amountFormatter } from '@/utils/formatters'
+import {
+  amountFormatter,
+  amountFormatterWithDolarSign,
+} from '@/utils/formatters'
 import React from 'react'
 
 const FactoryDialog = React.lazy(() => import('@/components/dialog/factory'))
@@ -71,14 +74,18 @@ export const FactoryCardUpgrade = (props: FactoryCardUpgradeProps) => {
               <span className="max-sm:hidden">{name}</span>
             </span>
 
-            <span className="normal-case">{amountFormatter(totalToPay)}</span>
+            <span className="normal-case">
+              {amountFormatterWithDolarSign(totalToPay)}
+            </span>
           </>
         )}
 
         {!isUnlocked && canUnlock && (
           <>
             Unlock
-            <span className="normal-case">{amountFormatter(unlockPrice)}</span>
+            <span className="normal-case">
+              {amountFormatterWithDolarSign(unlockPrice)}
+            </span>
           </>
         )}
 
@@ -87,14 +94,18 @@ export const FactoryCardUpgrade = (props: FactoryCardUpgradeProps) => {
         {isUnlocked && !canBuyAmount && (
           <>
             No money
-            <span className="normal-case">{amountFormatter(totalToPay)}</span>
+            <span className="normal-case">
+              {amountFormatterWithDolarSign(totalToPay)}
+            </span>
           </>
         )}
 
         {!isUnlocked && !canUnlock && (
           <>
             Locked
-            <span className="normal-case">{amountFormatter(unlockPrice)}</span>
+            <span className="normal-case">
+              {amountFormatterWithDolarSign(unlockPrice)}
+            </span>
           </>
         )}
       </Button>

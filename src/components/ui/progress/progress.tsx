@@ -1,7 +1,7 @@
 import type { FactoryType } from '@/content/factories'
 import { cn } from '@/lib/cn'
 import { totalToEarnAfterProduce, useFactory } from '@/store'
-import { amountFormatter, timeFormatter } from '@/utils/formatters'
+import { amountFormatterWithDolarSign, timeFormatter } from '@/utils/formatters'
 import * as RProgress from '@radix-ui/react-progress'
 import type * as React from 'react'
 import { borderedText } from '../text-border'
@@ -64,7 +64,9 @@ export const Progress = (props: ProgressProps) => {
         )}
       >
         <span className="w-40 text-xs">{timeFormatter(productionTime)}</span>
-        <span>{amountFormatter(totalToEarnAfterProduce(factoryType))}</span>
+        <span>
+          {amountFormatterWithDolarSign(totalToEarnAfterProduce(factoryType))}
+        </span>
       </div>
 
       <div
@@ -76,7 +78,9 @@ export const Progress = (props: ProgressProps) => {
         )}
       >
         <span className="w-40 text-xs">{timeFormatter(productionTime)}</span>
-        <span>{amountFormatter(totalToEarnAfterProduce(factoryType))}</span>
+        <span>
+          {amountFormatterWithDolarSign(totalToEarnAfterProduce(factoryType))}
+        </span>
       </div>
     </RProgress.Root>
   )
