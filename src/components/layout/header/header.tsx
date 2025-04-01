@@ -30,7 +30,7 @@ export const Header = (props: HeaderProps) => {
     >
       <Tooltip>
         <TooltipTrigger asChild>
-          <div className="relative flex h-9 w-32 translate-x-2 items-center justify-end whitespace-nowrap rounded-md border border-foreground bg-background pr-2 shadow-lg">
+          <div className="relative flex h-9 w-36 translate-x-2 items-center justify-end whitespace-nowrap rounded-md border border-foreground bg-background pr-2 shadow-lg">
             <Coin
               className="-left-2 -translate-y-1.5 absolute top-0 size-12 shrink-0"
               aria-hidden
