@@ -54,7 +54,7 @@ export const FactoryCardUpgrade = (props: FactoryCardUpgradeProps) => {
   return (
     <div className={cn('flex items-center gap-1', className)} {...rest}>
       <Button
-        className="w-full font-bold text-xs uppercase max-sm:justify-between"
+        className="w-full justify-between gap-1 px-2 font-bold text-xs uppercase max-sm:text-[10px]"
         variant={buttonVariant()}
         disabled={
           isUnlocked
@@ -64,49 +64,38 @@ export const FactoryCardUpgrade = (props: FactoryCardUpgradeProps) => {
         onClick={handleBuy}
       >
         {isUnlocked && canBuyAmount && totalGreaterThan0 && (
-          <span className="flex items-center gap-1">
-            Buy
-            <span>
-              <span>{amountFormatter(totalCanBuy)}</span>
+          <>
+            <span className="flex items-center gap-1">
+              {`Buy ${amountFormatter(totalCanBuy)} `}
+
+              <span className="max-sm:hidden">{name}</span>
             </span>
-            <span className="max-sm:text-[10px]">{name}</span>
-            <span className="absolute right-4 normal-case max-sm:text-[10px]">
-              {amountFormatter(totalToPay)}
-            </span>
-          </span>
+
+            <span className="normal-case">{amountFormatter(totalToPay)}</span>
+          </>
         )}
 
         {!isUnlocked && canUnlock && (
-          <span className="flex items-center gap-1">
-            <span>Unlock </span>
-
-            <span className="absolute right-4 normal-case max-sm:text-[10px]">
-              {amountFormatter(unlockPrice)}
-            </span>
-          </span>
+          <>
+            Unlock
+            <span className="normal-case">{amountFormatter(unlockPrice)}</span>
+          </>
         )}
 
-        {(!isUnlocked && !canUnlock) ||
-          (!totalGreaterThan0 && (
-            <span className="flex items-center gap-1">No money</span>
-          ))}
+        {(!isUnlocked && !canUnlock) || (!totalGreaterThan0 && 'No money')}
 
         {isUnlocked && !canBuyAmount && (
-          <span className="flex items-center gap-1">
-            <span>No money</span>
-            <span className="absolute right-4 normal-case max-sm:text-[10px]">
-              {amountFormatter(totalToPay)}
-            </span>
-          </span>
+          <>
+            No money
+            <span className="normal-case">{amountFormatter(totalToPay)}</span>
+          </>
         )}
 
         {!isUnlocked && !canUnlock && (
-          <span className="flex items-center gap-1">
+          <>
             Locked
-            <span className="absolute right-4 text-xs normal-case">
-              {amountFormatter(unlockPrice)}
-            </span>
-          </span>
+            <span className="normal-case">{amountFormatter(unlockPrice)}</span>
+          </>
         )}
       </Button>
 

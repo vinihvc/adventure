@@ -1,5 +1,6 @@
 import type { FactoryType } from '@/content/factories'
-import { atom, useAtomValue } from 'jotai'
+import { useAtomValue } from 'jotai'
+import { atomWithStorage } from 'jotai/utils'
 import { getFactory, hasMoneyToBuy, store, walletAtom } from '..'
 
 export const AMOUNT_TO_BUY = [
@@ -37,7 +38,7 @@ export type MscAtomProps = {
   amountToBuy: (typeof AMOUNT_TO_BUY)[number]['value']
 }
 
-export const mscAtom = atom<MscAtomProps>({
+export const mscAtom = atomWithStorage<MscAtomProps>('msc', {
   amountToBuy: 1,
 })
 
@@ -46,7 +47,7 @@ export const useMsc = () => {
 
   const found = AMOUNT_TO_BUY.find((a) => a.value === amountToBuy)
 
-  if (!found) return 1
+  if (!found) return AMOUNT_TO_BUY[0]
 
   return found
 }

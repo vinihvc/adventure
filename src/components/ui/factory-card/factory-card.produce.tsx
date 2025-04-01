@@ -74,7 +74,7 @@ export const FactoryCardProduce = (props: FactoryCardProduceProps) => {
             <div className="-bottom-2 absolute">
               <span
                 className={cn(
-                  'fade-in-50 slide-in-from-bottom-1 flex h-6 w-16 animate-in items-center justify-center rounded-lg border border-background/20 bg-foreground text-background text-xs',
+                  'fade-in-50 slide-in-from-bottom-1 flex h-6 w-18 animate-in items-center justify-center rounded-lg border border-background/20 bg-foreground text-background text-xs',
                   'group-data-[producing=true]:border-blue-800 group-data-[producing=true]:bg-blue-600',
                   borderedText({ variant: isProducing ? 'blue' : 'black' }),
                 )}

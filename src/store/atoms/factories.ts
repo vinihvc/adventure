@@ -196,5 +196,5 @@ export const totalToEarnAfterProduce = (factory: FactoryType) => {
   const { amount } = getFactory(factory)
   const productionValue = getProductionValue(factory)
 
-  return (amount || 1) * productionValue
+  return amount * productionValue
 }
