@@ -45,9 +45,9 @@ export const useMsc = () => {
   const { amountToBuy } = useAtomValue(mscAtom)
 
   const found = AMOUNT_TO_BUY.find((a) => a.value === amountToBuy)
-  if (!found) {
-    throw new Error(`No matching entry found for amountToBuy: ${amountToBuy}`)
-  }
+
+  if (!found) return 1
+
   return found
 }
 
