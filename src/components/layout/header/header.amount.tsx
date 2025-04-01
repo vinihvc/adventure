@@ -29,12 +29,12 @@ export const AmountToBuy = () => {
           </span>
 
           <span className="sr-only">
-            {`You are buying ${amount.value} of the selected item`}
+            {`You are buying ${amount.description} at once`}
           </span>
         </Button>
       </TooltipTrigger>
 
-      <TooltipContent>{`Buy ${amount.value} at once`}</TooltipContent>
+      <TooltipContent>{`Buy ${amount.description} at once`}</TooltipContent>
     </Tooltip>
   )
 }

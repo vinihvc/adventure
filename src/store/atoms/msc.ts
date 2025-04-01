@@ -1,30 +1,33 @@
 import type { FactoryType } from '@/content/factories'
-import { useAtomValue } from 'jotai'
-import { atomWithStorage } from 'jotai/utils'
+import { atom, useAtomValue } from 'jotai'
 import { getFactory, hasMoneyToBuy, store, walletAtom } from '..'
 
 export const AMOUNT_TO_BUY = [
   {
     name: '1',
     symbol: 'x',
+    description: '1',
     value: 1,
     math: 'unit',
   },
   {
     name: '10',
     symbol: '%',
+    description: '10%',
     value: 10,
     math: 'percentage',
   },
   {
     name: '50',
     symbol: '%',
+    description: '50%',
     value: 50,
     math: 'percentage',
   },
   {
     name: 'max',
     symbol: '',
+    description: 'maximum',
     value: 'max',
     math: 'percentage',
   },
@@ -34,7 +37,7 @@ export type MscAtomProps = {
   amountToBuy: (typeof AMOUNT_TO_BUY)[number]['value']
 }
 
-export const mscAtom = atomWithStorage<MscAtomProps>('msc', {
+export const mscAtom = atom<MscAtomProps>({
   amountToBuy: 1,
 })
 
