@@ -18,10 +18,6 @@ export const useCountdown = (factory: FactoryType) => {
     setIsRunning(f.isAutomated || f.isProducing)
   }, [f.isAutomated, f.isProducing])
 
-  const handleOnComplete = () => {
-    stopProducing(factory)
-  }
-
   useInterval(
     () => {
       if (seconds > 0 && isRunning) {
@@ -31,7 +27,7 @@ export const useCountdown = (factory: FactoryType) => {
       if (seconds < 1) {
         setSeconds(f.productionTime)
         setIsRunning(f.isAutomated)
-        handleOnComplete()
+        stopProducing(factory)
       }
     },
     isRunning && f.isUnlocked ? 1000 : undefined,

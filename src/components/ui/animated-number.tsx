@@ -1,19 +1,19 @@
-import { suffixAmountFormatter } from '@/utils/formatters'
-import NumberFlow from '@number-flow/react'
+import { cn } from '@/lib/cn'
+import { amountFormatter } from '@/utils/formatters'
 
-interface AnimatedNumberProps extends React.ComponentProps<typeof NumberFlow> {
+interface AnimatedNumberProps extends React.ComponentProps<'div'> {
+  /**
+   * The value to display
+   */
   value: number
 }
 
 export const AnimatedNumber = (props: AnimatedNumberProps) => {
-  const { value, ...rest } = props
+  const { value, className, ...rest } = props
 
   return (
-    <NumberFlow
-      value={value}
-      format={{ notation: 'compact' }}
-      suffix={suffixAmountFormatter(value)}
-      {...rest}
-    />
+    <div className={cn('flex items-center gap-1', className)} {...rest}>
+      {`${amountFormatter(value)}`}
+    </div>
   )
 }

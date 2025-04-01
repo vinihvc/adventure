@@ -64,7 +64,8 @@ const FactoryDialog = (props: FactoryDialogProps) => {
 
           <div className="flex justify-between">
             <div>Production speed</div>
-            <AnimatedNumber value={factory.productionTime} suffix="x" />
+
+            <span>{`${factory.productionTime}s`}</span>
           </div>
 
           <div className="flex justify-between">

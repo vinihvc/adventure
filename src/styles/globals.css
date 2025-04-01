@@ -78,10 +78,6 @@
 		@apply bg-background text-foreground overflow-y-scroll antialiased;
 	}
 
-	html {
-		@apply select-none;
-	}
-
 	#root {
 		@apply relative h-full min-h-dvh flex flex-col items-center justify-center sm:px-5 overflow-hidden;
 	}

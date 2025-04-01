@@ -79,7 +79,7 @@ export const FactoryCardProduce = (props: FactoryCardProduceProps) => {
                   borderedText({ variant: isProducing ? 'blue' : 'black' }),
                 )}
               >
-                <AnimatedNumber value={amount} suffix="" />
+                <AnimatedNumber value={amount} />
               </span>
             </div>
           )}
