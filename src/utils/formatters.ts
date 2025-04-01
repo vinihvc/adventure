@@ -1,9 +1,9 @@
 const VALUE_RANGE = [
   { value: 1, symbol: '' },
   { value: 1e3, symbol: 'K' },
-  { value: 1e6, symbol: 'KK ' },
-  { value: 1e9, symbol: 'BB' },
-  { value: 1e12, symbol: 'TT' },
+  { value: 1e6, symbol: 'M' },
+  { value: 1e9, symbol: 'B' },
+  { value: 1e12, symbol: 'T' },
   { value: 1e15, symbol: 'AA' },
   { value: 1e18, symbol: 'BB' },
   { value: 1e21, symbol: 'CC' },
