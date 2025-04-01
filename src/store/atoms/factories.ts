@@ -10,7 +10,7 @@ import {
 
 const INITIAL_FACTORY = 'potato'
 
-const initialFactories = Object.fromEntries(
+export const initialData = Object.fromEntries(
   Object.keys(FACTORIES).map((factory) => [
     factory,
     {
@@ -23,7 +23,7 @@ const initialFactories = Object.fromEntries(
   ]),
 )
 
-export const factoriesAtom = atomWithStorage('factories', initialFactories)
+export const factoriesAtom = atomWithStorage('factories', initialData)
 
 export const useFactory = (factory: FactoryType) => {
   const factories = useAtomValue(factoriesAtom)
