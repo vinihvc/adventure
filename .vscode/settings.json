@@ -8,5 +8,9 @@
 	},
 	"tailwindCSS.experimental.classRegex": [
 		["([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]"]
-	]
+	],
+	"workbench.colorCustomizations": {
+		"minimap.errorHighlight": "#ff0000",
+		"terminal.background": "#00000000"
+	}
 }
