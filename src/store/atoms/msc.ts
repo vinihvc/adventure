@@ -44,8 +44,11 @@ export const mscAtom = atom<MscAtomProps>({
 export const useMsc = () => {
   const { amountToBuy } = useAtomValue(mscAtom)
 
-  // biome-ignore lint/style/noNonNullAssertion: <explanation>
-  return AMOUNT_TO_BUY.find((a) => a.value === amountToBuy)!
+  const found = AMOUNT_TO_BUY.find((a) => a.value === amountToBuy)
+  if (!found) {
+    throw new Error(`No matching entry found for amountToBuy: ${amountToBuy}`)
+  }
+  return found
 }
 
 export const toggleAmountToBuy = () => {
