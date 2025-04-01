@@ -13,7 +13,7 @@ export const Switch = (props: React.ComponentProps<typeof RSwitch.Root>) => {
         'inline-flex items-center',
         'rounded-full border border-transparent',
         'shadow-xs transition-all',
-        'data-[state=checked]:bg-primary data-[state=unchecked]:bg-input',
+        'data-[state=checked]:bg-foreground data-[state=unchecked]:bg-foreground/20',
         'outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50',
         'disabled:cursor-not-allowed disabled:opacity-50',
         className,

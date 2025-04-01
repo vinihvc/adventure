@@ -122,7 +122,7 @@ export const DrawerDescription = (
   return (
     <DrawerPrimitive.Description
       data-slot="drawer-description"
-      className={cn('text-muted-foreground', className)}
+      className={cn('', className)}
       {...rest}
     />
   )

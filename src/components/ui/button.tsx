@@ -18,7 +18,6 @@ const buttonVariants = tv({
     'active:scale-95',
     'outline-none focus-visible:ring-[3px]',
     'disabled:pointer-events-none aria-disabled:pointer-events-none',
-    'aria-invalid:border-destructive aria-invalid:ring-destructive/20',
     "[&_svg:not([class*='size-'])]:size-5 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   ],
   variants: {
