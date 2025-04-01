@@ -2,7 +2,11 @@ import { FACTORIES, type FactoryType } from '@/content/factories'
 import { decreaseMoney, hasMoneyToBuy, increaseMoney, store } from '@/store'
 import { useAtomValue } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
-import { amountToBuy } from './msc'
+import {
+  type MscAtomProps,
+  totalCanBuyByAmount,
+  totalToPayByAmount,
+} from './msc'
 
 const INITIAL_FACTORY = 'potato'
 
@@ -48,11 +52,14 @@ export const getFactory = (factory: FactoryType) => {
  *
  * @param factory - The factory to set the amount of
  */
-export const setAmountBySelectedAmount = (factory: FactoryType) => {
-  const amountSelected = amountToBuy()
-  const { buyCost } = getFactory(factory)
+export const setAmountBySelectedAmount = (
+  factory: FactoryType,
+  amount: MscAtomProps['amountToBuy'],
+) => {
+  const amountToPay = totalToPayByAmount(factory, amount)
+  const amountToBuy = totalCanBuyByAmount(factory, amount)
 
-  const canBuy = hasMoneyToBuy(buyCost * amountSelected)
+  const canBuy = hasMoneyToBuy(amountToPay)
 
   if (!canBuy) return
 
@@ -60,11 +67,11 @@ export const setAmountBySelectedAmount = (factory: FactoryType) => {
     ...prev,
     [factory]: {
       ...prev[factory],
-      amount: prev[factory].amount + amountSelected,
+      amount: prev[factory].amount + amountToBuy,
     },
   }))
 
-  decreaseMoney(buyCost * amountSelected)
+  decreaseMoney(amountToPay)
 }
 
 /**
@@ -173,6 +180,12 @@ export const unlockFactory = (factory: FactoryType) => {
   decreaseMoney(unlockPrice)
 }
 
+export const getProductionValue = (factory: FactoryType) => {
+  const { productionValue, isUpgraded } = getFactory(factory)
+
+  return productionValue * (isUpgraded ? 2 : 1)
+}
+
 /**
  * Get the total amount of money a factory will earn after producing
  *
@@ -180,7 +193,8 @@ export const unlockFactory = (factory: FactoryType) => {
  * @returns The total amount of money a factory will earn after producing
  */
 export const totalToEarnAfterProduce = (factory: FactoryType) => {
-  const { amount, productionValue, isUpgraded } = getFactory(factory)
+  const { amount } = getFactory(factory)
+  const productionValue = getProductionValue(factory)
 
-  return (amount || 1) * productionValue * (isUpgraded ? 2 : 1)
+  return (amount || 1) * productionValue
 }
