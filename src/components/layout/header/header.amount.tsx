@@ -9,7 +9,7 @@ export const AmountToBuy = () => {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
-          className="w-11"
+          className="w-14"
           variant="white"
           size="icon"
           onClick={toggleAmountToBuy}
