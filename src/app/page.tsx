@@ -23,7 +23,7 @@ export const HomePage = () => {
         <Header />
 
         <ScrollArea className="flex-1">
-          <div className="grid w-full gap-6 p-4 md:grid-cols-2">
+          <div className="grid w-full gap-6 px-2 py-4 md:grid-cols-2">
             {Object.keys(FACTORIES).map((factory) => (
               <FactoryCard key={factory} type={factory as FactoryType} />
             ))}

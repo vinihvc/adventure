@@ -122,8 +122,9 @@ export const Button = (props: ButtonProps) => {
       data-slot="button"
       type={type}
       className={cn(
-        buttonVariants({ variant, size, className }),
+        buttonVariants({ variant, size }),
         borderedText({ variant, size: 'lg' }),
+        className,
       )}
       {...rest}
       onClick={handleClick}

@@ -2,7 +2,7 @@ import { FACTORIES, type FactoryType } from '@/content/factories'
 import { useAtomValue } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import { store } from '..'
-import { getFactory } from './factories'
+import { getFactory, getProductionValue } from './factories'
 
 const initialStatistics = Object.fromEntries(
   Object.keys(FACTORIES).map((factory) => [
@@ -25,19 +25,18 @@ export const useStatistics = () => useAtomValue(statisticsAtom)
  * @param factory - The factory to set the statistics for
  */
 export const setStatistics = (factory: FactoryType) => {
-  const { amount, productionValue, isUpgraded } = getFactory(factory)
+  const { amount } = getFactory(factory)
+  const productionValue = getProductionValue(factory)
 
   store.set(statisticsAtom, (prev) => ({
     ...prev,
-    moneyEarned:
-      prev.moneyEarned + amount * productionValue * (isUpgraded ? 2 : 1),
+    moneyEarned: prev.moneyEarned + amount * productionValue,
     factories: {
       ...prev.factories,
       [factory]: {
         ...prev.factories[factory],
         moneyEarned:
-          prev.factories[factory].moneyEarned +
-          amount * productionValue * (isUpgraded ? 2 : 1),
+          prev.factories[factory].moneyEarned + amount * productionValue,
       },
     },
   }))
