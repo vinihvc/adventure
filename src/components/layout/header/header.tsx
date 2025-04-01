@@ -37,7 +37,7 @@ export const Header = (props: HeaderProps) => {
             />
 
             <span className="font-bold text-base">
-              {<AnimatedNumber value={money} />}
+              <AnimatedNumber value={money} isDollar />
             </span>
           </div>
         </TooltipTrigger>

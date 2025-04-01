@@ -12,7 +12,10 @@ import {
   useMsc,
 } from '@/store/atoms/msc'
 import { hasMoneyToBuy } from '@/store/atoms/wallet'
-import { amountFormatterWithDolarSign } from '@/utils/formatters'
+import {
+  amountFormatter,
+  amountFormatterWithDolarSign,
+} from '@/utils/formatters'
 import React from 'react'
 
 const FactoryDialog = React.lazy(() => import('@/components/dialog/factory'))
@@ -66,7 +69,7 @@ export const FactoryCardUpgrade = (props: FactoryCardUpgradeProps) => {
         {isUnlocked && canBuyAmount && totalGreaterThan0 && (
           <>
             <span className="flex items-center gap-1">
-              {`Buy ${amountFormatterWithDolarSign(totalCanBuy)} `}
+              {`Buy ${amountFormatter(totalCanBuy)} `}
 
               <span className="max-sm:hidden">{name}</span>
             </span>
