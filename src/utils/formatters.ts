@@ -42,13 +42,13 @@ export const amountFormatter = (amount: number) => {
     .reverse()
     .find((item) => amount >= item.value)
 
+  if (amount >= 1e93) {
+    return '∞'
+  }
+
   if (item) {
     const formattedValue = amount / item.value
     return `${formattedValue.toFixed(2).replace(regex, '$1')}${item.symbol}`
-  }
-
-  if (amount >= 1e93) {
-    return '∞'
   }
 
   return '0'

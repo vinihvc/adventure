@@ -18,7 +18,7 @@ export const useContextMenu = (props: ContextMenuProps = {}) => {
 
   React.useEffect(() => {
     const handleContextmenu = (e: MouseEvent) => {
-      if (defaultIsDisabled || IS_DEV) e.preventDefault()
+      if (defaultIsDisabled || !IS_DEV) e.preventDefault()
     }
 
     document.addEventListener('contextmenu', handleContextmenu)
